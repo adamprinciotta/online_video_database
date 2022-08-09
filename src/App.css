@@ -36,3 +36,142 @@
     transform: rotate(360deg);
   }
 }
+
+
+.main-nav{
+  text-align: center;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  border-bottom: 1px solid black;
+  padding-top: 8px;
+  padding-bottom: 1px;
+  color: white;
+  background-color: black;
+  
+}
+
+.main-nav a{
+  color: white;
+  text-decoration: none;
+}
+
+.main-nav a:hover{
+  background-color: darkgray;
+  color: black;
+}
+
+.main-nav ul{
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 1.5em;
+}
+
+.header{
+  background-color: black;
+}
+
+.header1{
+  font-size: 48px;
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  padding-bottom: 8px;
+}
+
+.mainBG{
+  height: 100vh;
+  background-color: #585858;
+}
+
+.teamsContainer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  flex: 0 0 auto;
+  background-color: #585858;
+  padding: 25px;
+}
+
+
+.p1Team{
+  /* margin: auto 15%; */
+  height: 425px;
+  width: 250px;
+  display: flex;
+  align-items: center;
+  padding-top: 1%;
+  flex-direction: column;
+  background-color: black;
+  box-sizing: border-box;
+}
+
+.p2Team{
+  /* margin: auto 75%; */
+  height: 425px;
+  width: 250px;
+  display: flex;
+  align-items: center;
+  padding-top: 1%;
+  flex-direction: column;
+  background-color: black;
+  box-sizing: border-box;
+}
+
+.teamBtn{
+    display: inline-block;
+    padding: 5px;
+    margin-right: 95px;
+    line-height: 100%;
+}
+
+.teamSelect{
+  font-weight: 500;
+  color:lightgray;
+}
+
+
+.playerName{
+  display: grid;
+  font-weight: 500;
+  place-items: center;
+  height: 30px;
+  margin: auto;
+  width: 67.5%;
+  padding: 5px -10px;
+  color: lightgray;
+  text-align: center;
+}
+
+.submitButton{
+  background-color: #333;
+  color: lightgray;
+  font-weight: 500;
+  padding: 10px 24px;
+  border-radius: 8px;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.submitButton:hover{
+  background-color: dimgray;
+  cursor: pointer;
+}
+
+.submitCenter{
+  display: grid;
+  place-items: center;
+  justify-content: center;
+}
+
+.order{
+  color: lightgray;
+  display: grid;
+  place-items: center;
+  margin-top: -10px;
+  margin-left: 100px;
+}

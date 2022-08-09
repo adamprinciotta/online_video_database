@@ -1,0 +1,232 @@
+:root{
+    --bg: #242526;
+    --bg-accent: #484a4d;
+    --text-color: #dadce1;
+    --nav-size: 60px;
+    --border: 1px solid #474a4d;
+    --border-radius: 8px;
+    --speed: 500ms;
+}
+
+*{scroll-behavior: smooth;}
+
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.navbar{
+    /*height: var(--nav-size)*/
+    height: 150px;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    background: pink; 
+
+}
+
+.navbar-nav{
+    /* max-width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end; */
+    background-color: #eee;
+    display: flex;
+    width: 15vw;
+    margin: 0 auto;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    flex-direction: column;
+    justify-content: space-evenly;  /*use justify content to organize in flexbox */
+    align-items: center; /* aligns based on the axis that you assign. And using this allows them to keep their original size */
+    align-content: center; /*not commonly used, only used on multi line flex box containers */
+    border: 1px solid black;
+}
+
+.nav-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: filter 300ms;
+    padding: 5px;
+    transition: filter 300ms;
+}
+
+.nav-item:hover{
+    cursor: pointer;
+}
+
+.icon-button{
+    --button-size: calc(var(--nav-size)*.65);
+    width: var(--button-size);
+    height: var(--button-size);
+    /* background-color: #484a4d; */
+    border-radius: 75%;
+    padding: 5px;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: filter 300ms;
+}
+
+.icon-button:hover{
+    filter: brightness(1.2);
+}
+
+.icon-button svg{
+    fill:var(--text-color);
+    width:20px;
+    height:20px;
+}
+
+.navItem{
+    background-color: brown;
+    width: 150px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+}
+
+.charSelection{
+    background-color: green;
+    width: 150px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+}
+
+.dropdown{
+    position: absolute;
+    top: 100px;
+    width: 175px;
+    height: 300px;
+    transform: translateX(-85%);
+    background-color: var(--bg);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.menu-item{
+    height: 20px;
+    display: flex;
+    align-items: center;
+    border-radius: var(--border-radius);
+    transition: background var(--speed);
+    padding: 0.5rem;
+}
+
+.menu-item:hover{
+    background-color: #525357;
+}
+
+nav ul{
+    height: 200px;
+    width:50%;
+}
+
+
+ul::-webkit-scrollbar{
+    width: .75em;
+}
+
+ul::-webkit-scrollbar-track{
+    background: lightgray;
+    border-radius: 100vw;
+}
+
+ul::-webkit-scrollbar-thumb{
+    background: darkgray;
+    border-radius: 100vw;
+}
+
+ul::-webkit-scrollbar-thumb:hover{
+    background-color: gray;
+}
+
+.p1Select{
+    display: flex;
+    justify-content: center;
+    background: orange;
+}
+
+.charButton{
+    width: 150px;
+    height: 100px;
+    background-color: red;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.charButtonMenu{
+    background-color: brown;
+    width: 150px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    align-items: center;
+}
+
+.div-dropdown{
+    /* position: relative; */
+    width: 200px;
+    font-family: sans-serif;
+    margin: auto 25%;
+    user-select: none;
+}
+
+.div-dropdown .div-dropdown-btn{
+    padding: 10px;
+    background: #333;
+    box-shadow: 3px 3px 10px 6px rgba(0,0,0,0.06);
+    font-weight: bold;
+    color: lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* CHANGE THIS IF YOU WANT TO MAKE THE PICTURE AND CHARACTER NAME CLOSER*/
+}
+
+.div-dropdown .dropdown-content{
+    overflow: hidden;
+    overflow-y: scroll;
+    /* border-radius: 5%; */
+    width: 190px;
+    height: 300px;
+    position: absolute;
+    /*top: 110%;
+    left: 0; */
+    padding: 5px;
+    background: #333;
+    box-shadow: 3px 3px 10px 6px rgba(0,0,0,0.06);
+    font-weight: 500;
+    color: lightgray;
+}
+
+.div-dropdown-btn:hover{
+    cursor: pointer;
+}
+
+.div-dropdown .dropdown-content .dropdown-item{
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transition: all 0.2s;
+}
+
+.div-dropdown .dropdown-content .dropdown-item:hover{
+    background-color: dimgray;
+    cursor: pointer;
+}
