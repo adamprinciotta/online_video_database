@@ -147,6 +147,7 @@ function CharDropdown(props) {
              onClick={(e) => {
              setIsActive(!isActive)
             }}>
+                {/*  */}
                 <img src = {props.selectedPic} width = "40" height = "40"></img>
                 {props.selected}</a>
             

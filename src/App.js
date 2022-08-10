@@ -4,7 +4,27 @@ import CharDropdown from './CharDropdown';
 import React, { useState } from 'react';
 import Asterisk from "./SG pics/Asterisk.png";
 import Logo from "./SG pics/SGLogo.png";
-
+import VODDisplay from './VODDisplay';
+import Annie from './SG pics/Annie.jpg';
+import Any from './SG pics/Asterisk.png';
+import Beowulf from './SG pics/Beowulf.jpg';
+import BigBand from './SG pics/Big Band.jpg';
+import Cerebella from './SG pics/Cerebella.jpg';
+import Double from './SG pics/Double.jpg';
+import Eliza from './SG pics/Eliza.jpg';
+import Filia from './SG pics/Filia.jpg';
+import Fukua from './SG pics/Fukua.jpg';
+import MsFortune from './SG pics/Ms Fortune.jpg';
+import None from './SG pics/None.png';
+import Parasoul from './SG pics/Parasoul.jpg';
+import Painwheel from './SG pics/Painwheel.jpg';
+import Peacock from './SG pics/Peacock.jpg';
+import QuestionMark from './SG pics/Question mark.png';
+import RoboFortune from './SG pics/Robo Fortune.jpg';
+import Squigly from './SG pics/Squigly.jpg';
+import Umbrella from './SG pics/Umbrella.jpg';
+import Valentine from './SG pics/Valentine.jpg';
+import BlackDahlia from './SG pics/Black Dahlia.jpg';
 // function App() {
 //   return (
 //     <div className="App">
@@ -104,6 +124,15 @@ function App() {
         <button type="button" className = "submitButton">Search</button>
       </div>
     </div>
+
+    <VODDisplay selected={"Parasoul"} setSelected={p1setSelected1} selectedPic = {Parasoul} setSelectedPic={p2setSelectedPic1}
+                selected2={"Double"} setSelected2={p2setSelected2} selectedPic2 = {Double} setSelectedPic2={p2setSelectedPic2}
+                selected3={"Black Dahlia"} setSelected3={p2setSelected3} selectedPic3 = {BlackDahlia} setSelectedPic3={p2setSelectedPic3}
+                selected4={"Fukua"} setSelected4={p2setSelected1} selectedPic4 = {Fukua} setSelectedPic4={p2setSelectedPic1}
+                selected5={"Annie"} setSelected5={p2setSelected1} selectedPic5 = {Annie} setSelectedPic5={p2setSelectedPic1}
+                selected6={"Robo Fortune"} setSelected6={p2setSelected1} selectedPic6 = {RoboFortune} setSelectedPic6={p2setSelectedPic1}
+                />
+    
     </>
   );
 }

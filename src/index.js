@@ -5,14 +5,16 @@ import App from './App';
 import CharDropdown from './CharDropdown';
 import reportWebVitals from './reportWebVitals';
 import CharacterDropdown from './CharacterDropdown';
+import VODDisplay from './VODDisplay';
 //import testDropdown from './testDropdown';
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   
   <React.StrictMode>
     <App/>
-    
   </React.StrictMode>
 );
 

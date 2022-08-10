@@ -203,10 +203,9 @@ ul::-webkit-scrollbar-thumb:hover{
     overflow-y: scroll;
     /* border-radius: 5%; */
     width: 190px;
-    height: 300px;
+    height: 400px;
     position: absolute;
-    /*top: 110%;
-    left: 0; */
+    /* top: 10%; */
     padding: 5px;
     background: #333;
     box-shadow: 3px 3px 10px 6px rgba(0,0,0,0.06);

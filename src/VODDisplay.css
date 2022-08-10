@@ -1,0 +1,36 @@
+.mainBG{
+    height: 75vh;
+    background-color: #585858;
+}
+
+.backgroundColor{
+    background-color: #585858;
+}
+
+.table{
+    /* display: flex; */
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    justify-content: center;
+    border-collapse: separate;
+    border-spacing: .5px 5px;
+    /* border: 10px black;
+    background-color: darkgray;
+    justify-content: center;
+    text-align: center; */
+}
+
+.tbl-hdr{
+    width: 200px;
+    text-align: center;
+    padding: 5px; 
+    border: 1px solid black;
+    background-color: #333;
+    color: lightgray;
+    font-weight: 500;
+}
+
+.img{
+    box-shadow: 0px 0px 5px 3px rgba(255, 255, 255, 0.2);
+}
