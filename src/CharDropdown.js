@@ -2,7 +2,7 @@
 // import Multiselect from 'multiselect-react-dropdown';
 import './charDropdown.css';
 import './App';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { render } from '@testing-library/react';
 import $ from 'jquery';
 import { options } from '@mobiscroll/react';
@@ -32,6 +32,33 @@ import BlackDahlia from './SG pics/Black Dahlia.jpg';
 function CharDropdown(props) {
     const[isActive, setIsActive] = useState(false);
 
+    // useEffect(() =>{
+    //     document.addEventListener("click", handleClickOutside, true);
+    // },[])
+
+    // const refOne = useRef(null);
+
+    // const handleClickOutside = (e) => {
+    //     if(!refOne.current.contains(e.target)){
+    //         setIsActive(false);
+    //     }
+    //     else if(e.target.id == 'dropdownButton'){
+    //         setIsActive(true);
+    //     }
+    //     else if(e.target.class == 'dropdown-content'){
+    //         console.log(e.target.innerHTML);
+    //         {options.map((option) => (
+    //                     <div onClick={(e) => {
+    //                         props.setSelected(option.Character) 
+    //                         setIsActive(false)
+    //                         props.setSelectedPic(option.src)
+    //                     }}
+    //                     className="dropdown-item">
+    //                         <img src={option.src} width = "40" height = "40"></img>&nbsp;&nbsp;{option.Character}
+    //                         </div>
+    //         ))}
+    //     }
+    //}
 
     options = [
                 {
@@ -116,8 +143,9 @@ function CharDropdown(props) {
     return (
         <>
         <div className="div-dropdown">
-            <a id="dropdownButton" href="#dropdownButton" className="div-dropdown-btn" onClick={(e) => {
-                setIsActive(!isActive)
+            <a id="dropdownButton" href="#dropdownButton" className="div-dropdown-btn" 
+             onClick={(e) => {
+             setIsActive(!isActive)
             }}>
                 <img src = {props.selectedPic} width = "40" height = "40"></img>
                 {props.selected}</a>
@@ -138,7 +166,6 @@ function CharDropdown(props) {
         </div>
         <br></br>
         <br></br>
-
         </>
         
     );
