@@ -68,13 +68,13 @@ function App() {
   return (
     <><body>
       <header>
-        <nav class="main-nav">
+        <nav className="main-nav">
           <ul>
             <li><a href="submission.html">Submit VODs</a></li>
             <li><a href="about.html">About/Contact</a></li>
           </ul>
         </nav>
-        <div class="header1">One More Once</div>
+        <div className="header1">One More Once</div>
       </header>
     </body>
 
@@ -86,7 +86,7 @@ function App() {
           <form>
             <div className ="playerName">
               <label>Player 1 Name
-              <input type="text" name = "name"></input>
+              <input type="text" className = "name"></input>
               </label>
             </div>
           </form>
