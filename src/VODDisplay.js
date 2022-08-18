@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './VODDisplay.css'
 
+//Importing character images
 import Annie from './SG pics/Annie.jpg';
 import Any from './SG pics/Asterisk.png';
 import Beowulf from './SG pics/Beowulf.jpg';
@@ -30,10 +31,12 @@ function VODDisplay(props) {
 
     return(
         <>
+
+        <div>{props.data}</div>
         <div className='mainBG'>
             <div class="backgroundColor">
                 <table className = 'table'>
-                    <tr>
+                    <tr> {/* Table head MAYBE CHANGE THIS TO BE TH, I AM NOT SURE ********************************** */}
                         <td class="tbl-hdr">Player 1</td>
                         <td class="tbl-hdr">Player 1 Team</td>
                         <td class="tbl-hdr">Player 2 Team</td>
@@ -41,6 +44,8 @@ function VODDisplay(props) {
                         <td class="tbl-hdr">Event + Date + VOD</td>
                     </tr>
                     
+
+                    {/* Hard coded rows for testing */}
                     <tr>
                         <td class="tbl-hdr">Adam</td>
                         <td class="tbl-hdr" valign='center'>

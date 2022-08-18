@@ -2,6 +2,8 @@
 import './App.css';
 import CharDropdown from './CharDropdown';
 import React, { useState } from 'react';
+
+//Importing the images that will be used
 import Asterisk from "./SG pics/Asterisk.png";
 import Logo from "./SG pics/SGLogo.png";
 import VODDisplay from './VODDisplay';
@@ -47,6 +49,10 @@ import BlackDahlia from './SG pics/Black Dahlia.jpg';
 // }
 
 function App() {
+
+  //These States will store the values of the character and picture to update
+  //the dropdown menu in real time as they will be passed through as props to 
+  //the child (CharDropdown.js)
   const [p1selectedchar1, p1setSelected1] = useState("Any")
   const [p1selectedPic1, p1setSelectedPic1] = useState(Asterisk)
 
@@ -91,7 +97,7 @@ function App() {
             </div>
           </form>
           <br></br>
-          <div className='teamBtn'>
+          <div className='teamBtn'>{/* Team 1 dropdown menus have the state variables passed through as props */}
             <CharDropdown selected={p1selectedchar1} setSelected={p1setSelected1} selectedPic = {p1selectedPic1} setSelectedPic={p1setSelectedPic1}/>
             <CharDropdown selected={p1selectedchar2} setSelected={p1setSelected2} selectedPic = {p1selectedPic2} setSelectedPic={p1setSelectedPic2}/>
             <CharDropdown selected={p1selectedchar3} setSelected={p1setSelected3} selectedPic = {p1selectedPic3} setSelectedPic={p1setSelectedPic3}/>
@@ -112,7 +118,7 @@ function App() {
             </div>
           </form>
           <br></br>
-          <div className='teamBtn'>
+          <div className='teamBtn'>{/* Team 2 dropdown menus have the state variables passed through as props */}
           <CharDropdown selected={p2selectedchar1} setSelected={p2setSelected1} selectedPic = {p2selectedPic1} setSelectedPic={p2setSelectedPic1}/>
           <CharDropdown selected={p2selectedchar2} setSelected={p2setSelected2} selectedPic = {p2selectedPic2} setSelectedPic={p2setSelectedPic2}/>
           <CharDropdown selected={p2selectedchar3} setSelected={p2setSelected3} selectedPic = {p2selectedPic3} setSelectedPic={p2setSelectedPic3}/>
@@ -124,7 +130,9 @@ function App() {
         <button type="button" className = "submitButton">Search</button>
       </div>
     </div>
-
+        
+        
+    {/* Placeholder for testing what the displayed VODs would look like */}
     <VODDisplay selected={"Parasoul"} setSelected={p1setSelected1} selectedPic = {Parasoul} setSelectedPic={p2setSelectedPic1}
                 selected2={"Double"} setSelected2={p2setSelected2} selectedPic2 = {Double} setSelectedPic2={p2setSelectedPic2}
                 selected3={"Black Dahlia"} setSelected3={p2setSelected3} selectedPic3 = {BlackDahlia} setSelectedPic3={p2setSelectedPic3}

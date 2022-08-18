@@ -1,6 +1,7 @@
 const e = require('express');
 const express = require('express');
 const mysql = require('mysql');
+const { default: VODDisplay } = require('../src/VODDisplay');
 
 const app = express();
 
@@ -28,9 +29,20 @@ connection.query('SELECT * FROM sg_vod_database.vod_data', (err, rows) =>{
     if(err){
         throw err;
     }else{
-        console.log("success", rows);
+        res.json('hi')
+        console.log("success", rows)
+        setData(rows)
     }
 })
+
+var databaseData = []
+
+function setData(value){
+    databaseData = value;
+    console.log("success", value);
+}
+
+
 
 const port = process.env.PORT || 5000;
 

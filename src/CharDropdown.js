@@ -5,8 +5,9 @@ import './App';
 import React, { useState, useEffect, useRef } from 'react';
 import { render } from '@testing-library/react';
 import $ from 'jquery';
-import { options } from '@mobiscroll/react';
+//import { options } from '@mobiscroll/react';
 
+//Importing pictures used
 import Annie from './SG pics/Annie.jpg';
 import Any from './SG pics/Asterisk.png';
 import Beowulf from './SG pics/Beowulf.jpg';
@@ -60,7 +61,8 @@ function CharDropdown(props) {
     //     }
     //}
 
-    options = [
+    //Stores each character's name and picture as imported
+    const options = [
                 {
                     Character: 'Any',
                     src: Any
@@ -143,14 +145,17 @@ function CharDropdown(props) {
     return (
         <>
         <div className="div-dropdown">
+            {/* When the dropdown is clicked it swaps it's state from closed to open or vice versa */}
             <a id="dropdownButton" href="#dropdownButton" className="div-dropdown-btn" 
              onClick={(e) => {
-             setIsActive(!isActive)
+             setIsActive(!isActive) 
             }}>
-                {/*  */}
+                {/* Displays the character image and name in the dropdown */}
                 <img src = {props.selectedPic} width = "40" height = "40"></img>
-                {props.selected}</a>
+                {props.selected}</a> 
             
+            {/* If it's active/clicked on, it will display each character name and picture */}
+            {/* When a character is chosen it will update the props and close the menu */}
             {isActive && (
                 <div className="dropdown-content">
                     {options.map((option) => (
