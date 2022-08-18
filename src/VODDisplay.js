@@ -22,10 +22,27 @@ import Squigly from './SG pics/Squigly.jpg';
 import Umbrella from './SG pics/Umbrella.jpg';
 import Valentine from './SG pics/Valentine.jpg';
 import BlackDahlia from './SG pics/Black Dahlia.jpg';
+import axios from 'axios';
 
 function VODDisplay(props) {
 
+    var dataArray = []
 
+
+        const databaseData = {
+            method: 'GET',
+            url: 'http://localhost:8000/data'
+        }
+    
+        axios.request(databaseData).then((response) => {
+            console.log(response.data)
+            dataArray = response.data    
+        }).catch((error)=>{
+            console.error(error)
+        })
+
+
+    
 
 
 
