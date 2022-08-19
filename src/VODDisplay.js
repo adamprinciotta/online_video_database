@@ -29,7 +29,7 @@ function VODDisplay(props) {
 
     const [dataArray, setDataArray] = useState([]);
 
-
+    //Gets everything from database on load then store it in the dataArray state
     useEffect(() => {
         const databaseData = {
             method: 'GET',
@@ -40,54 +40,211 @@ function VODDisplay(props) {
             
             setDataArray(response.data);
             dataArray.map((row) => {
-            console.log(row.P1A)
-            
+            //console.log(row.P1A)
             })
-            console.log(response.data)
+            //console.log(response.data)
             
         }).catch((error)=>{
             console.error(error)
         })
     }, [])
 
-
-
-
-
+    //Maps the array and then displays the data from the database
     const dataP1A = dataArray.map(info => {
-    
-    var dateParts = info.VODDate.split("-");
-    var dateYear = dateParts[2].substring(0, 2) + "/" + dateParts[1] + "/" + dateParts[0];   
-    
-    return(<tr>
-        <td class="tbl-hdr">{info.Player1}</td>
-        <td class="tbl-hdr" valign='center'>
-            {info.P1P}&nbsp;&nbsp;<img class="img" src ={getImage(info.P1P)} height = "35"/><br/>
-            {info.P1M}&nbsp;&nbsp;<img class="img" src={getImage(info.P1M)} height = "35"/><br/>
-            {info.P1A}&nbsp;&nbsp;<img class="img" src={getImage(info.P1A)} height = "35"/>
-        </td>
-        <td class="tbl-hdr" valign='center'>
-            <img class="img" src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}<br/>
-            <img class="img" src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}<br/>
-            <img class="img" src={getImage(info.P2A)} height = "35"/>&nbsp;&nbsp;{info.P2A}
-        </td>
-        <td class="tbl-hdr">{info.Player2}</td>
-        <td class="tbl-event">
-            <div>
-                {info.EventName}
-            </div>
-            <div>
-                {dateYear}
-            </div> 
-            <div>
-                <a href={info.Link} target="_blank"><img src="https://brandeps.com/logo-download/Y/YouTube-Play-logo-vector-01.svg" height = "30"></img></a>
-            </div>
-        </td>
-    </tr>)
+    //Splits date time object into parts
+        var dateParts = info.VODDate.split("-");
+
+        //Changes format into MM/DD/YYYY
+        var dateYear =  dateParts[1] + "/" + dateParts[2].substring(0, 2) + "/" + dateParts[0];   
+        
+        // var imgP1M = getImage(info.P1M)
+        // var imgP1A = getImage(info.P1A)
+        // var imgP2M = getImage(info.P2M)
+        // var imgP2A = getImage(info.P2A)
+
+        //If there is no character, set the image to null, not necessary if using these if statements
+        // if(checkIfNone(info.P1M)){
+        //     imgP1M = null
+        // }
+        // if(checkIfNone(info.P1A)){
+        //     imgP1A = null
+        // }
+        // if(checkIfNone(info.P2M)){
+        //     imgP2M = null
+        // }
+        // if(checkIfNone(info.P2A)){
+        //     imgP2A = null
+        // }
+
+        //If/Else statements to display the teams in the right spacings
+        if(!checkIfNone(info.P1A) && !checkIfNone(info.P1M) && !checkIfNone(info.P2M) && !checkIfNone(info.P2A)){
+            return(<tr>
+                <td class="tbl-hdr">{info.Player1}</td>
+                <td class="tbl-hdr" valign='center'>
+                    {info.P1P}&nbsp;&nbsp;<img src ={getImage(info.P1P)} height = "35"/><br/>
+                </td>
+                <td class="tbl-hdr" valign='center'>
+                    <img src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}<br/>
+                </td>
+                <td class="tbl-hdr">{info.Player2}</td>
+                <td class="tbl-event">
+                    <div>
+                        {info.EventName}
+                    </div>
+                    <div>
+                        {dateYear}
+                    </div> 
+                    <div>
+                        <a href={info.Link} target="_blank"><img src="https://brandeps.com/logo-download/Y/YouTube-Play-logo-vector-01.svg" height = "30"></img></a>
+                    </div>
+                </td>
+            </tr>)
+        }
+        else if(!checkIfNone(info.P1A) && !checkIfNone(info.P1M) && checkIfNone(info.P2M) && !checkIfNone(info.P2A)){
+            return(<tr>
+                <td class="tbl-hdr">{info.Player1}</td>
+                <td class="tbl-hdr" >
+                    {info.P1P}&nbsp;&nbsp;<img src ={getImage(info.P1P)} height = "35"/><br/>
+
+                </td>
+                <td class="tbl-hdr" >
+                    <img src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}<br/>
+                    <img src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}<br/>
+                </td>
+                <td class="tbl-hdr">{info.Player2}</td>
+                <td class="tbl-event">
+                    <div>
+                        {info.EventName}
+                    </div>
+                    <div>
+                        {dateYear}
+                    </div> 
+                    <div>
+                        <a href={info.Link} target="_blank"><img src="https://brandeps.com/logo-download/Y/YouTube-Play-logo-vector-01.svg" height = "30"></img></a>
+                    </div>
+                </td>
+            </tr>)
+        }
+        else if(!checkIfNone(info.P1A) && checkIfNone(info.P1M) && checkIfNone(info.P2M) && !checkIfNone(info.P2A)){
+            return(<tr>
+                <td class="tbl-hdr">{info.Player1}</td>
+                <td class="tbl-hdr" >
+                    {info.P1P}&nbsp;&nbsp;<img src ={getImage(info.P1P)} height = "35"/><br/>
+                    {info.P1M}&nbsp;&nbsp;<img src ={getImage(info.P1M)} height = "35"/><br/>
+
+                </td>
+                <td class="tbl-hdr" >
+                    <img src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}<br/>
+                    <img src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}<br/>
+                </td>
+                <td class="tbl-hdr">{info.Player2}</td>
+                <td class="tbl-event">
+                    <div>
+                        {info.EventName}
+                    </div>
+                    <div>
+                        {dateYear}
+                    </div> 
+                    <div>
+                        <a href={info.Link} target="_blank"><img src="https://brandeps.com/logo-download/Y/YouTube-Play-logo-vector-01.svg" height = "30"></img></a>
+                    </div>
+                </td>
+            </tr>)
+        }
+        else if(!checkIfNone(info.P1A)){
+            return(<tr>
+                <td class="tbl-hdr">{info.Player1}</td>
+                <td class="tbl-hdr" >
+                    {info.P1P}&nbsp;&nbsp;<img src ={getImage(info.P1P)} height = "35"/><br/>
+                    {info.P1M}&nbsp;&nbsp;<img src ={getImage(info.P1M)} height = "35"/><br/>
+
+                </td>
+                <td class="tbl-hdr" >
+                    <img src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}<br/>
+                    <img src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}<br/>
+                    <img src={getImage(info.P2A)} height = "35"/>&nbsp;&nbsp;{info.P2A}<br/>
+                </td>
+                <td class="tbl-hdr">{info.Player2}</td>
+                <td class="tbl-event">
+                    <div>
+                        {info.EventName}
+                    </div>
+                    <div>
+                        {dateYear}
+                    </div> 
+                    <div>
+                        <a href={info.Link} target="_blank"><img src="https://brandeps.com/logo-download/Y/YouTube-Play-logo-vector-01.svg" height = "30"></img></a>
+                    </div>
+                </td>
+            </tr>)
+        }
+        else if(!checkIfNone(info.P2A)){
+            return(<tr>
+                <td class="tbl-hdr">{info.Player1}</td>
+                <td class="tbl-hdr" >
+                    {info.P1P}&nbsp;&nbsp;<img src ={getImage(info.P1P)} height = "35"/><br/>
+                    {info.P1M}&nbsp;&nbsp;<img src ={getImage(info.P1M)} height = "35"/><br/>
+                    {info.P1A}&nbsp;&nbsp;<img src ={getImage(info.P1A)} height = "35"/><br/>
+                </td>
+                <td class="tbl-hdr" >
+                    <img src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}<br/>
+                    <img src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}<br/>
+                </td>
+                <td class="tbl-hdr">{info.Player2}</td>
+                <td class="tbl-event">
+                    <div>
+                        {info.EventName}
+                    </div>
+                    <div>
+                        {dateYear}
+                    </div> 
+                    <div>
+                        <a href={info.Link} target="_blank"><img src="https://brandeps.com/logo-download/Y/YouTube-Play-logo-vector-01.svg" height = "30"></img></a>
+                    </div>
+                </td>
+            </tr>)
+        }
+        //Only case left is a 3v3 team
+        else{
+            return(<tr>
+                <td class="tbl-hdr">{info.Player1}</td>
+                <td class="tbl-hdr" >
+                    {info.P1P}&nbsp;&nbsp;<img className = "imgTest" src ={getImage(info.P1P)} height = "35"/><br/>
+                    {info.P1M}&nbsp;&nbsp;<img src={getImage(info.P1M)} height = "35"/><br/>
+                    {info.P1A}&nbsp;&nbsp;<img src={getImage(info.P1A)} height = "35"/>
+                </td>
+                <td class="tbl-hdr" >
+                    <img src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}<br/>
+                    <img src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}<br/>
+                    <img src={getImage(info.P2A)} height = "35"/>&nbsp;&nbsp;{info.P2A}
+                </td>
+                <td class="tbl-hdr">{info.Player2}</td>
+                <td class="tbl-event">
+                    <div>
+                        {info.EventName}
+                    </div>
+                    <div>
+                        {dateYear}
+                    </div> 
+                    <div>
+                        <a href={info.Link} target="_blank"><img src="https://brandeps.com/logo-download/Y/YouTube-Play-logo-vector-01.svg" height = "30"></img></a>
+                    </div>
+                </td>
+            </tr>)
+        }
+        
     })
 
+    //Checks if the character is null, maybe change to return boolean value
+    function checkIfNone(character){
+        if(character == null){
+        }
+        else{
+            return character
+        }
+    }
 
-
+    //Returns the image for the corresponding character
     function getImage(character){
         if(character === "Annie"){
             return Annie
@@ -151,8 +308,6 @@ function VODDisplay(props) {
 
     return(
         <>
-        
-        
         <div className='mainBG'>
             <div class="backgroundColor">
                 <table className = 'table'>
