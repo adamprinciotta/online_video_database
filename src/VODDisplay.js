@@ -31,9 +31,6 @@ function VODDisplay(props) {
 
 
     useEffect(() => {
-
-        
-
         const databaseData = {
             method: 'GET',
             url: 'http://localhost:8000/data'
@@ -53,31 +50,108 @@ function VODDisplay(props) {
         })
     }, [])
 
+
+
+
+
     const dataP1A = dataArray.map(info => {
     
-        var dateParts = info.VODDate.split("-");
-        
+    var dateParts = info.VODDate.split("-");
+    var dateYear = dateParts[2].substring(0, 2) + "/" + dateParts[1] + "/" + dateParts[0];   
     
     return(<tr>
         <td class="tbl-hdr">{info.Player1}</td>
         <td class="tbl-hdr" valign='center'>
-            {info.P1P}&nbsp;&nbsp;<img src ={props.selectedPic1} height = "25"/><br/>
-            {info.P1M}&nbsp;&nbsp;<img src={props.selectedPic2} height = "25"/><br/>
-            {info.P1A}&nbsp;&nbsp;<img src={props.selectedPic3} height = "25"/>
+            {info.P1P}&nbsp;&nbsp;<img class="img" src ={getImage(info.P1P)} height = "35"/><br/>
+            {info.P1M}&nbsp;&nbsp;<img class="img" src={getImage(info.P1M)} height = "35"/><br/>
+            {info.P1A}&nbsp;&nbsp;<img class="img" src={getImage(info.P1A)} height = "35"/>
         </td>
         <td class="tbl-hdr">
-            <img src={info.P2P} height = "25"/>&nbsp;&nbsp;{props.selected4}<br/>
-            <img src={info.P2M} height = "25"/>&nbsp;&nbsp;{props.selected5}<br/>
-            <img src={info.P2A} height = "25"/>&nbsp;&nbsp;{props.selected6}
+            <img class="img" src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}<br/>
+            <img class="img" src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}<br/>
+            <img class="img" src={getImage(info.P2A)} height = "35"/>&nbsp;&nbsp;{info.P2A}
         </td>
         <td class="tbl-hdr">{info.Player2}</td>
-        <td class="tbl-hdr">{info.EventName} {dateParts} <a href={info.Link} target="_blank">Link</a></td>
+        <td class="tbl-event">
+            <div>
+                {info.EventName}
+            </div>
+            <div>
+                {dateYear}
+            </div> 
+            <div>
+                <a href={info.Link} target="_blank"><img src="https://brandeps.com/logo-download/Y/YouTube-Play-logo-vector-01.svg" height = "30"></img></a>
+            </div>
+        </td>
     </tr>)
     })
 
+
+
+    function getImage(character){
+        if(character === "Annie"){
+            return Annie
+        }
+        if(character === "Any"){
+            return Any
+        }
+        if(character === "Beowulf"){
+            return Beowulf
+        }
+        if(character === "Big Band"){
+            return BigBand
+        }
+        if(character === "Cerebella"){
+            return Cerebella
+        }
+        if(character === "Double"){
+            return Double
+        }
+        if(character === "Eliza"){
+            return Eliza
+        }
+        if(character === "Filia"){
+            return Filia
+        }
+        if(character === "Fukua"){
+            return Fukua
+        }
+        if(character === "Ms Fortune"){
+            return MsFortune
+        }
+        if(character === "None"){
+            return None
+        }
+        if(character === "Parasoul"){
+            return Parasoul
+        }
+        if(character === "Painwheel"){
+            return Painwheel
+        }
+        if(character === "Peacock"){
+            return Peacock
+        }
+        if(character === "Robo Fortune"){
+            return RoboFortune
+        }
+        if(character === "Squigly"){
+            return Squigly
+        }
+        if(character === "Umbrella"){
+            return Umbrella
+        }
+        if(character === "Valentine"){
+            return Valentine
+        }
+        if(character === "Black Dahlia"){
+            return BlackDahlia
+        }
+    }
+
+
     return(
         <>
-        {dataP1A}
+        
         
         <div className='mainBG'>
             <div class="backgroundColor">
@@ -89,10 +163,9 @@ function VODDisplay(props) {
                         <td class="tbl-hdr">Player 2</td>
                         <td class="tbl-hdr">Event + Date + VOD</td>
                     </tr>
-                    
 
                     {/* Hard coded rows for testing */}
-                    <tr>
+                    {/* <tr>
                         <td class="tbl-hdr">Adam</td>
                         <td class="tbl-hdr" valign='center'>
                             {props.selected}&nbsp;&nbsp;<img class="img" src={props.selectedPic} height = "25"/><br/>
@@ -121,19 +194,10 @@ function VODDisplay(props) {
                         </td>
                         <td class="tbl-hdr">Dahviess</td>
                         <td class="tbl-hdr">Event + Date + VOD</td>
-                    </tr>
-
+                    </tr> */}
+                    {dataP1A}
                     
                 </table>
-                <div>
-                    <div>Hello
-                        {
-                            dataArray.map((row) => {
-                            <div>{row.P1A}</div>
-                            })
-                        }
-                    </div>
-                </div>
             </div>
         </div>
         </>
