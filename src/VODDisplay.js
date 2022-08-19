@@ -23,37 +23,66 @@ import Umbrella from './SG pics/Umbrella.jpg';
 import Valentine from './SG pics/Valentine.jpg';
 import BlackDahlia from './SG pics/Black Dahlia.jpg';
 import axios from 'axios';
+import { data } from 'jquery';
 
 function VODDisplay(props) {
 
-    var dataArray = []
+    const [dataArray, setDataArray] = useState([]);
 
+
+    useEffect(() => {
+
+        
 
         const databaseData = {
             method: 'GET',
             url: 'http://localhost:8000/data'
         }
-    
+
         axios.request(databaseData).then((response) => {
+            
+            setDataArray(response.data);
+            dataArray.map((row) => {
+            console.log(row.P1A)
+            
+            })
             console.log(response.data)
-            dataArray = response.data    
+            
         }).catch((error)=>{
             console.error(error)
         })
+    }, [])
 
-
+    const dataP1A = dataArray.map(info => {
     
-
-
+        var dateParts = info.VODDate.split("-");
+        
+    
+    return(<tr>
+        <td class="tbl-hdr">{info.Player1}</td>
+        <td class="tbl-hdr" valign='center'>
+            {info.P1P}&nbsp;&nbsp;<img src ={props.selectedPic1} height = "25"/><br/>
+            {info.P1M}&nbsp;&nbsp;<img src={props.selectedPic2} height = "25"/><br/>
+            {info.P1A}&nbsp;&nbsp;<img src={props.selectedPic3} height = "25"/>
+        </td>
+        <td class="tbl-hdr">
+            <img src={info.P2P} height = "25"/>&nbsp;&nbsp;{props.selected4}<br/>
+            <img src={info.P2M} height = "25"/>&nbsp;&nbsp;{props.selected5}<br/>
+            <img src={info.P2A} height = "25"/>&nbsp;&nbsp;{props.selected6}
+        </td>
+        <td class="tbl-hdr">{info.Player2}</td>
+        <td class="tbl-hdr">{info.EventName} {dateParts} <a href={info.Link} target="_blank">Link</a></td>
+    </tr>)
+    })
 
     return(
         <>
-
-        <div>{props.data}</div>
+        {dataP1A}
+        
         <div className='mainBG'>
             <div class="backgroundColor">
                 <table className = 'table'>
-                    <tr> {/* Table head MAYBE CHANGE THIS TO BE TH, I AM NOT SURE ********************************** */}
+                    <tr> 
                         <td class="tbl-hdr">Player 1</td>
                         <td class="tbl-hdr">Player 1 Team</td>
                         <td class="tbl-hdr">Player 2 Team</td>
@@ -93,7 +122,18 @@ function VODDisplay(props) {
                         <td class="tbl-hdr">Dahviess</td>
                         <td class="tbl-hdr">Event + Date + VOD</td>
                     </tr>
+
+                    
                 </table>
+                <div>
+                    <div>Hello
+                        {
+                            dataArray.map((row) => {
+                            <div>{row.P1A}</div>
+                            })
+                        }
+                    </div>
+                </div>
             </div>
         </div>
         </>

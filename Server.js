@@ -27,7 +27,7 @@ connection.connect((err) =>{
             if(err){
                 throw err;
             }else{
-                console.log(rows)
+                //console.log(rows)
             }
         })
     }
@@ -48,7 +48,7 @@ app.get('/data', (req, res) =>{
     })
 
     axios.request(databaseData).then((response) => {
-        console.log(response.data) 
+        //console.log(response.data) 
     }).catch((error)=>{
         console.error(error)
     })
