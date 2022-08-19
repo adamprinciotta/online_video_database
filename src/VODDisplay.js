@@ -66,7 +66,7 @@ function VODDisplay(props) {
             {info.P1M}&nbsp;&nbsp;<img class="img" src={getImage(info.P1M)} height = "35"/><br/>
             {info.P1A}&nbsp;&nbsp;<img class="img" src={getImage(info.P1A)} height = "35"/>
         </td>
-        <td class="tbl-hdr">
+        <td class="tbl-hdr" valign='center'>
             <img class="img" src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}<br/>
             <img class="img" src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}<br/>
             <img class="img" src={getImage(info.P2A)} height = "35"/>&nbsp;&nbsp;{info.P2A}
