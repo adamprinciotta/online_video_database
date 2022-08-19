@@ -38,6 +38,13 @@
 }
 
 
+.centerpls{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: 5px auto;
+}
+
 .tbl-event{
     width: 200px;
     text-align: center;

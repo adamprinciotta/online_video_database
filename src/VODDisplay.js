@@ -81,10 +81,10 @@ function VODDisplay(props) {
             return(<tr>
                 <td class="tbl-hdr">{info.Player1}</td>
                 <td class="tbl-hdr" valign='center'>
-                    {info.P1P}&nbsp;&nbsp;<img src ={getImage(info.P1P)} height = "35"/><br/>
+                    <div className ="centerpls">{info.P1P}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
                 </td>
                 <td class="tbl-hdr" valign='center'>
-                    <img src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}<br/>
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}</div>
                 </td>
                 <td class="tbl-hdr">{info.Player2}</td>
                 <td class="tbl-event">
@@ -104,12 +104,11 @@ function VODDisplay(props) {
             return(<tr>
                 <td class="tbl-hdr">{info.Player1}</td>
                 <td class="tbl-hdr" >
-                    {info.P1P}&nbsp;&nbsp;<img src ={getImage(info.P1P)} height = "35"/><br/>
-
+                    <div className ="centerpls">{info.P1P}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
                 </td>
                 <td class="tbl-hdr" >
-                    <img src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}<br/>
-                    <img src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}<br/>
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}</div>
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}</div>
                 </td>
                 <td class="tbl-hdr">{info.Player2}</td>
                 <td class="tbl-event">
@@ -129,13 +128,13 @@ function VODDisplay(props) {
             return(<tr>
                 <td class="tbl-hdr">{info.Player1}</td>
                 <td class="tbl-hdr" >
-                    {info.P1P}&nbsp;&nbsp;<img src ={getImage(info.P1P)} height = "35"/><br/>
-                    {info.P1M}&nbsp;&nbsp;<img src ={getImage(info.P1M)} height = "35"/><br/>
+                    <div className ="centerpls">{info.P1P}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
+                    <div className ="centerpls">{info.P1M}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1M)} height = "35"/></div>
 
                 </td>
                 <td class="tbl-hdr" >
-                    <img src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}<br/>
-                    <img src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}<br/>
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}</div>
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}</div>
                 </td>
                 <td class="tbl-hdr">{info.Player2}</td>
                 <td class="tbl-event">
@@ -155,14 +154,14 @@ function VODDisplay(props) {
             return(<tr>
                 <td class="tbl-hdr">{info.Player1}</td>
                 <td class="tbl-hdr" >
-                    {info.P1P}&nbsp;&nbsp;<img src ={getImage(info.P1P)} height = "35"/><br/>
-                    {info.P1M}&nbsp;&nbsp;<img src ={getImage(info.P1M)} height = "35"/><br/>
+                <div className ="centerpls">{info.P1P}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
+                <div className ="centerpls">{info.P1M}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1M)} height = "35"/></div>
 
                 </td>
                 <td class="tbl-hdr" >
-                    <img src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}<br/>
-                    <img src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}<br/>
-                    <img src={getImage(info.P2A)} height = "35"/>&nbsp;&nbsp;{info.P2A}<br/>
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}</div>
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}</div>
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2A)} height = "35"/>&nbsp;&nbsp;{info.P2A}</div>
                 </td>
                 <td class="tbl-hdr">{info.Player2}</td>
                 <td class="tbl-event">
@@ -182,13 +181,13 @@ function VODDisplay(props) {
             return(<tr>
                 <td class="tbl-hdr">{info.Player1}</td>
                 <td class="tbl-hdr" >
-                    {info.P1P}&nbsp;&nbsp;<img src ={getImage(info.P1P)} height = "35"/><br/>
-                    {info.P1M}&nbsp;&nbsp;<img src ={getImage(info.P1M)} height = "35"/><br/>
-                    {info.P1A}&nbsp;&nbsp;<img src ={getImage(info.P1A)} height = "35"/><br/>
+                    <div className ="centerpls">{info.P1P}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
+                    <div className ="centerpls">{info.P1M}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1M)} height = "35"/></div>
+                    <div className ="centerpls">{info.P1A}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1A)} height = "35"/></div>
                 </td>
                 <td class="tbl-hdr" >
-                    <img src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}<br/>
-                    <img src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}<br/>
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}</div>
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}</div>
                 </td>
                 <td class="tbl-hdr">{info.Player2}</td>
                 <td class="tbl-event">
@@ -209,14 +208,14 @@ function VODDisplay(props) {
             return(<tr>
                 <td class="tbl-hdr">{info.Player1}</td>
                 <td class="tbl-hdr" >
-                    {info.P1P}&nbsp;&nbsp;<img className = "imgTest" src ={getImage(info.P1P)} height = "35"/><br/>
-                    {info.P1M}&nbsp;&nbsp;<img src={getImage(info.P1M)} height = "35"/><br/>
-                    {info.P1A}&nbsp;&nbsp;<img src={getImage(info.P1A)} height = "35"/>
+                    <div className ="centerpls">{info.P1P}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
+                    <div className ="centerpls">{info.P1M}&nbsp;&nbsp;<img className = "img" src={getImage(info.P1M)} height = "35"/></div>
+                    <div className ="centerpls">{info.P1A}&nbsp;&nbsp;<img className = "img" src={getImage(info.P1A)} height = "35"/></div>
                 </td>
                 <td class="tbl-hdr" >
-                    <img src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}<br/>
-                    <img src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}<br/>
-                    <img src={getImage(info.P2A)} height = "35"/>&nbsp;&nbsp;{info.P2A}
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}</div>
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}</div>
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2A)} height = "35"/>&nbsp;&nbsp;{info.P2A}</div>
                 </td>
                 <td class="tbl-hdr">{info.Player2}</td>
                 <td class="tbl-event">
