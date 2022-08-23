@@ -31,17 +31,17 @@ function VODDisplay(props) {
 
     //Gets everything from database on load then store it in the dataArray state
     useEffect(() => {
+        console.log("requested")
         const databaseData = {
             method: 'GET',
-            url: 'http://localhost:8000/data'
+            url: 'http://localhost:8000/data',
+            params: {Player1: "Adam", P1P: "Filia", P1M: "Double", P1A: "Fukua", P2P:"Fukua", P2M:"Annie", P2A:"Cerebella", Player2:"Dahviess", EventName:"Casuals", Link:"youtube", VODDate:"today"}
+            //params: {Player1, P1P, P1M, P1A, P2P, P2M, P2A, Player2, EventName, Link, VODDate}
         }
 
         axios.request(databaseData).then((response) => {
             
             setDataArray(response.data);
-            dataArray.map((row) => {
-            //console.log(row.P1A)
-            })
             //console.log(response.data)
             
         }).catch((error)=>{
@@ -307,6 +307,13 @@ function VODDisplay(props) {
 
     return(
         <>
+        <div className = "submitCenter">
+            <button type="button" className = "submitButton">Search</button>
+            <br></br>
+            <br></br>
+            <br></br>
+        </div>
+        
         <div className='mainBG'>
             <div class="backgroundColor">
                 <table className = 'table'>
@@ -349,7 +356,9 @@ function VODDisplay(props) {
                         <td class="tbl-hdr">Dahviess</td>
                         <td class="tbl-hdr">Event + Date + VOD</td>
                     </tr> */}
-                    {dataP1A}
+                    
+                    {/* Displays all data fetched */}
+                    {dataP1A} 
                     
                 </table>
             </div>

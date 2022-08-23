@@ -126,20 +126,18 @@ function App() {
           </div>
         </div>
       </div>
-      <div className = "submitCenter">
-        <button type="button" className = "submitButton">Search</button>
-      </div>
     </div>
         
-        
+    <VODDisplay></VODDisplay>
     {/* Placeholder for testing what the displayed VODs would look like */}
-    <VODDisplay selected={"Parasoul"} setSelected={p1setSelected1} selectedPic = {Parasoul} setSelectedPic={p2setSelectedPic1}
+    
+    {/* <VODDisplay selected={"Parasoul"} setSelected={p1setSelected1} selectedPic = {Parasoul} setSelectedPic={p2setSelectedPic1}
                 selected2={"Double"} setSelected2={p2setSelected2} selectedPic2 = {Double} setSelectedPic2={p2setSelectedPic2}
                 selected3={"Black Dahlia"} setSelected3={p2setSelected3} selectedPic3 = {BlackDahlia} setSelectedPic3={p2setSelectedPic3}
                 selected4={"Fukua"} setSelected4={p2setSelected1} selectedPic4 = {Fukua} setSelectedPic4={p2setSelectedPic1}
                 selected5={"Annie"} setSelected5={p2setSelected1} selectedPic5 = {Annie} setSelectedPic5={p2setSelectedPic1}
                 selected6={"Robo Fortune"} setSelected6={p2setSelected1} selectedPic6 = {RoboFortune} setSelectedPic6={p2setSelectedPic1}
-                />
+                /> */}
     
     </>
   );

@@ -83,7 +83,7 @@
 }
 
 .mainBG{
-  height: 75vh;
+  height: 65vh;
   background-color: #585858;
 }
 
@@ -162,11 +162,7 @@
   cursor: pointer;
 }
 
-.submitCenter{
-  display: grid;
-  place-items: center;
-  justify-content: center;
-}
+
 
 .order{
   color: lightgray;

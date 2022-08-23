@@ -1,10 +1,12 @@
 .mainBG{
     height: 75vh;
     background-color: #585858;
+    margin: 0;
 }
 
 .backgroundColor{
     background-color: #585858;
+    margin: 0;
 }
 
 .table{
@@ -55,4 +57,27 @@
     font-weight: 500;
     height: 100px;
     font-size: 20px;
+}
+
+.submitButton{
+    background-color: #333;
+    color: lightgray;
+    padding: 10px 24px;
+    border-radius: 8px;
+    justify-content: center;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+  
+.submitButton:hover{
+    background-color: dimgray;
+    cursor: pointer;
+}
+
+.submitCenter{
+    display: grid;
+    place-items: center;
+    justify-content: center;
+    background-color: #585858;
+    margin: -30px -1px;
 }
