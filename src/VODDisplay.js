@@ -35,7 +35,7 @@ function VODDisplay(props) {
         const databaseData = {
             method: 'GET',
             url: 'http://localhost:8000/data',
-            params: {Player1: "Adam", P1P: "Filia", P1M: "Double", P1A: "Fukua", P2P:"Fukua", P2M:"Annie", P2A:"Cerebella", Player2:"Dahviess", EventName:"Casuals", Link:"youtube", VODDate:"today"}
+            params: {Player1: "", P1P: "Beowulf", P1M: "Any", P1A: "Any", P2P:"Fukua", P2M:"Annie", P2A:"Cerebella", Player2:"Dahviess", EventName:"Casuals", TO1: true, TO2: false}
             //params: {Player1, P1P, P1M, P1A, P2P, P2M, P2A, Player2, EventName, Link, VODDate}
         }
 
