@@ -24,6 +24,7 @@ import Valentine from './SG pics/Valentine.jpg';
 import BlackDahlia from './SG pics/Black Dahlia.jpg';
 import axios from 'axios';
 import { data } from 'jquery';
+import { Search } from '@syncfusion/ej2-react-dropdowns';
 
 function VODDisplay(props) {
 
@@ -31,11 +32,11 @@ function VODDisplay(props) {
 
     //Gets everything from database on load then store it in the dataArray state
     useEffect(() => {
-        console.log("requested")
+        // console.log("requested")
         const databaseData = {
             method: 'GET',
             url: 'http://localhost:8000/data',
-            params: {Player1: "", P1P: "Any", P1M: "Any", P1A: "Double", P2P:"Any", P2M:"Annie", P2A:"Any", Player2:"", EventName:"Casuals", TO1: false, TO2: false}
+            params: {Player1: "", P1P: "Any", P1M: "Any", P1A: "Any", P2P:"Any", P2M:"Any", P2A:"Any", Player2:"", EventName:"Casuals", TO1: false, TO2: false}
             //params: {Player1, P1P, P1M, P1A, P2P, P2M, P2A, Player2, EventName, Link, VODDate}
         }
 
@@ -47,7 +48,18 @@ function VODDisplay(props) {
         }).catch((error)=>{
             console.error(error)
         })
+
+        console.log("P1P = " + props.p1selected1)
+        console.log("P1M = " + props.p1selected2)
+        console.log("P1A = " + props.p1selected3)
+        console.log("P2P = " + props.p2selected1)
+        console.log("P2M = " + props.p2selected2)
+        console.log("P2A = " + props.p2selected3)
     }, [])
+
+    Search(()=>{
+        
+    })
 
     //Maps the array and then displays the data from the database
     const dataP1A = dataArray.map(info => {
@@ -56,25 +68,6 @@ function VODDisplay(props) {
 
         //Changes format into MM/DD/YYYY
         var dateYear =  dateParts[1] + "/" + dateParts[2].substring(0, 2) + "/" + dateParts[0];   
-        
-        // var imgP1M = getImage(info.P1M)
-        // var imgP1A = getImage(info.P1A)
-        // var imgP2M = getImage(info.P2M)
-        // var imgP2A = getImage(info.P2A)
-
-        //If there is no character, set the image to null, not necessary if using these if statements
-        // if(checkIfNone(info.P1M)){
-        //     imgP1M = null
-        // }
-        // if(checkIfNone(info.P1A)){
-        //     imgP1A = null
-        // }
-        // if(checkIfNone(info.P2M)){
-        //     imgP2M = null
-        // }
-        // if(checkIfNone(info.P2A)){
-        //     imgP2A = null
-        // }
 
         //If/Else statements to display the teams in the right spacings
         if(!checkIfNone(info.P1A) && !checkIfNone(info.P1M) && !checkIfNone(info.P2M) && !checkIfNone(info.P2A)){
@@ -234,7 +227,7 @@ function VODDisplay(props) {
         
     })
 
-    //Checks if the character is null, maybe change to return boolean value
+    //Checks if the character is None, returns false so it doesn't display that space
     function checkIfNone(character){
         // if(character == null){
         // }
@@ -328,38 +321,6 @@ function VODDisplay(props) {
                         <td class="tbl-hdr">Event + Date + VOD</td>
                     </tr>
 
-                    {/* Hard coded rows for testing */}
-                    {/* <tr>
-                        <td class="tbl-hdr">Adam</td>
-                        <td class="tbl-hdr" valign='center'>
-                            {props.selected}&nbsp;&nbsp;<img class="img" src={props.selectedPic} height = "25"/><br/>
-                            {props.selected2}&nbsp;&nbsp;<img class="img" src={props.selectedPic2} height = "25"/><br/>
-                            {props.selected3}&nbsp;&nbsp;<img class="img" src={props.selectedPic3} height = "25"/>
-                        </td>
-                        <td class="tbl-hdr">
-                            <img class="img" src={props.selectedPic4} height = "25"/>&nbsp;&nbsp;{props.selected4}<br/>
-                            <img class="img" src={props.selectedPic5} height = "25"/>&nbsp;&nbsp;{props.selected5}<br/>
-                            <img class="img" src={props.selectedPic6} height = "25"/>&nbsp;&nbsp;{props.selected6}
-                        </td>
-                        <td class="tbl-hdr">Dahviess</td>
-                        <td class="tbl-hdr">Event + Date + VOD</td>
-                    </tr>
-                    <tr>
-                        <td class="tbl-hdr">Adam</td>
-                        <td class="tbl-hdr" valign='center'>
-                            {props.selected}&nbsp;&nbsp;<img src={props.selectedPic} height = "25"/><br/>
-                            {props.selected2}&nbsp;&nbsp;<img src={props.selectedPic2} height = "25"/><br/>
-                            {props.selected3}&nbsp;&nbsp;<img src={props.selectedPic3} height = "25"/>
-                        </td>
-                        <td class="tbl-hdr">
-                            <img src={props.selectedPic4} height = "25"/>&nbsp;&nbsp;{props.selected4}<br/>
-                            <img src={props.selectedPic5} height = "25"/>&nbsp;&nbsp;{props.selected5}<br/>
-                            <img src={props.selectedPic6} height = "25"/>&nbsp;&nbsp;{props.selected6}
-                        </td>
-                        <td class="tbl-hdr">Dahviess</td>
-                        <td class="tbl-hdr">Event + Date + VOD</td>
-                    </tr> */}
-                    
                     {/* Displays all data fetched */}
                     {dataP1A} 
                     

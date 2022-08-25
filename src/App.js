@@ -71,6 +71,12 @@ function App() {
   const [p2selectedchar3, p2setSelected3] = useState("Any")
   const [p2selectedPic3, p2setSelectedPic3] = useState(Asterisk)
 
+  const [TO1, TO1setSelected] = useState(false)
+  const [TO2, TO2setSelected] = useState(false)
+
+  const [Player1, Player1setName] = useState('')
+  const [Player2, Player2setName] = useState('')
+
   return (
     <><body>
       <header>
@@ -128,7 +134,12 @@ function App() {
       </div>
     </div>
         
-    <VODDisplay></VODDisplay>
+    <VODDisplay p1selected1={p1selectedchar1} 
+      p1selected2={p1selectedchar2} 
+      p1selected3={p1selectedchar3}
+      p2selected1={p2selectedchar1}
+      p2selected2={p2selectedchar2}
+      p2selected3={p2selectedchar3}></VODDisplay>
     {/* Placeholder for testing what the displayed VODs would look like */}
     
     {/* <VODDisplay selected={"Parasoul"} setSelected={p1setSelected1} selectedPic = {Parasoul} setSelectedPic={p2setSelectedPic1}

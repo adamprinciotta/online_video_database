@@ -47,7 +47,7 @@ app.get('/data', (req, res) =>{
     
     const databaseData = {
         method: "GET",
-        url: "http://localhost:8000/data",
+        //url: "http://localhost:8000/data",
         params: {Player1: req.query.Player1, P1P: req.query.P1P, P1M: req.query.P1M, P1A: req.query.P1A, P2P: req.query.P2P, 
             P2M: req.query.P2M, P2A: req.query.P2A, Player2: req.query.Player2, EventName: req.query.EventName, TO1: req.query.TO1, TO2: req.query.TO2}
     }
@@ -62,9 +62,6 @@ app.get('/data', (req, res) =>{
     var P2A = req.query.P2A;
     var TO1 = req.query.TO1;
     var TO2 = req.query.TO2;
-
-    console.log("THIS IS TO1 = " + TO1)
-    console.log("THIS IS TO2 = " + TO2)
 
 
     //If it's null, then set it the value to the same name as the column so it returns all values
@@ -87,10 +84,12 @@ app.get('/data', (req, res) =>{
     if(P1P === 'Any'){
         P1P = 'P1P'
     }
+
     //If they want no character(either a duo or a solo), then set it to null so it can search for a mid or anchor spot with null value
-    else if (P1P === 'None'){
-        P1P = null
-    }
+    // else if (P1P === 'None'){
+    //     P1P = null
+    // } NOT USED ANYMORE BUT SAVING JUST IN CASE
+
     //Otherwise, wrap the character name in quotes so it can search properly
     else{
         P1P = '"' + P1P + '"'
@@ -99,9 +98,6 @@ app.get('/data', (req, res) =>{
     if(P1M === 'Any'){
         P1M = 'P1M'
     }
-    // else if (P1M === 'None'){
-    //     P1M = null
-    // }
     else{
         P1M = '"' + P1M + '"'
     }
@@ -109,9 +105,6 @@ app.get('/data', (req, res) =>{
     if(P1A === 'Any'){
         P1A = 'P1A'
     }
-    // else if (P1A === 'None'){
-    //     P1A = null
-    // }
     else{
         P1A = '"' + P1A + '"'
     }
@@ -119,9 +112,6 @@ app.get('/data', (req, res) =>{
     if(P2P === 'Any'){
         P2P = 'P2P'
     }
-    // else if (P2P === 'None'){
-    //     P2P = null
-    // }
     else{
         P2P = '"' + P2P + '"'
     }
@@ -129,9 +119,6 @@ app.get('/data', (req, res) =>{
     if(P2M === 'Any'){
         P2M = 'P2M'
     }
-    // else if (P2M === 'None'){
-    //     P2M = null
-    // }
     else{
         P2M = '"' + P2M + '"'
     }
@@ -139,9 +126,6 @@ app.get('/data', (req, res) =>{
     if(P2A === 'Any'){
         P2A = 'P2A'
     }
-    // else if (P2A === 'None'){
-    //     P2A = null
-    // }
     else{
         P2A = '"' + P2A + '"'
     }
@@ -193,8 +177,6 @@ app.get('/data', (req, res) =>{
         ${P2A} = P2A`)
     }
     
-
-    console.log("PLAYER 1 = " + Player1 + "          +          PLAYER 2 = " + Player2)
     console.log("SQL = " + sql)
     
 
@@ -227,18 +209,3 @@ app.listen(port, ()=> console.log(`Server running on port ${port}`))
 
 // console.log("APP is listening on port " + port);
 
-
-
-
-
-//console.log("THIS IS PLAYER 1: " + Player1)
-    //console.log(sql)
-    //connection.query('SELECT * FROM sg_vod_database.vod_data WHERE' + Player1 + ' ORDER BY VODDate', (err, rows) =>{
-
-
-        // var sql = mysql.format("SELECT * FROM sg_vod_database.vod_data WHERE Player1 <=> ?", [Player1])
-
-    // if(req.query.Player1 === '' && req.query.Player2 === '' && EventName === ''){
-        
-    //     //var Player1 = " Player1 = " + "'" + req.query.Player1 + "'";
-    // }
