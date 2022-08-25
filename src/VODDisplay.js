@@ -35,14 +35,14 @@ function VODDisplay(props) {
         const databaseData = {
             method: 'GET',
             url: 'http://localhost:8000/data',
-            params: {Player1: "", P1P: "Beowulf", P1M: "Any", P1A: "Any", P2P:"Fukua", P2M:"Annie", P2A:"Cerebella", Player2:"Dahviess", EventName:"Casuals", TO1: true, TO2: false}
+            params: {Player1: "", P1P: "Any", P1M: "Any", P1A: "Double", P2P:"Any", P2M:"Annie", P2A:"Any", Player2:"", EventName:"Casuals", TO1: false, TO2: false}
             //params: {Player1, P1P, P1M, P1A, P2P, P2M, P2A, Player2, EventName, Link, VODDate}
         }
 
         axios.request(databaseData).then((response) => {
             
             setDataArray(response.data);
-            //console.log(response.data)
+            console.log(response.data)
             
         }).catch((error)=>{
             console.error(error)
@@ -236,7 +236,10 @@ function VODDisplay(props) {
 
     //Checks if the character is null, maybe change to return boolean value
     function checkIfNone(character){
-        if(character == null){
+        // if(character == null){
+        // }
+        if(character === "None"){
+            return false;
         }
         else{
             return character

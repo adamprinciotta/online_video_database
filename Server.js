@@ -40,6 +40,7 @@ connection.connect((err) =>{
 
 
 
+
 app.get('/data', (req, res) =>{
     console.log("get")
 
@@ -51,7 +52,6 @@ app.get('/data', (req, res) =>{
             P2M: req.query.P2M, P2A: req.query.P2A, Player2: req.query.Player2, EventName: req.query.EventName, TO1: req.query.TO1, TO2: req.query.TO2}
     }
 
-
     var Player1 = req.query.Player1;
     var Player2 = req.query.Player2;
     var P1P = req.query.P1P;
@@ -62,6 +62,9 @@ app.get('/data', (req, res) =>{
     var P2A = req.query.P2A;
     var TO1 = req.query.TO1;
     var TO2 = req.query.TO2;
+
+    console.log("THIS IS TO1 = " + TO1)
+    console.log("THIS IS TO2 = " + TO2)
 
 
     //If it's null, then set it the value to the same name as the column so it returns all values
@@ -80,12 +83,15 @@ app.get('/data', (req, res) =>{
         Player2 = '"' + Player2 + '"'
     }
 
+    //If they don't care which character it is, then replace it to accept any value in this column
     if(P1P === 'Any'){
         P1P = 'P1P'
     }
+    //If they want no character(either a duo or a solo), then set it to null so it can search for a mid or anchor spot with null value
     else if (P1P === 'None'){
         P1P = null
     }
+    //Otherwise, wrap the character name in quotes so it can search properly
     else{
         P1P = '"' + P1P + '"'
     }
@@ -93,9 +99,9 @@ app.get('/data', (req, res) =>{
     if(P1M === 'Any'){
         P1M = 'P1M'
     }
-    else if (P1M === 'None'){
-        P1M = null
-    }
+    // else if (P1M === 'None'){
+    //     P1M = null
+    // }
     else{
         P1M = '"' + P1M + '"'
     }
@@ -103,9 +109,9 @@ app.get('/data', (req, res) =>{
     if(P1A === 'Any'){
         P1A = 'P1A'
     }
-    else if (P1A === 'None'){
-        P1A = null
-    }
+    // else if (P1A === 'None'){
+    //     P1A = null
+    // }
     else{
         P1A = '"' + P1A + '"'
     }
@@ -113,9 +119,9 @@ app.get('/data', (req, res) =>{
     if(P2P === 'Any'){
         P2P = 'P2P'
     }
-    else if (P2P === 'None'){
-        P2P = null
-    }
+    // else if (P2P === 'None'){
+    //     P2P = null
+    // }
     else{
         P2P = '"' + P2P + '"'
     }
@@ -123,9 +129,9 @@ app.get('/data', (req, res) =>{
     if(P2M === 'Any'){
         P2M = 'P2M'
     }
-    else if (P2M === 'None'){
-        P2M = null
-    }
+    // else if (P2M === 'None'){
+    //     P2M = null
+    // }
     else{
         P2M = '"' + P2M + '"'
     }
@@ -133,19 +139,60 @@ app.get('/data', (req, res) =>{
     if(P2A === 'Any'){
         P2A = 'P2A'
     }
-    else if (P2A === 'None'){
-        P2A = null
-    }
+    // else if (P2A === 'None'){
+    //     P2A = null
+    // }
     else{
         P2A = '"' + P2A + '"'
     }
 
-    //NEEDS FIXING BUT SELECT * FROM sg_vod_database.vod_data WHERE (P1P = "Beowulf" OR P1P = P1M OR P1P = P1A) WORKS
-    var sql = mysql.format(`SELECT * FROM sg_vod_database.vod_data WHERE Player1 = ${Player1} 
-    AND Player2 = ${Player2} 
-    AND (P1P = ${P1P} OR P1P = ${P1M} OR P1P = ${P1A})
-    AND (P1M = ${P1P} OR P1M = ${P1M} OR P1M = ${P1A})
-    AND (P1A = ${P1P} OR P1A = ${P1M} OR P1A = ${P1A})`)
+    
+
+    if(TO1 === 'false' && TO2 === 'false'){
+        console.log("BOTH FALSE")
+        var sql = mysql.format(`SELECT * FROM sg_vod_database.vod_data WHERE Player1 = ${Player1} 
+        AND Player2 = ${Player2} AND 
+        ${P1P} in (P1P, P1M, P1A) AND
+        ${P1M} in (P1P, P1M, P1A) AND
+        ${P1A} in (P1P, P1M, P1A) AND 
+        ${P2P} in (P2P, P2M, P2A) AND
+        ${P2M} in (P2P, P2M, P2A) AND
+        ${P2A} in (P2P, P2M, P2A)`)
+    }
+    else if(TO1 === 'true' && TO2 === 'false'){
+        console.log("TO2 FALSE")
+        var sql = mysql.format(`SELECT * FROM sg_vod_database.vod_data WHERE Player1 = ${Player1} 
+        AND Player2 = ${Player2} AND 
+        ${P1P} = P1P AND
+        ${P1M} = P1M AND
+        ${P1A} = P1A AND 
+        ${P2P} in (P2P, P2M, P2A) AND
+        ${P2M} in (P2P, P2M, P2A) AND
+        ${P2A} in (P2P, P2M, P2A)`)
+    }
+    else if(TO1 === 'false' && TO2 === 'true'){
+        console.log("TO1 FALSE")
+        var sql = mysql.format(`SELECT * FROM sg_vod_database.vod_data WHERE Player1 = ${Player1} 
+        AND Player2 = ${Player2} AND 
+        ${P1P} in (P1P, P1M, P1A) AND
+        ${P1M} in (P1P, P1M, P1A) AND
+        ${P1A} in (P1P, P1M, P1A) AND 
+        ${P2P} = P2P AND
+        ${P2M} = P2M AND
+        ${P2A} = P2A`)
+    }
+    else{
+        console.log("BOTH TRUE")
+        var sql = mysql.format(`SELECT * FROM sg_vod_database.vod_data WHERE Player1 = ${Player1} 
+        AND Player2 = ${Player2} AND 
+        ${P1P} = P1P AND
+        ${P1M} = P1M AND
+        ${P1A} = P1A AND 
+        ${P2P} = P2P AND
+        ${P2M} = P2M AND
+        ${P2A} = P2A`)
+    }
+    
 
     console.log("PLAYER 1 = " + Player1 + "          +          PLAYER 2 = " + Player2)
     console.log("SQL = " + sql)
@@ -160,12 +207,13 @@ app.get('/data', (req, res) =>{
         })
 
     axios.request(databaseData).then((response) => {
-        //console.log(response.data) 
+        console.log(response.data) 
     }).catch((error)=>{
         console.error(error)
     })
 
 }) 
+
 
 app.listen(port, ()=> console.log(`Server running on port ${port}`))
 
