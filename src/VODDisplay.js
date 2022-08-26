@@ -30,13 +30,16 @@ function VODDisplay(props) {
 
     const [dataArray, setDataArray] = useState([]);
 
+    const [search, setSearch] = useState([]) 
+
     //Gets everything from database on load then store it in the dataArray state
     useEffect(() => {
         // console.log("requested")
         const databaseData = {
             method: 'GET',
             url: 'http://localhost:8000/data',
-            params: {Player1: "", P1P: "Any", P1M: "Any", P1A: "Any", P2P:"Any", P2M:"Any", P2A:"Any", Player2:"", EventName:"Casuals", TO1: false, TO2: false}
+            //params: {Player1: "", P1P: "Any", P1M: "Any", P1A: "Any", P2P:"Any", P2M:"Any", P2A:"Any", Player2:"", TO1: false, TO2: false}
+            params: {Player1: props.Player1, P1P: props.P1P, P1M: props.P1M, P1A: props.P1A, P2P: props.P2P, P2M: props.P2M, P2A: props.P2A, Player2: props.Player2, TO1: props.TO1, TO2: props.TO2}
             //params: {Player1, P1P, P1M, P1A, P2P, P2M, P2A, Player2, EventName, Link, VODDate}
         }
 
@@ -49,17 +52,23 @@ function VODDisplay(props) {
             console.error(error)
         })
 
-        console.log("P1P = " + props.p1selected1)
-        console.log("P1M = " + props.p1selected2)
-        console.log("P1A = " + props.p1selected3)
-        console.log("P2P = " + props.p2selected1)
-        console.log("P2M = " + props.p2selected2)
-        console.log("P2A = " + props.p2selected3)
-    }, [])
+        console.log("P1P = " + props.P1P)
+        console.log("P1M = " + props.P1M)
+        console.log("P1A = " + props.P1A)
+        console.log("P2P = " + props.P2P)
+        console.log("P2M = " + props.P2M)
+        console.log("P2A = " + props.P2A)
 
-    Search(()=>{
-        
-    })
+
+        // console.log("P1P = " + props.p1selected1)
+        // console.log("P1M = " + props.p1selected2)
+        // console.log("P1A = " + props.p1selected3)
+        // console.log("P2P = " + props.p2selected1)
+        // console.log("P2M = " + props.p2selected2)
+        // console.log("P2A = " + props.p2selected3)
+    }, [search])
+
+    
 
     //Maps the array and then displays the data from the database
     const dataP1A = dataArray.map(info => {
@@ -304,7 +313,7 @@ function VODDisplay(props) {
     return(
         <>
         <div className = "submitCenter">
-            <button type="button" className = "submitButton">Search</button>
+            <button type="button" onClick={() => {setSearch(search + 1)}} className = "submitButton" >Search</button>
             <br></br>
             <br></br>
             <br></br>

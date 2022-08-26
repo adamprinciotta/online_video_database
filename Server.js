@@ -45,12 +45,12 @@ app.get('/data', (req, res) =>{
     console.log("get")
 
     
-    const databaseData = {
-        method: "GET",
-        //url: "http://localhost:8000/data",
-        params: {Player1: req.query.Player1, P1P: req.query.P1P, P1M: req.query.P1M, P1A: req.query.P1A, P2P: req.query.P2P, 
-            P2M: req.query.P2M, P2A: req.query.P2A, Player2: req.query.Player2, EventName: req.query.EventName, TO1: req.query.TO1, TO2: req.query.TO2}
-    }
+    // const databaseData = {
+    //     method: "GET",
+    //     //url: "http://localhost:8000/data",
+    //     params: {Player1: req.query.Player1, P1P: req.query.P1P, P1M: req.query.P1M, P1A: req.query.P1A, P2P: req.query.P2P, 
+    //         P2M: req.query.P2M, P2A: req.query.P2A, Player2: req.query.Player2, EventName: req.query.EventName, TO1: req.query.TO1, TO2: req.query.TO2}
+    // }
 
     var Player1 = req.query.Player1;
     var Player2 = req.query.Player2;
@@ -135,24 +135,38 @@ app.get('/data', (req, res) =>{
     if(TO1 === 'false' && TO2 === 'false'){
         console.log("BOTH FALSE")
         var sql = mysql.format(`SELECT * FROM sg_vod_database.vod_data WHERE Player1 = ${Player1} 
-        AND Player2 = ${Player2} AND 
-        ${P1P} in (P1P, P1M, P1A) AND
-        ${P1M} in (P1P, P1M, P1A) AND
-        ${P1A} in (P1P, P1M, P1A) AND 
-        ${P2P} in (P2P, P2M, P2A) AND
-        ${P2M} in (P2P, P2M, P2A) AND
-        ${P2A} in (P2P, P2M, P2A)`)
+        AND Player2 = ${Player2} AND
+        ( 
+            ${P1P} in (P1P, P1M, P1A, P2P, P2M, P2A) AND
+            ${P1M} in (P1P, P1M, P1A, P2P, P2M, P2A) AND
+            ${P1A} in (P1P, P1M, P1A, P2P, P2M, P2A) AND 
+            ${P2P} in (P1P, P1M, P1A, P2P, P2M, P2A) AND
+            ${P2M} in (P1P, P1M, P1A, P2P, P2M, P2A) AND
+            ${P2A} in (P1P, P1M, P1A, P2P, P2M, P2A)
+        )`)
     }
     else if(TO1 === 'true' && TO2 === 'false'){
         console.log("TO2 FALSE")
         var sql = mysql.format(`SELECT * FROM sg_vod_database.vod_data WHERE Player1 = ${Player1} 
-        AND Player2 = ${Player2} AND 
-        ${P1P} = P1P AND
-        ${P1M} = P1M AND
-        ${P1A} = P1A AND 
-        ${P2P} in (P2P, P2M, P2A) AND
-        ${P2M} in (P2P, P2M, P2A) AND
-        ${P2A} in (P2P, P2M, P2A)`)
+        AND Player2 = ${Player2} AND
+        ( 
+            ${P1P} = P1P AND
+            ${P1M} = P1M AND
+            ${P1A} = P1A AND 
+            ${P2P} in (P2P, P2M, P2A) AND
+            ${P2M} in (P2P, P2M, P2A) AND
+            ${P2A} in (P2P, P2M, P2A)
+        ) OR
+        (
+            ${P1P} = P2P AND
+            ${P1M} = P2M AND
+            ${P1A} = P2A AND 
+            ${P2P} in (P1P, P1M, P1A) AND
+            ${P2M} in (P1P, P1M, P1A) AND
+            ${P2A} in (P1P, P1M, P1A)
+        )
+        
+        `)
     }
     else if(TO1 === 'false' && TO2 === 'true'){
         console.log("TO1 FALSE")
@@ -188,11 +202,11 @@ app.get('/data', (req, res) =>{
         }
         })
 
-    axios.request(databaseData).then((response) => {
-        console.log(response.data) 
-    }).catch((error)=>{
-        console.error(error)
-    })
+    // axios.request(databaseData).then((response) => {
+    //     console.log(response.data) 
+    // }).catch((error)=>{
+    //     console.error(error)
+    // })
 
 }) 
 

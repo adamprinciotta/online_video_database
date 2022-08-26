@@ -77,6 +77,26 @@ function App() {
   const [Player1, Player1setName] = useState('')
   const [Player2, Player2setName] = useState('')
 
+  const TO1Clicked = () => {
+    TO1setSelected(!TO1)
+    console.log(TO1)
+  }
+
+  const TO2Clicked = () => {
+    TO2setSelected(!TO2)
+    console.log(TO2)
+  }
+
+  const Player1Change = event =>{
+    Player1setName(event.target.value)
+    console.log(Player1)
+  }
+
+  const Player2Change = event =>{
+    Player2setName(event.target.value)
+    console.log(Player2)
+  }
+
   return (
     <><body>
       <header>
@@ -98,7 +118,7 @@ function App() {
           <form>
             <div className ="playerName">
               <label>Player 1 Name
-              <input type="text" className = "name"></input>
+              <input type="text" value = {Player1} onChange = {Player1Change} className = "name"></input>
               </label>
             </div>
           </form>
@@ -107,7 +127,7 @@ function App() {
             <CharDropdown selected={p1selectedchar1} setSelected={p1setSelected1} selectedPic = {p1selectedPic1} setSelectedPic={p1setSelectedPic1}/>
             <CharDropdown selected={p1selectedchar2} setSelected={p1setSelected2} selectedPic = {p1selectedPic2} setSelectedPic={p1setSelectedPic2}/>
             <CharDropdown selected={p1selectedchar3} setSelected={p1setSelected3} selectedPic = {p1selectedPic3} setSelectedPic={p1setSelectedPic3}/>
-            <div class="order">Order matters<input type="checkbox" id="orderMatters1" name="order1"/><br/></div>
+            <div class="order">Order matters<input type="checkbox" onClick={TO1Clicked} checked={TO1} id="orderMatters1" name="order1"/><br/></div>
           </div>
         </div>
 
@@ -119,7 +139,7 @@ function App() {
           <form>
             <div className ="playerName">
               <label>Player 2 Name
-              <input type="text" name = "name"></input>
+              <input type="text" value = {Player2} onChange = {Player2Change} name = "name"></input>
               </label>
             </div>
           </form>
@@ -128,18 +148,22 @@ function App() {
           <CharDropdown selected={p2selectedchar1} setSelected={p2setSelected1} selectedPic = {p2selectedPic1} setSelectedPic={p2setSelectedPic1}/>
           <CharDropdown selected={p2selectedchar2} setSelected={p2setSelected2} selectedPic = {p2selectedPic2} setSelectedPic={p2setSelectedPic2}/>
           <CharDropdown selected={p2selectedchar3} setSelected={p2setSelected3} selectedPic = {p2selectedPic3} setSelectedPic={p2setSelectedPic3}/>
-          <div className="order">Order matters<input type="checkbox" id="orderMatters1" name="order2"/><br/></div>
+          <div className="order">Order matters<input type="checkbox" onClick={TO2Clicked} checked={TO2} id="orderMatters1" name="order2"/><br/></div>
           </div>
         </div>
       </div>
     </div>
         
-    <VODDisplay p1selected1={p1selectedchar1} 
-      p1selected2={p1selectedchar2} 
-      p1selected3={p1selectedchar3}
-      p2selected1={p2selectedchar1}
-      p2selected2={p2selectedchar2}
-      p2selected3={p2selectedchar3}></VODDisplay>
+    <VODDisplay P1P={p1selectedchar1} 
+      P1M={p1selectedchar2} 
+      P1A={p1selectedchar3}
+      P2P={p2selectedchar1}
+      P2M={p2selectedchar2}
+      P2A={p2selectedchar3}
+      TO1 = {TO1}
+      TO2 = {TO2}
+      Player1 = {Player1}
+      Player2 = {Player2}></VODDisplay>
     {/* Placeholder for testing what the displayed VODs would look like */}
     
     {/* <VODDisplay selected={"Parasoul"} setSelected={p1setSelected1} selectedPic = {Parasoul} setSelectedPic={p2setSelectedPic1}
