@@ -52,12 +52,7 @@ function VODDisplay(props) {
             console.error(error)
         })
 
-        console.log("P1P = " + props.P1P)
-        console.log("P1M = " + props.P1M)
-        console.log("P1A = " + props.P1A)
-        console.log("P2P = " + props.P2P)
-        console.log("P2M = " + props.P2M)
-        console.log("P2A = " + props.P2A)
+
 
 
         // console.log("P1P = " + props.p1selected1)
@@ -66,12 +61,12 @@ function VODDisplay(props) {
         // console.log("P2P = " + props.p2selected1)
         // console.log("P2M = " + props.p2selected2)
         // console.log("P2A = " + props.p2selected3)
-    }, [search])
+    }, []) //[search]
 
-    
+
 
     //Maps the array and then displays the data from the database
-    const dataP1A = dataArray.map(info => {
+    var dataP1A = dataArray.map(info => {
     //Splits date time object into parts
         var dateParts = info.VODDate.split("-");
 
@@ -310,10 +305,74 @@ function VODDisplay(props) {
     }
 
 
+    function Search(){
+        console.log(dataArray)
+        console.log("P1P = " + props.P1P)
+        console.log("P1M = " + props.P1M)
+        console.log("P1A = " + props.P1A)
+        console.log("P2P = " + props.P2P)
+        console.log("P2M = " + props.P2M)
+        console.log("P2A = " + props.P2A)
+        console.log(props.Player1)
+        console.log(props.Player2)
+        console.log(props.TO1)
+        console.log(props.TO2)
+        var dataP1A = dataArray.map(info =>{
+            console.log("Checking team...")
+            if(props.P1P === "Any" && props.P1M === "Any" && props.P1A === "Any" && props.P2P === "Any" && props.P2M === "Any" && props.P2A === "Any"){
+                //display all teams
+            }
+            else if(!(props.P1P === "Any" && props.P1M === "Any" && props.P1A === "Any") && ((props.P2P === "Any" && props.P2M === "Any" && props.P2A === "Any"))){
+                if(!props.TO1){
+                    if(props.P1P === "Any" || (props.P1P === info.P1P || props.P1P === info.P1M || props.P1P === info.P1A)){
+                        if((props.P1M === "Any" || (props.P1M === info.P1P || props.P1M === info.P1M || props.P1M === info.P1A))){
+                            if((props.P1A === "Any" || (props.P1A === info.P1P || props.P1A === info.P1M || props.P1A === info.P1A))){
+                                console.log("I found the team :) = " + info.P1P + " " + info.P1M + " " + info.P1A)
+                            }
+                        }
+                    }
+                    if(props.P1P === "Any" || (props.P1P === info.P2P || props.P1P === info.P2M || props.P1P === info.P2A)){
+                        if((props.P1M === "Any" || (props.P1M === info.P2P || props.P1M === info.P2M || props.P1M === info.P2A))){
+                            if((props.P1A === "Any" || (props.P1A === info.P2P || props.P1A === info.P2M || props.P1A === info.P2A))){
+                                console.log("I found the team :) = " + info.P2P + " " + info.P2M + " " + info.P2A)
+                            }
+                        }
+                    }
+                }
+                else{
+                    if((props.P1P === "Any" || (props.P1P === info.P1P)) && (props.P1M === "Any" || (props.P1M === info.P1M)) && (props.P1A === "Any" || (props.P1A === info.P1A))){
+                        console.log("I found the team :) = " + info.P1P + " " + info.P1M + " " + info.P1A)
+                    }
+                    if((props.P1P === "Any" || (props.P1P === info.P2P)) && (props.P1M === "Any" || (props.P1M === info.P2M)) && (props.P1A === "Any" || (props.P1A === info.P2A))){
+                        console.log("I found the team :) = " + info.P2P + " " + info.P2M + " " + info.P2A)
+                    }
+                }
+            }
+            else if(!(props.P1P === "Any" && props.P1M === "Any" && props.P1A === "Any") && !((props.P2P === "Any" && props.P2M === "Any" && props.P2A === "Any"))){
+                if((props.P1P === "Any" || (props.P1P === info.P1P || props.P1P === info.P1M || props.P1P === info.P1A)) && (props.P2P === "Any" || (props.P2P === info.P2P || props.P2P === info.P2M || props.P2P === info.P2A))){
+                    if((props.P1M === "Any" || (props.P1M === info.P1P || props.P1M === info.P1M || props.P1M === info.P1A)) && (props.P2M === "Any" || (props.P2M === info.P2P || props.P2M === info.P2M || props.P2M === info.P2A))){
+                        if((props.P1A === "Any" || (props.P1A === info.P1P || props.P1A === info.P1M || props.P1A === info.P1A)) && (props.P2A === "Any" || (props.P2A === info.P2P || props.P2A === info.P2M || props.P2A === info.P2A))){
+                            console.log("I found the team :) = " + info.P1P + " " + info.P1M + " " + info.P1A)
+                        }
+                    }
+                }
+                if((props.P1P === "Any" || (props.P1P === info.P2P || props.P1P === info.P2M || props.P1P === info.P2A)) && (props.P2P === "Any" || (props.P2P === info.P1P || props.P2P === info.P1M || props.P2P === info.P1A))){
+                    if((props.P1M === "Any" || (props.P1M === info.P2P || props.P1M === info.P2M || props.P1M === info.P2A)) && (props.P2M === "Any" || (props.P2M === info.P1P || props.P2M === info.P1M || props.P2M === info.P1A))){
+                        if((props.P1A === "Any" || (props.P1A === info.P2P || props.P1A === info.P2M || props.P1A === info.P2A)) && (props.P2A === "Any" || (props.P2A === info.P1P || props.P2A === info.P1M || props.P2A === info.P1A))){
+                            console.log("I found the team :) = " + info.P2P + " " + info.P2M + " " + info.P2A)
+                        }
+                    }
+                }
+            }
+        })
+    }
+
+
+    // setSearch(search + 1)} in onClick if I want to go back to server calls for updating on button click
     return(
         <>
         <div className = "submitCenter">
-            <button type="button" onClick={() => {setSearch(search + 1)}} className = "submitButton" >Search</button>
+            <button type="button" onClick={() => {Search()}} className = "submitButton" >Search</button>
             <br></br>
             <br></br>
             <br></br>

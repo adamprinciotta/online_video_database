@@ -132,65 +132,77 @@ app.get('/data', (req, res) =>{
 
     
 
-    if(TO1 === 'false' && TO2 === 'false'){
-        console.log("BOTH FALSE")
-        var sql = mysql.format(`SELECT * FROM sg_vod_database.vod_data WHERE Player1 = ${Player1} 
-        AND Player2 = ${Player2} AND
-        ( 
-            ${P1P} in (P1P, P1M, P1A, P2P, P2M, P2A) AND
-            ${P1M} in (P1P, P1M, P1A, P2P, P2M, P2A) AND
-            ${P1A} in (P1P, P1M, P1A, P2P, P2M, P2A) AND 
-            ${P2P} in (P1P, P1M, P1A, P2P, P2M, P2A) AND
-            ${P2M} in (P1P, P1M, P1A, P2P, P2M, P2A) AND
-            ${P2A} in (P1P, P1M, P1A, P2P, P2M, P2A)
-        )`)
-    }
-    else if(TO1 === 'true' && TO2 === 'false'){
-        console.log("TO2 FALSE")
-        var sql = mysql.format(`SELECT * FROM sg_vod_database.vod_data WHERE Player1 = ${Player1} 
-        AND Player2 = ${Player2} AND
-        ( 
-            ${P1P} = P1P AND
-            ${P1M} = P1M AND
-            ${P1A} = P1A AND 
-            ${P2P} in (P2P, P2M, P2A) AND
-            ${P2M} in (P2P, P2M, P2A) AND
-            ${P2A} in (P2P, P2M, P2A)
-        ) OR
-        (
-            ${P1P} = P2P AND
-            ${P1M} = P2M AND
-            ${P1A} = P2A AND 
-            ${P2P} in (P1P, P1M, P1A) AND
-            ${P2M} in (P1P, P1M, P1A) AND
-            ${P2A} in (P1P, P1M, P1A)
-        )
+    // if(TO1 === 'false' && TO2 === 'false'){
+    //     console.log("BOTH FALSE")
+    //     var sql = mysql.format(`SELECT * FROM sg_vod_database.vod_data WHERE Player1 = ${Player1} 
+    //     AND Player2 = ${Player2} AND
+    //     ( 
+    //         ${P1P} in (P1P, P1M, P1A, P2P, P2M, P2A) AND
+    //         ${P1M} in (P1P, P1M, P1A, P2P, P2M, P2A) AND
+    //         ${P1A} in (P1P, P1M, P1A, P2P, P2M, P2A) AND 
+    //         ${P2P} in (P1P, P1M, P1A, P2P, P2M, P2A) AND
+    //         ${P2M} in (P1P, P1M, P1A, P2P, P2M, P2A) AND
+    //         ${P2A} in (P1P, P1M, P1A, P2P, P2M, P2A)
+    //     )`)
+
+        //Search is Any Cerebella Any
+        //Actual is Filia Cerebella Parasoul
+        //Where Team1 LIKE "__CB__" Covers case of specifically bella mid
+        //Where Team2 LIKE "__CB__"
+        // 
+        //Parasoul Double
+        //Where Team1 LIKE "%PA%" AND Team1 LIKE "%DO%" Covers case of parasoul and double order doesn't matter
+        //Where Team1 LIKE "%PADO%" Covers case of parasoul double in order but doesn't matter if point and mid or mid and anchor 
+
+        //foreign keys are what we want
+
+    // }
+    // else if(TO1 === 'true' && TO2 === 'false'){
+    //     console.log("TO2 FALSE")
+    //     var sql = mysql.format(`SELECT * FROM sg_vod_database.vod_data WHERE Player1 = ${Player1} 
+    //     AND Player2 = ${Player2} AND
+    //     ( 
+    //         ${P1P} = P1P AND
+    //         ${P1M} = P1M AND
+    //         ${P1A} = P1A AND 
+    //         ${P2P} in (P2P, P2M, P2A) AND
+    //         ${P2M} in (P2P, P2M, P2A) AND
+    //         ${P2A} in (P2P, P2M, P2A)
+    //     ) OR
+    //     (
+    //         ${P1P} = P2P AND
+    //         ${P1M} = P2M AND
+    //         ${P1A} = P2A AND 
+    //         ${P2P} in (P1P, P1M, P1A) AND
+    //         ${P2M} in (P1P, P1M, P1A) AND
+    //         ${P2A} in (P1P, P1M, P1A)
+    //     )
         
-        `)
-    }
-    else if(TO1 === 'false' && TO2 === 'true'){
-        console.log("TO1 FALSE")
-        var sql = mysql.format(`SELECT * FROM sg_vod_database.vod_data WHERE Player1 = ${Player1} 
-        AND Player2 = ${Player2} AND 
-        ${P1P} in (P1P, P1M, P1A) AND
-        ${P1M} in (P1P, P1M, P1A) AND
-        ${P1A} in (P1P, P1M, P1A) AND 
-        ${P2P} = P2P AND
-        ${P2M} = P2M AND
-        ${P2A} = P2A`)
-    }
-    else{
-        console.log("BOTH TRUE")
-        var sql = mysql.format(`SELECT * FROM sg_vod_database.vod_data WHERE Player1 = ${Player1} 
-        AND Player2 = ${Player2} AND 
-        ${P1P} = P1P AND
-        ${P1M} = P1M AND
-        ${P1A} = P1A AND 
-        ${P2P} = P2P AND
-        ${P2M} = P2M AND
-        ${P2A} = P2A`)
-    }
-    
+    //     `)
+    // }
+    // else if(TO1 === 'false' && TO2 === 'true'){
+    //     console.log("TO1 FALSE")
+    //     var sql = mysql.format(`SELECT * FROM sg_vod_database.vod_data WHERE Player1 = ${Player1} 
+    //     AND Player2 = ${Player2} AND 
+    //     ${P1P} in (P1P, P1M, P1A) AND
+    //     ${P1M} in (P1P, P1M, P1A) AND
+    //     ${P1A} in (P1P, P1M, P1A) AND 
+    //     ${P2P} = P2P AND
+    //     ${P2M} = P2M AND
+    //     ${P2A} = P2A`)
+    // }
+    // else{
+    //     console.log("BOTH TRUE")
+    //     var sql = mysql.format(`SELECT * FROM sg_vod_database.vod_data WHERE Player1 = ${Player1} 
+    //     AND Player2 = ${Player2} AND 
+    //     ${P1P} = P1P AND
+    //     ${P1M} = P1M AND
+    //     ${P1A} = P1A AND 
+    //     ${P2P} = P2P AND
+    //     ${P2M} = P2M AND
+    //     ${P2A} = P2A`)
+    // }
+    var sql = mysql.format(`SELECT * FROM sg_vod_database.vod_data`)
     console.log("SQL = " + sql)
     
 
