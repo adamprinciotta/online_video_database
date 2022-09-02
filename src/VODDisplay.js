@@ -28,10 +28,12 @@ import { Search } from '@syncfusion/ej2-react-dropdowns';
 
 function VODDisplay(props) {
 
-    const [dataArray, setDataArray] = useState([]);
+    const [dataArray, setDataArray] = useState([])
 
     const [search, setSearch] = useState([]) 
 
+    const [dataTest, setData] = useState([])
+    
     //Gets everything from database on load then store it in the dataArray state
     useEffect(() => {
         // console.log("requested")
@@ -44,16 +46,15 @@ function VODDisplay(props) {
         }
 
         axios.request(databaseData).then((response) => {
-            
-            setDataArray(response.data);
-            console.log(response.data)
+            setDataArray(response.data)
+            // console.log("JUST SET DATA ARRAY = " + dataArray)
+            setData(response.data)
+            // console.log("JUST SET SET DATA = " + dataTest)
+            //testingData()
             
         }).catch((error)=>{
             console.error(error)
         })
-
-
-
 
         // console.log("P1P = " + props.p1selected1)
         // console.log("P1M = " + props.p1selected2)
@@ -64,9 +65,20 @@ function VODDisplay(props) {
     }, []) //[search]
 
 
+    // function testingData() {
+    //     setData(data)
+    //     console.log("DATA TEST VALUES = " + dataTest)
+    // }
+
+    // useEffect(() =>{
+    //     setData(data)
+    //     console.log("dataTest = " + dataTest.map(info =>{
+    //         console.log(info)
+    //     }))
+    // }, [data])
 
     //Maps the array and then displays the data from the database
-    var dataP1A = dataArray.map(info => {
+    var data = dataArray.map(info => {
     //Splits date time object into parts
         var dateParts = info.VODDate.split("-");
 
@@ -76,15 +88,15 @@ function VODDisplay(props) {
         //If/Else statements to display the teams in the right spacings
         if(!checkIfNone(info.P1A) && !checkIfNone(info.P1M) && !checkIfNone(info.P2M) && !checkIfNone(info.P2A)){
             return(<tr>
-                <td class="tbl-hdr">{info.Player1}</td>
-                <td class="tbl-hdr" valign='center'>
+                <td className="tbl-hdr">{info.Player1}</td>
+                <td className="tbl-hdr" valign='center'>
                     <div className ="centerpls">{info.P1P}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
                 </td>
-                <td class="tbl-hdr" valign='center'>
+                <td className="tbl-hdr" valign='center'>
                     <div className ="centerpls"><img className = "img" src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}</div>
                 </td>
-                <td class="tbl-hdr">{info.Player2}</td>
-                <td class="tbl-event">
+                <td className="tbl-hdr">{info.Player2}</td>
+                <td className="tbl-event">
                     <div>
                         {info.EventName}
                     </div>
@@ -99,16 +111,16 @@ function VODDisplay(props) {
         }
         else if(!checkIfNone(info.P1A) && !checkIfNone(info.P1M) && checkIfNone(info.P2M) && !checkIfNone(info.P2A)){
             return(<tr>
-                <td class="tbl-hdr">{info.Player1}</td>
-                <td class="tbl-hdr" >
+                <td className="tbl-hdr">{info.Player1}</td>
+                <td className="tbl-hdr" >
                     <div className ="centerpls">{info.P1P}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
                 </td>
-                <td class="tbl-hdr" >
+                <td className="tbl-hdr" >
                     <div className ="centerpls"><img className = "img" src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}</div>
                     <div className ="centerpls"><img className = "img" src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}</div>
                 </td>
-                <td class="tbl-hdr">{info.Player2}</td>
-                <td class="tbl-event">
+                <td className="tbl-hdr">{info.Player2}</td>
+                <td className="tbl-event">
                     <div>
                         {info.EventName}
                     </div>
@@ -123,18 +135,18 @@ function VODDisplay(props) {
         }
         else if(!checkIfNone(info.P1A) && checkIfNone(info.P1M) && checkIfNone(info.P2M) && !checkIfNone(info.P2A)){
             return(<tr>
-                <td class="tbl-hdr">{info.Player1}</td>
-                <td class="tbl-hdr" >
+                <td className="tbl-hdr">{info.Player1}</td>
+                <td className="tbl-hdr" >
                     <div className ="centerpls">{info.P1P}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
                     <div className ="centerpls">{info.P1M}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1M)} height = "35"/></div>
 
                 </td>
-                <td class="tbl-hdr" >
+                <td className="tbl-hdr" >
                     <div className ="centerpls"><img className = "img" src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}</div>
                     <div className ="centerpls"><img className = "img" src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}</div>
                 </td>
-                <td class="tbl-hdr">{info.Player2}</td>
-                <td class="tbl-event">
+                <td className="tbl-hdr">{info.Player2}</td>
+                <td className="tbl-event">
                     <div>
                         {info.EventName}
                     </div>
@@ -149,19 +161,19 @@ function VODDisplay(props) {
         }
         else if(!checkIfNone(info.P1A)){
             return(<tr>
-                <td class="tbl-hdr">{info.Player1}</td>
-                <td class="tbl-hdr" >
+                <td className="tbl-hdr">{info.Player1}</td>
+                <td className="tbl-hdr" >
                 <div className ="centerpls">{info.P1P}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
                 <div className ="centerpls">{info.P1M}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1M)} height = "35"/></div>
 
                 </td>
-                <td class="tbl-hdr" >
+                <td className="tbl-hdr" >
                     <div className ="centerpls"><img className = "img" src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}</div>
                     <div className ="centerpls"><img className = "img" src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}</div>
                     <div className ="centerpls"><img className = "img" src={getImage(info.P2A)} height = "35"/>&nbsp;&nbsp;{info.P2A}</div>
                 </td>
-                <td class="tbl-hdr">{info.Player2}</td>
-                <td class="tbl-event">
+                <td className="tbl-hdr">{info.Player2}</td>
+                <td className="tbl-event">
                     <div>
                         {info.EventName}
                     </div>
@@ -176,18 +188,18 @@ function VODDisplay(props) {
         }
         else if(!checkIfNone(info.P2A)){
             return(<tr>
-                <td class="tbl-hdr">{info.Player1}</td>
-                <td class="tbl-hdr" >
+                <td className="tbl-hdr">{info.Player1}</td>
+                <td className="tbl-hdr" >
                     <div className ="centerpls">{info.P1P}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
                     <div className ="centerpls">{info.P1M}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1M)} height = "35"/></div>
                     <div className ="centerpls">{info.P1A}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1A)} height = "35"/></div>
                 </td>
-                <td class="tbl-hdr" >
+                <td className="tbl-hdr" >
                     <div className ="centerpls"><img className = "img" src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}</div>
                     <div className ="centerpls"><img className = "img" src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}</div>
                 </td>
-                <td class="tbl-hdr">{info.Player2}</td>
-                <td class="tbl-event">
+                <td className="tbl-hdr">{info.Player2}</td>
+                <td className="tbl-event">
                     <div>
                         {info.EventName}
                     </div>
@@ -203,19 +215,19 @@ function VODDisplay(props) {
         //Only case left is a 3v3 team
         else{
             return(<tr>
-                <td class="tbl-hdr">{info.Player1}</td>
-                <td class="tbl-hdr" >
+                <td className="tbl-hdr">{info.Player1}</td>
+                <td className="tbl-hdr" >
                     <div className ="centerpls">{info.P1P}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
                     <div className ="centerpls">{info.P1M}&nbsp;&nbsp;<img className = "img" src={getImage(info.P1M)} height = "35"/></div>
                     <div className ="centerpls">{info.P1A}&nbsp;&nbsp;<img className = "img" src={getImage(info.P1A)} height = "35"/></div>
                 </td>
-                <td class="tbl-hdr" >
+                <td className="tbl-hdr" >
                     <div className ="centerpls"><img className = "img" src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}</div>
                     <div className ="centerpls"><img className = "img" src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}</div>
                     <div className ="centerpls"><img className = "img" src={getImage(info.P2A)} height = "35"/>&nbsp;&nbsp;{info.P2A}</div>
                 </td>
-                <td class="tbl-hdr">{info.Player2}</td>
-                <td class="tbl-event">
+                <td className="tbl-hdr">{info.Player2}</td>
+                <td className="tbl-event">
                     <div>
                         {info.EventName}
                     </div>
@@ -305,68 +317,402 @@ function VODDisplay(props) {
     }
 
 
+    // function Search(){
+    //     console.log(dataArray)
+    //     console.log("P1P = " + props.P1P)
+    //     console.log("P1M = " + props.P1M)
+    //     console.log("P1A = " + props.P1A)
+    //     console.log("P2P = " + props.P2P)
+    //     console.log("P2M = " + props.P2M)
+    //     console.log("P2A = " + props.P2A)
+    //     console.log(props.Player1)
+    //     console.log(props.Player2)
+    //     console.log(props.TO1)
+    //     console.log(props.TO2)
+    //     var data = dataArray.map(info =>{
+    //         console.log("Checking team...")
+    //         if(props.P1P === "Any" && props.P1M === "Any" && props.P1A === "Any" && props.P2P === "Any" && props.P2M === "Any" && props.P2A === "Any"){
+    //             //display all teams
+    //         }
+    //         else if(!(props.P1P === "Any" && props.P1M === "Any" && props.P1A === "Any") && ((props.P2P === "Any" && props.P2M === "Any" && props.P2A === "Any"))){
+    //             if(!props.TO1){
+    //                 if(props.P1P === "Any" || (props.P1P === info.P1P || props.P1P === info.P1M || props.P1P === info.P1A)){
+    //                     if((props.P1M === "Any" || (props.P1M === info.P1P || props.P1M === info.P1M || props.P1M === info.P1A))){
+    //                         if((props.P1A === "Any" || (props.P1A === info.P1P || props.P1A === info.P1M || props.P1A === info.P1A))){
+    //                             console.log("I found the team :) = " + info.P1P + " " + info.P1M + " " + info.P1A)
+    //                         }
+    //                     }
+    //                 }
+    //                 if(props.P1P === "Any" || (props.P1P === info.P2P || props.P1P === info.P2M || props.P1P === info.P2A)){
+    //                     if((props.P1M === "Any" || (props.P1M === info.P2P || props.P1M === info.P2M || props.P1M === info.P2A))){
+    //                         if((props.P1A === "Any" || (props.P1A === info.P2P || props.P1A === info.P2M || props.P1A === info.P2A))){
+    //                             console.log("I found the team :) = " + info.P2P + " " + info.P2M + " " + info.P2A)
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //             else{
+    //                 if((props.P1P === "Any" || (props.P1P === info.P1P)) && (props.P1M === "Any" || (props.P1M === info.P1M)) && (props.P1A === "Any" || (props.P1A === info.P1A))){
+    //                     console.log("I found the team :) = " + info.P1P + " " + info.P1M + " " + info.P1A)
+    //                 }
+    //                 if((props.P1P === "Any" || (props.P1P === info.P2P)) && (props.P1M === "Any" || (props.P1M === info.P2M)) && (props.P1A === "Any" || (props.P1A === info.P2A))){
+    //                     console.log("I found the team :) = " + info.P2P + " " + info.P2M + " " + info.P2A)
+    //                 }
+    //             }
+    //         }
+    //         else if(!(props.P1P === "Any" && props.P1M === "Any" && props.P1A === "Any") && !((props.P2P === "Any" && props.P2M === "Any" && props.P2A === "Any"))){
+    //             if((props.P1P === "Any" || (props.P1P === info.P1P || props.P1P === info.P1M || props.P1P === info.P1A)) && (props.P2P === "Any" || (props.P2P === info.P2P || props.P2P === info.P2M || props.P2P === info.P2A))){
+    //                 if((props.P1M === "Any" || (props.P1M === info.P1P || props.P1M === info.P1M || props.P1M === info.P1A)) && (props.P2M === "Any" || (props.P2M === info.P2P || props.P2M === info.P2M || props.P2M === info.P2A))){
+    //                     if((props.P1A === "Any" || (props.P1A === info.P1P || props.P1A === info.P1M || props.P1A === info.P1A)) && (props.P2A === "Any" || (props.P2A === info.P2P || props.P2A === info.P2M || props.P2A === info.P2A))){
+    //                         console.log("I found the team :) = " + info.P1P + " " + info.P1M + " " + info.P1A)
+    //                     }
+    //                 }
+    //             }
+    //             if((props.P1P === "Any" || (props.P1P === info.P2P || props.P1P === info.P2M || props.P1P === info.P2A)) && (props.P2P === "Any" || (props.P2P === info.P1P || props.P2P === info.P1M || props.P2P === info.P1A))){
+    //                 if((props.P1M === "Any" || (props.P1M === info.P2P || props.P1M === info.P2M || props.P1M === info.P2A)) && (props.P2M === "Any" || (props.P2M === info.P1P || props.P2M === info.P1M || props.P2M === info.P1A))){
+    //                     if((props.P1A === "Any" || (props.P1A === info.P2P || props.P1A === info.P2M || props.P1A === info.P2A)) && (props.P2A === "Any" || (props.P2A === info.P1P || props.P2A === info.P1M || props.P2A === info.P1A))){
+    //                         console.log("I found the team :) = " + info.P2P + " " + info.P2M + " " + info.P2A)
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     })
+    // }
+
+    function displaySearch(info){ //See if it can take in info as a parameter to get the current object
+        console.log("DISPLAY SEARCH " + info.P1P)
+        var dateParts = info.VODDate.split("-");
+
+        //Changes format into MM/DD/YYYY
+        var dateYear =  dateParts[1] + "/" + dateParts[2].substring(0, 2) + "/" + dateParts[0];   
+
+        //If/Else statements to display the teams in the right spacings
+        if(!checkIfNone(info.P1A) && !checkIfNone(info.P1M) && !checkIfNone(info.P2M) && !checkIfNone(info.P2A)){
+            return(<tr>
+                <td className="tbl-hdr">{info.Player1}</td>
+                <td className="tbl-hdr" valign='center'>
+                    <div className ="centerpls">{info.P1P}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
+                </td>
+                <td className="tbl-hdr" valign='center'>
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}</div>
+                </td>
+                <td className="tbl-hdr">{info.Player2}</td>
+                <td className="tbl-event">
+                    <div>
+                        {info.EventName}
+                    </div>
+                    <div>
+                        {dateYear}
+                    </div> 
+                    <div>
+                        <a href={info.Link} target="_blank"><img src="https://brandeps.com/logo-download/Y/YouTube-Play-logo-vector-01.svg" height = "30"></img></a>
+                    </div>
+                </td>
+            </tr>)
+        }
+        else if(!checkIfNone(info.P1A) && !checkIfNone(info.P1M) && checkIfNone(info.P2M) && !checkIfNone(info.P2A)){
+            return(<tr>
+                <td className="tbl-hdr">{info.Player1}</td>
+                <td className="tbl-hdr" >
+                    <div className ="centerpls">{info.P1P}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
+                </td>
+                <td className="tbl-hdr" >
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}</div>
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}</div>
+                </td>
+                <td className="tbl-hdr">{info.Player2}</td>
+                <td className="tbl-event">
+                    <div>
+                        {info.EventName}
+                    </div>
+                    <div>
+                        {dateYear}
+                    </div> 
+                    <div>
+                        <a href={info.Link} target="_blank"><img src="https://brandeps.com/logo-download/Y/YouTube-Play-logo-vector-01.svg" height = "30"></img></a>
+                    </div>
+                </td>
+            </tr>)
+        }
+        else if(!checkIfNone(info.P1A) && checkIfNone(info.P1M) && checkIfNone(info.P2M) && !checkIfNone(info.P2A)){
+            return(<tr>
+                <td className="tbl-hdr">{info.Player1}</td>
+                <td className="tbl-hdr" >
+                    <div className ="centerpls">{info.P1P}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
+                    <div className ="centerpls">{info.P1M}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1M)} height = "35"/></div>
+
+                </td>
+                <td className="tbl-hdr" >
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}</div>
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}</div>
+                </td>
+                <td className="tbl-hdr">{info.Player2}</td>
+                <td className="tbl-event">
+                    <div>
+                        {info.EventName}
+                    </div>
+                    <div>
+                        {dateYear}
+                    </div> 
+                    <div>
+                        <a href={info.Link} target="_blank"><img src="https://brandeps.com/logo-download/Y/YouTube-Play-logo-vector-01.svg" height = "30"></img></a>
+                    </div>
+                </td>
+            </tr>)
+        }
+        else if(!checkIfNone(info.P1A)){
+            return(<tr>
+                <td className="tbl-hdr">{info.Player1}</td>
+                <td className="tbl-hdr" >
+                <div className ="centerpls">{info.P1P}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
+                <div className ="centerpls">{info.P1M}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1M)} height = "35"/></div>
+
+                </td>
+                <td className="tbl-hdr" >
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}</div>
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}</div>
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2A)} height = "35"/>&nbsp;&nbsp;{info.P2A}</div>
+                </td>
+                <td className="tbl-hdr">{info.Player2}</td>
+                <td className="tbl-event">
+                    <div>
+                        {info.EventName}
+                    </div>
+                    <div>
+                        {dateYear}
+                    </div> 
+                    <div>
+                        <a href={info.Link} target="_blank"><img src="https://brandeps.com/logo-download/Y/YouTube-Play-logo-vector-01.svg" height = "30"></img></a>
+                    </div>
+                </td>
+            </tr>)
+        }
+        else if(!checkIfNone(info.P2A)){
+            return(<tr>
+                <td className="tbl-hdr">{info.Player1}</td>
+                <td className="tbl-hdr" >
+                    <div className ="centerpls">{info.P1P}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
+                    <div className ="centerpls">{info.P1M}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1M)} height = "35"/></div>
+                    <div className ="centerpls">{info.P1A}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1A)} height = "35"/></div>
+                </td>
+                <td className="tbl-hdr" >
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}</div>
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}</div>
+                </td>
+                <td className="tbl-hdr">{info.Player2}</td>
+                <td className="tbl-event">
+                    <div>
+                        {info.EventName}
+                    </div>
+                    <div>
+                        {dateYear}
+                    </div> 
+                    <div>
+                        <a href={info.Link} target="_blank"><img src="https://brandeps.com/logo-download/Y/YouTube-Play-logo-vector-01.svg" height = "30"></img></a>
+                    </div>
+                </td>
+            </tr>)
+        }
+        //Only case left is a 3v3 team
+        else{
+            return(<tr>
+                <td className="tbl-hdr">{info.Player1}</td>
+                <td className="tbl-hdr" >
+                    <div className ="centerpls">{info.P1P}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
+                    <div className ="centerpls">{info.P1M}&nbsp;&nbsp;<img className = "img" src={getImage(info.P1M)} height = "35"/></div>
+                    <div className ="centerpls">{info.P1A}&nbsp;&nbsp;<img className = "img" src={getImage(info.P1A)} height = "35"/></div>
+                </td>
+                <td className="tbl-hdr" >
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}</div>
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}</div>
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2A)} height = "35"/>&nbsp;&nbsp;{info.P2A}</div>
+                </td>
+                <td className="tbl-hdr">{info.Player2}</td>
+                <td className="tbl-event">
+                    <div>
+                        {info.EventName}
+                    </div>
+                    <div>
+                        {dateYear}
+                    </div> 
+                    <div>
+                        <a href={info.Link} target="_blank"><img src="https://brandeps.com/logo-download/Y/YouTube-Play-logo-vector-01.svg" height = "30"></img></a>
+                    </div>
+                </td>
+            </tr>)
+        }
+    }
+
     function Search(){
-        console.log(dataArray)
-        console.log("P1P = " + props.P1P)
-        console.log("P1M = " + props.P1M)
-        console.log("P1A = " + props.P1A)
-        console.log("P2P = " + props.P2P)
-        console.log("P2M = " + props.P2M)
-        console.log("P2A = " + props.P2A)
-        console.log(props.Player1)
-        console.log(props.Player2)
-        console.log(props.TO1)
-        console.log(props.TO2)
-        var dataP1A = dataArray.map(info =>{
+        console.log("Data Array = " + dataArray)
+        // console.log("P1P = " + props.P1P)
+        // console.log("P1M = " + props.P1M)
+        // console.log("P1A = " + props.P1A)
+        // console.log("P2P = " + props.P2P)
+        // console.log("P2M = " + props.P2M)
+        // console.log("P2A = " + props.P2A)
+        // console.log(props.Player1)
+        // console.log(props.Player2)
+        // console.log(props.TO1)
+        // console.log(props.TO2)
+        data = dataArray.map(info => {
             console.log("Checking team...")
+            //If every slot is Any
             if(props.P1P === "Any" && props.P1M === "Any" && props.P1A === "Any" && props.P2P === "Any" && props.P2M === "Any" && props.P2A === "Any"){
+                info = displaySearch(info)
                 //display all teams
             }
+            //If team 1 has at least 1 character and team 2 has only Any
             else if(!(props.P1P === "Any" && props.P1M === "Any" && props.P1A === "Any") && ((props.P2P === "Any" && props.P2M === "Any" && props.P2A === "Any"))){
-                if(!props.TO1){
+                if(!props.TO1){ //If team order does not matter
+                    //If team 1 search has all characters in any order on team 1
                     if(props.P1P === "Any" || (props.P1P === info.P1P || props.P1P === info.P1M || props.P1P === info.P1A)){
                         if((props.P1M === "Any" || (props.P1M === info.P1P || props.P1M === info.P1M || props.P1M === info.P1A))){
                             if((props.P1A === "Any" || (props.P1A === info.P1P || props.P1A === info.P1M || props.P1A === info.P1A))){
-                                console.log("I found the team :) = " + info.P1P + " " + info.P1M + " " + info.P1A)
+                                info = displaySearch(info)
                             }
                         }
                     }
+                    //If team 1 search has all characters in any order on team 2
                     if(props.P1P === "Any" || (props.P1P === info.P2P || props.P1P === info.P2M || props.P1P === info.P2A)){
                         if((props.P1M === "Any" || (props.P1M === info.P2P || props.P1M === info.P2M || props.P1M === info.P2A))){
                             if((props.P1A === "Any" || (props.P1A === info.P2P || props.P1A === info.P2M || props.P1A === info.P2A))){
+                                info = displaySearch(info)
                                 console.log("I found the team :) = " + info.P2P + " " + info.P2M + " " + info.P2A)
                             }
                         }
                     }
                 }
-                else{
+                else{//If team 1 order matters
+                    //If team 1 has every character in the correct order for the team 1 search
                     if((props.P1P === "Any" || (props.P1P === info.P1P)) && (props.P1M === "Any" || (props.P1M === info.P1M)) && (props.P1A === "Any" || (props.P1A === info.P1A))){
+                        info = displaySearch(info)
                         console.log("I found the team :) = " + info.P1P + " " + info.P1M + " " + info.P1A)
                     }
+                    //If team 2 has every character in the correct order for the team 1 search
                     if((props.P1P === "Any" || (props.P1P === info.P2P)) && (props.P1M === "Any" || (props.P1M === info.P2M)) && (props.P1A === "Any" || (props.P1A === info.P2A))){
+                        info = displaySearch(info)
                         console.log("I found the team :) = " + info.P2P + " " + info.P2M + " " + info.P2A)
                     }
                 }
             }
+            //If both teams have at least 1 character that is not Any
             else if(!(props.P1P === "Any" && props.P1M === "Any" && props.P1A === "Any") && !((props.P2P === "Any" && props.P2M === "Any" && props.P2A === "Any"))){
-                if((props.P1P === "Any" || (props.P1P === info.P1P || props.P1P === info.P1M || props.P1P === info.P1A)) && (props.P2P === "Any" || (props.P2P === info.P2P || props.P2P === info.P2M || props.P2P === info.P2A))){
-                    if((props.P1M === "Any" || (props.P1M === info.P1P || props.P1M === info.P1M || props.P1M === info.P1A)) && (props.P2M === "Any" || (props.P2M === info.P2P || props.P2M === info.P2M || props.P2M === info.P2A))){
-                        if((props.P1A === "Any" || (props.P1A === info.P1P || props.P1A === info.P1M || props.P1A === info.P1A)) && (props.P2A === "Any" || (props.P2A === info.P2P || props.P2A === info.P2M || props.P2A === info.P2A))){
-                            console.log("I found the team :) = " + info.P1P + " " + info.P1M + " " + info.P1A)
+                //If neither team order matters  
+                if(!props.TO1 && !props.TO2){
+                    //If team 1 and team 2 have their characters on P1 and P2 side as originally asked
+                    if((props.P1P === "Any" || (props.P1P === info.P1P || props.P1P === info.P1M || props.P1P === info.P1A)) && (props.P2P === "Any" || (props.P2P === info.P2P || props.P2P === info.P2M || props.P2P === info.P2A))){
+                        if((props.P1M === "Any" || (props.P1M === info.P1P || props.P1M === info.P1M || props.P1M === info.P1A)) && (props.P2M === "Any" || (props.P2M === info.P2P || props.P2M === info.P2M || props.P2M === info.P2A))){
+                            if((props.P1A === "Any" || (props.P1A === info.P1P || props.P1A === info.P1M || props.P1A === info.P1A)) && (props.P2A === "Any" || (props.P2A === info.P2P || props.P2A === info.P2M || props.P2A === info.P2A))){
+                                info = displaySearch(info)
+                                console.log("I found the team :) = " + info.P1P + " " + info.P1M + " " + info.P1A)
+                            }
+                        }
+                    }
+                    //If team 1 and team 2 have their characters on the opposide side as originally asked
+                    if((props.P1P === "Any" || (props.P1P === info.P2P || props.P1P === info.P2M || props.P1P === info.P2A)) && (props.P2P === "Any" || (props.P2P === info.P1P || props.P2P === info.P1M || props.P2P === info.P1A))){
+                        if((props.P1M === "Any" || (props.P1M === info.P2P || props.P1M === info.P2M || props.P1M === info.P2A)) && (props.P2M === "Any" || (props.P2M === info.P1P || props.P2M === info.P1M || props.P2M === info.P1A))){
+                            if((props.P1A === "Any" || (props.P1A === info.P2P || props.P1A === info.P2M || props.P1A === info.P2A)) && (props.P2A === "Any" || (props.P2A === info.P1P || props.P2A === info.P1M || props.P2A === info.P1A))){
+                                info = displaySearch(info)
+                                console.log("I found the team :) = " + info.P2P + " " + info.P2M + " " + info.P2A)
+                            }
                         }
                     }
                 }
-                if((props.P1P === "Any" || (props.P1P === info.P2P || props.P1P === info.P2M || props.P1P === info.P2A)) && (props.P2P === "Any" || (props.P2P === info.P1P || props.P2P === info.P1M || props.P2P === info.P1A))){
-                    if((props.P1M === "Any" || (props.P1M === info.P2P || props.P1M === info.P2M || props.P1M === info.P2A)) && (props.P2M === "Any" || (props.P2M === info.P1P || props.P2M === info.P1M || props.P2M === info.P1A))){
-                        if((props.P1A === "Any" || (props.P1A === info.P2P || props.P1A === info.P2M || props.P1A === info.P2A)) && (props.P2A === "Any" || (props.P2A === info.P1P || props.P2A === info.P1M || props.P2A === info.P1A))){
-                            console.log("I found the team :) = " + info.P2P + " " + info.P2M + " " + info.P2A)
+                //If only team order 1 matters
+                else if(props.TO1 && !props.TO2){
+                    //If team 1 has every character in the correct order for the team 1 search and team 2 is correct in any order
+                    if((props.P1P === "Any" || (props.P1P === info.P1P)) && (props.P1M === "Any" || (props.P1M === info.P1M)) && (props.P1A === "Any" || (props.P1A === info.P1A))){
+                        if((props.P2P === "Any" || (props.P2P === info.P2P || props.P2P === info.P2M || props.P2P === info.P2A))){
+                            if(props.P2M === "Any" || (props.P2M === info.P2P || props.P2M === info.P2M || props.P2M === info.P2A)){
+                                if(props.P2A === "Any" || (props.P2A === info.P2P || props.P2A === info.P2M || props.P2A === info.P2A)){
+                                    info = displaySearch(info)
+                                    console.log("I Found the team :)")
+                                }
+                            }
+                        }
+                    }
+                    //If team 2 has every character in the correct order for the team 1 search and team 1 is correct in any order
+                    if((props.P1P === "Any" || (props.P1P === info.P2P)) && (props.P1M === "Any" || (props.P1M === info.P2M)) && (props.P1A === "Any" || (props.P1A === info.P2A))){
+                        if((props.P2P === "Any" || (props.P2P === info.P1P || props.P2P === info.P1M || props.P2P === info.P1A))){
+                            if(props.P2M === "Any" || (props.P2M === info.P1P || props.P2M === info.P1M || props.P2M === info.P1A)){
+                                if(props.P2A === "Any" || (props.P2A === info.P1P || props.P2A === info.P1M || props.P2A === info.P1A)){
+                                    info = displaySearch(info)
+                                    console.log("I Found the team :)")
+                                }
+                            }
                         }
                     }
                 }
+                //If only team 2 order matters
+                else if(!props.TO1 && props.TO2){
+                    //If team 2 is every character in the correct order for the second team search and the team 2 is correct in any order
+                    if((props.P2P === "Any" || (props.P2P === info.P2P)) && (props.P2M === "Any" || (props.P2M === info.P2M)) && (props.P2A === "Any" || (props.P2A === info.P2A))){
+                        if((props.P1P === "Any" || (props.P1P === info.P1P || props.P1P === info.P1M || props.P1P === info.P1A))){
+                            if(props.P1M === "Any" || (props.P1M === info.P1P || props.P1M === info.P1M || props.P1M === info.P1A)){
+                                if(props.P1A === "Any" || (props.P1A === info.P1P || props.P1A === info.P1M || props.P1A === info.P1A)){
+                                    info = displaySearch(info)
+                                    console.log("I Found the team :)")
+                                }
+                            }
+                        }
+                    }
+                    //If team 1 is every character in the correct order for the second team search and team 1 is correct in any order
+                    if((props.P2P === "Any" || (props.P2P === info.P1P)) && (props.P2M === "Any" || (props.P2M === info.P1M)) && (props.P2A === "Any" || (props.P2A === info.P1A))){
+                        if((props.P1P === "Any" || (props.P1P === info.P2P || props.P1P === info.P2M || props.P1P === info.P2A))){
+                            if(props.P1M === "Any" || (props.P1M === info.P2P || props.P1M === info.P2M || props.P1M === info.P2A)){
+                                if(props.P1A === "Any" || (props.P1A === info.P2P || props.P1A === info.P2M || props.P1A === info.P2A)){
+                                    info = displaySearch(info)
+                                    console.log("I Found the team :)")
+                                }
+                            }
+                        }
+                    }
+                }
+                //If both team orders matter
+                else if(props.TO1 && props.TO2){
+                    //If team 1 and team 2 are in the correct order from the search
+                    if((props.P1P === "Any" || (props.P1P === info.P1P)) && (props.P1M === "Any" || (props.P1M === info.P1M)) && (props.P1A === "Any" || (props.P1A === info.P1A))){
+                        if((props.P2P === "Any" || (props.P2P === info.P2P)) && (props.P2M === "Any" || props.P2M === info.P2M) && (props.P2A || (props.P2A === info.P2A))){
+                            info = displaySearch(info)
+                            console.log("I Found the team :)")
+                        }
+                    }
+                    //If team 1 and team 2 are in the correct order for the opposite teams as submitted
+                    if((props.P1P === "Any" || (props.P1P === info.P2P)) && (props.P1M === "Any" || (props.P1M === info.P2M)) && (props.P1A === "Any" || (props.P1A === info.P2A))){
+                        if((props.P2P === "Any" || (props.P2P === info.P1P)) && (props.P2M === "Any" || props.P2M === info.P1M) && (props.P2A || (props.P2A === info.P1A))){
+                            info = displaySearch(info)
+                            console.log("I Found the team :)")
+                        }
+                    }
+                }
+            }else{
+                info = <tr>
+                    <td className="tbl-hdr">{info.Player1}</td>
+                    <td className="tbl-hdr" valign='center'>
+                        <div className ="centerpls">{info.P1P}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
+                    </td>
+                    <td className="tbl-hdr" valign='center'>
+                        <div className ="centerpls"><img className = "img" src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}</div>
+                    </td>
+                    <td className="tbl-hdr">{info.Player2}</td>
+                    <td className="tbl-event">
+                        <div>
+                            {info.EventName}
+                        </div>
+                        <div>
+                            <a href={info.Link} target="_blank"><img src="https://brandeps.com/logo-download/Y/YouTube-Play-logo-vector-01.svg" height = "30"></img></a>
+                        </div>
+                    </td>
+                </tr>
             }
         })
+        //testingData()
+        setData(data)
+        console.log("dataTest = " + dataTest.map(info =>{
+            console.log(info)
+        }))
     }
-
 
     // setSearch(search + 1)} in onClick if I want to go back to server calls for updating on button click
     return(
@@ -379,19 +725,20 @@ function VODDisplay(props) {
         </div>
         
         <div className='mainBG'>
-            <div class="backgroundColor">
+            <div className="backgroundColor">
                 <table className = 'table'>
                     <tr> 
-                        <td class="tbl-hdr">Player 1</td>
-                        <td class="tbl-hdr">Player 1 Team</td>
-                        <td class="tbl-hdr">Player 2 Team</td>
-                        <td class="tbl-hdr">Player 2</td>
-                        <td class="tbl-hdr">Event + Date + VOD</td>
+                        <td className="tbl-hdr">Player 1</td>
+                        <td className="tbl-hdr">Player 1 Team</td>
+                        <td className="tbl-hdr">Player 2 Team</td>
+                        <td className="tbl-hdr">Player 2</td>
+                        <td className="tbl-hdr">Event + Date + VOD</td>
                     </tr>
 
                     {/* Displays all data fetched */}
-                    {dataP1A} 
-                    
+                    {data} 
+                    <div>This is the data test value </div>
+                    {dataTest}
                 </table>
             </div>
         </div>
