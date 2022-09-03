@@ -79,22 +79,18 @@ function App() {
 
   const TO1Clicked = () => {
     TO1setSelected(!TO1)
-    console.log(TO1)
   }
 
   const TO2Clicked = () => {
     TO2setSelected(!TO2)
-    console.log(TO2)
   }
 
   const Player1Change = event =>{
     Player1setName(event.target.value)
-    console.log(Player1)
   }
 
   const Player2Change = event =>{
     Player2setName(event.target.value)
-    console.log(Player2)
   }
 
   return (
