@@ -30,7 +30,7 @@ function VODDisplay(props) {
 
     const [dataArray, setDataArray] = useState([])
 
-    const [search, setSearch] = useState([]) 
+    const [searched, setSearched] = useState(false)
 
     const [dataTest, setData] = useState([])
     
@@ -48,7 +48,7 @@ function VODDisplay(props) {
         axios.request(databaseData).then((response) => {
             setDataArray(response.data)
             // console.log("JUST SET DATA ARRAY = " + dataArray)
-            setData(response.data)
+            // setData(response.data)
             // console.log("JUST SET SET DATA = " + dataTest)
             //testingData()
             
@@ -380,7 +380,7 @@ function VODDisplay(props) {
     // }
 
     function displaySearch(info){ //See if it can take in info as a parameter to get the current object
-        console.log("DISPLAY SEARCH " + info.P1P)
+        // console.log("DISPLAY SEARCH " + info.P1P)
         var dateParts = info.VODDate.split("-");
 
         //Changes format into MM/DD/YYYY
@@ -544,174 +544,197 @@ function VODDisplay(props) {
     }
 
     function Search(){
-        console.log("Data Array = " + dataArray)
-        // console.log("P1P = " + props.P1P)
-        // console.log("P1M = " + props.P1M)
-        // console.log("P1A = " + props.P1A)
-        // console.log("P2P = " + props.P2P)
-        // console.log("P2M = " + props.P2M)
-        // console.log("P2A = " + props.P2A)
-        // console.log(props.Player1)
-        // console.log(props.Player2)
-        // console.log(props.TO1)
-        // console.log(props.TO2)
-        data = dataArray.map(info => {
-            console.log("Checking team...")
-            //If every slot is Any
-            if(props.P1P === "Any" && props.P1M === "Any" && props.P1A === "Any" && props.P2P === "Any" && props.P2M === "Any" && props.P2A === "Any"){
-                info = displaySearch(info)
-                //display all teams
-            }
-            //If team 1 has at least 1 character and team 2 has only Any
-            else if(!(props.P1P === "Any" && props.P1M === "Any" && props.P1A === "Any") && ((props.P2P === "Any" && props.P2M === "Any" && props.P2A === "Any"))){
-                if(!props.TO1){ //If team order does not matter
-                    //If team 1 search has all characters in any order on team 1
-                    if(props.P1P === "Any" || (props.P1P === info.P1P || props.P1P === info.P1M || props.P1P === info.P1A)){
-                        if((props.P1M === "Any" || (props.P1M === info.P1P || props.P1M === info.P1M || props.P1M === info.P1A))){
-                            if((props.P1A === "Any" || (props.P1A === info.P1P || props.P1A === info.P1M || props.P1A === info.P1A))){
-                                info = displaySearch(info)
-                            }
-                        }
-                    }
-                    //If team 1 search has all characters in any order on team 2
-                    if(props.P1P === "Any" || (props.P1P === info.P2P || props.P1P === info.P2M || props.P1P === info.P2A)){
-                        if((props.P1M === "Any" || (props.P1M === info.P2P || props.P1M === info.P2M || props.P1M === info.P2A))){
-                            if((props.P1A === "Any" || (props.P1A === info.P2P || props.P1A === info.P2M || props.P1A === info.P2A))){
-                                info = displaySearch(info)
-                                console.log("I found the team :) = " + info.P2P + " " + info.P2M + " " + info.P2A)
-                            }
-                        }
+        if((props.P1P === "Any" && props.P1M === "Any" && props.P1A === "Any") && !(props.P2P === "Any" && props.P2M === "Any" && props.P2A === "Any")){
+            alert("Please select at least 1 character for team 1")
+        }
+        else{
+            data = dataArray.map(info => {
+                //console.log("Checking team...")
+
+                //Variable to make sure the names are correct before wasting time searching for characters
+                var correctNames = false
+                //If user is searching for a specific player vs player
+                if(props.Player1 != "" && props.Player2 != ""){
+                    if((info.Player1.toLowerCase() === props.Player1.toLowerCase() && info.Player2.toLowerCase() === props.Player2.toLowerCase()) 
+                    || (info.Player2.toLowerCase() === props.Player1.toLowerCase() && info.Player1.toLowerCase() === props.Player2.toLowerCase())){
+                        correctNames = true
                     }
                 }
-                else{//If team 1 order matters
-                    //If team 1 has every character in the correct order for the team 1 search
-                    if((props.P1P === "Any" || (props.P1P === info.P1P)) && (props.P1M === "Any" || (props.P1M === info.P1M)) && (props.P1A === "Any" || (props.P1A === info.P1A))){
-                        info = displaySearch(info)
-                        console.log("I found the team :) = " + info.P1P + " " + info.P1M + " " + info.P1A)
-                    }
-                    //If team 2 has every character in the correct order for the team 1 search
-                    if((props.P1P === "Any" || (props.P1P === info.P2P)) && (props.P1M === "Any" || (props.P1M === info.P2M)) && (props.P1A === "Any" || (props.P1A === info.P2A))){
-                        info = displaySearch(info)
-                        console.log("I found the team :) = " + info.P2P + " " + info.P2M + " " + info.P2A)
+                //If user put a name in the player 1 search
+                else if(props.Player1 != ""){
+                    if(props.Player1.toLowerCase() === info.Player1.toLowerCase() || props.Player1.toLowerCase() === info.Player2.toLowerCase()){
+                        correctNames = true
                     }
                 }
-            }
-            //If both teams have at least 1 character that is not Any
-            else if(!(props.P1P === "Any" && props.P1M === "Any" && props.P1A === "Any") && !((props.P2P === "Any" && props.P2M === "Any" && props.P2A === "Any"))){
-                //If neither team order matters  
-                if(!props.TO1 && !props.TO2){
-                    //If team 1 and team 2 have their characters on P1 and P2 side as originally asked
-                    if((props.P1P === "Any" || (props.P1P === info.P1P || props.P1P === info.P1M || props.P1P === info.P1A)) && (props.P2P === "Any" || (props.P2P === info.P2P || props.P2P === info.P2M || props.P2P === info.P2A))){
-                        if((props.P1M === "Any" || (props.P1M === info.P1P || props.P1M === info.P1M || props.P1M === info.P1A)) && (props.P2M === "Any" || (props.P2M === info.P2P || props.P2M === info.P2M || props.P2M === info.P2A))){
-                            if((props.P1A === "Any" || (props.P1A === info.P1P || props.P1A === info.P1M || props.P1A === info.P1A)) && (props.P2A === "Any" || (props.P2A === info.P2P || props.P2A === info.P2M || props.P2A === info.P2A))){
-                                info = displaySearch(info)
-                                console.log("I found the team :) = " + info.P1P + " " + info.P1M + " " + info.P1A)
+                //If user put a name in the player 2 search
+                else if(props.Player2 != ""){
+                    if(props.Player2.toLowerCase() === info.Player1.toLowerCase() || props.Player2.toLowerCase() === info.Player2.toLowerCase()){
+                        correctNames = true
+                    }
+                }
+                //If no names were input, then search all teams
+                else if(props.Player1 === "" && props.Player2 === ""){
+                    correctNames = true
+                }
+                if(correctNames){
+                    //If every slot is Any
+                    if(props.P1P === "Any" && props.P1M === "Any" && props.P1A === "Any" && props.P2P === "Any" && props.P2M === "Any" && props.P2A === "Any"){
+                        return(displaySearch(info))
+                        //display all teams
+                    }
+
+                    //If team 1 has at least 1 character and team 2 has only Any
+                    else if(!(props.P1P === "Any" && props.P1M === "Any" && props.P1A === "Any") && ((props.P2P === "Any" && props.P2M === "Any" && props.P2A === "Any"))){
+                        if(!props.TO1){ //If team order does not matter
+                            //If team 1 search has all characters in any order on team 1
+                            if(props.P1P === "Any" || (props.P1P === info.P1P || props.P1P === info.P1M || props.P1P === info.P1A)){
+                                if((props.P1M === "Any" || (props.P1M === info.P1P || props.P1M === info.P1M || props.P1M === info.P1A))){
+                                    if((props.P1A === "Any" || (props.P1A === info.P1P || props.P1A === info.P1M || props.P1A === info.P1A))){
+                                        return(displaySearch(info))
+                                    }
+                                }
+                            }
+                            //If team 1 search has all characters in any order on team 2
+                            if(props.P1P === "Any" || (props.P1P === info.P2P || props.P1P === info.P2M || props.P1P === info.P2A)){
+                                if((props.P1M === "Any" || (props.P1M === info.P2P || props.P1M === info.P2M || props.P1M === info.P2A))){
+                                    if((props.P1A === "Any" || (props.P1A === info.P2P || props.P1A === info.P2M || props.P1A === info.P2A))){
+                                        return(displaySearch(info))
+                                    }
+                                }
+                            }
+                        }
+                        else{//If team 1 order matters
+                            //If team 1 has every character in the correct order for the team 1 search
+                            if((props.P1P === "Any" || (props.P1P === info.P1P)) && (props.P1M === "Any" || (props.P1M === info.P1M)) && (props.P1A === "Any" || (props.P1A === info.P1A))){
+                                return(displaySearch(info))
+                            }
+                            //If team 2 has every character in the correct order for the team 1 search
+                            if((props.P1P === "Any" || (props.P1P === info.P2P)) && (props.P1M === "Any" || (props.P1M === info.P2M)) && (props.P1A === "Any" || (props.P1A === info.P2A))){
+                                return(displaySearch(info))
                             }
                         }
                     }
-                    //If team 1 and team 2 have their characters on the opposide side as originally asked
-                    if((props.P1P === "Any" || (props.P1P === info.P2P || props.P1P === info.P2M || props.P1P === info.P2A)) && (props.P2P === "Any" || (props.P2P === info.P1P || props.P2P === info.P1M || props.P2P === info.P1A))){
-                        if((props.P1M === "Any" || (props.P1M === info.P2P || props.P1M === info.P2M || props.P1M === info.P2A)) && (props.P2M === "Any" || (props.P2M === info.P1P || props.P2M === info.P1M || props.P2M === info.P1A))){
-                            if((props.P1A === "Any" || (props.P1A === info.P2P || props.P1A === info.P2M || props.P1A === info.P2A)) && (props.P2A === "Any" || (props.P2A === info.P1P || props.P2A === info.P1M || props.P2A === info.P1A))){
-                                info = displaySearch(info)
-                                console.log("I found the team :) = " + info.P2P + " " + info.P2M + " " + info.P2A)
+                    //If both teams have at least 1 character that is not Any
+                    else if(!(props.P1P === "Any" && props.P1M === "Any" && props.P1A === "Any") && !((props.P2P === "Any" && props.P2M === "Any" && props.P2A === "Any"))){
+                        //If neither team order matters  
+                        if(!props.TO1 && !props.TO2){
+                            //If team 1 and team 2 have their characters on P1 and P2 side as originally asked
+                            if((props.P1P === "Any" || (props.P1P === info.P1P || props.P1P === info.P1M || props.P1P === info.P1A)) && (props.P2P === "Any" || (props.P2P === info.P2P || props.P2P === info.P2M || props.P2P === info.P2A))){
+                                if((props.P1M === "Any" || (props.P1M === info.P1P || props.P1M === info.P1M || props.P1M === info.P1A)) && (props.P2M === "Any" || (props.P2M === info.P2P || props.P2M === info.P2M || props.P2M === info.P2A))){
+                                    if((props.P1A === "Any" || (props.P1A === info.P1P || props.P1A === info.P1M || props.P1A === info.P1A)) && (props.P2A === "Any" || (props.P2A === info.P2P || props.P2A === info.P2M || props.P2A === info.P2A))){
+                                        return(displaySearch(info))
+                                    }
+                                }
+                            }
+                            //If team 1 and team 2 have their characters on the opposide side as originally asked
+                            if((props.P1P === "Any" || (props.P1P === info.P2P || props.P1P === info.P2M || props.P1P === info.P2A)) && (props.P2P === "Any" || (props.P2P === info.P1P || props.P2P === info.P1M || props.P2P === info.P1A))){
+                                if((props.P1M === "Any" || (props.P1M === info.P2P || props.P1M === info.P2M || props.P1M === info.P2A)) && (props.P2M === "Any" || (props.P2M === info.P1P || props.P2M === info.P1M || props.P2M === info.P1A))){
+                                    if((props.P1A === "Any" || (props.P1A === info.P2P || props.P1A === info.P2M || props.P1A === info.P2A)) && (props.P2A === "Any" || (props.P2A === info.P1P || props.P2A === info.P1M || props.P2A === info.P1A))){
+                                        return(displaySearch(info))
+                                    }
+                                }
                             }
                         }
-                    }
-                }
-                //If only team order 1 matters
-                else if(props.TO1 && !props.TO2){
-                    //If team 1 has every character in the correct order for the team 1 search and team 2 is correct in any order
-                    if((props.P1P === "Any" || (props.P1P === info.P1P)) && (props.P1M === "Any" || (props.P1M === info.P1M)) && (props.P1A === "Any" || (props.P1A === info.P1A))){
-                        if((props.P2P === "Any" || (props.P2P === info.P2P || props.P2P === info.P2M || props.P2P === info.P2A))){
-                            if(props.P2M === "Any" || (props.P2M === info.P2P || props.P2M === info.P2M || props.P2M === info.P2A)){
-                                if(props.P2A === "Any" || (props.P2A === info.P2P || props.P2A === info.P2M || props.P2A === info.P2A)){
-                                    info = displaySearch(info)
-                                    console.log("I Found the team :)")
+                        //If only team order 1 matters
+                        else if(props.TO1 && !props.TO2){
+                            //If team 1 has every character in the correct order for the team 1 search and team 2 is correct in any order
+                            if((props.P1P === "Any" || (props.P1P === info.P1P)) && (props.P1M === "Any" || (props.P1M === info.P1M)) && (props.P1A === "Any" || (props.P1A === info.P1A))){
+                                if((props.P2P === "Any" || (props.P2P === info.P2P || props.P2P === info.P2M || props.P2P === info.P2A))){
+                                    if(props.P2M === "Any" || (props.P2M === info.P2P || props.P2M === info.P2M || props.P2M === info.P2A)){
+                                        if(props.P2A === "Any" || (props.P2A === info.P2P || props.P2A === info.P2M || props.P2A === info.P2A)){
+                                            return(displaySearch(info))
+                                        }
+                                    }
+                                }
+                            }
+                            //If team 2 has every character in the correct order for the team 1 search and team 1 is correct in any order
+                            if((props.P1P === "Any" || (props.P1P === info.P2P)) && (props.P1M === "Any" || (props.P1M === info.P2M)) && (props.P1A === "Any" || (props.P1A === info.P2A))){
+                                if((props.P2P === "Any" || (props.P2P === info.P1P || props.P2P === info.P1M || props.P2P === info.P1A))){
+                                    if(props.P2M === "Any" || (props.P2M === info.P1P || props.P2M === info.P1M || props.P2M === info.P1A)){
+                                        if(props.P2A === "Any" || (props.P2A === info.P1P || props.P2A === info.P1M || props.P2A === info.P1A)){
+                                            return(displaySearch(info))
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        //If only team 2 order matters
+                        else if(!props.TO1 && props.TO2){
+                            //If team 2 is every character in the correct order for the second team search and the team 2 is correct in any order
+                            if((props.P2P === "Any" || (props.P2P === info.P2P)) && (props.P2M === "Any" || (props.P2M === info.P2M)) && (props.P2A === "Any" || (props.P2A === info.P2A))){
+                                if((props.P1P === "Any" || (props.P1P === info.P1P || props.P1P === info.P1M || props.P1P === info.P1A))){
+                                    if(props.P1M === "Any" || (props.P1M === info.P1P || props.P1M === info.P1M || props.P1M === info.P1A)){
+                                        if(props.P1A === "Any" || (props.P1A === info.P1P || props.P1A === info.P1M || props.P1A === info.P1A)){
+                                            return(displaySearch(info))
+                                        }
+                                    }
+                                }
+                            }
+                            //If team 1 is every character in the correct order for the second team search and team 1 is correct in any order
+                            if((props.P2P === "Any" || (props.P2P === info.P1P)) && (props.P2M === "Any" || (props.P2M === info.P1M)) && (props.P2A === "Any" || (props.P2A === info.P1A))){
+                                if((props.P1P === "Any" || (props.P1P === info.P2P || props.P1P === info.P2M || props.P1P === info.P2A))){
+                                    if(props.P1M === "Any" || (props.P1M === info.P2P || props.P1M === info.P2M || props.P1M === info.P2A)){
+                                        if(props.P1A === "Any" || (props.P1A === info.P2P || props.P1A === info.P2M || props.P1A === info.P2A)){
+                                            return(displaySearch(info))
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        //If both team orders matter
+                        else if(props.TO1 && props.TO2){
+                            //If team 1 and team 2 are in the correct order from the search
+                            if((props.P1P === "Any" || (props.P1P === info.P1P)) && (props.P1M === "Any" || (props.P1M === info.P1M)) && (props.P1A === "Any" || (props.P1A === info.P1A))){
+                                if((props.P2P === "Any" || (props.P2P === info.P2P)) && (props.P2M === "Any" || props.P2M === info.P2M) && (props.P2A || (props.P2A === info.P2A))){
+                                    return(displaySearch(info))
+                                }
+                            }
+                            //If team 1 and team 2 are in the correct order for the opposite teams as submitted
+                            if((props.P1P === "Any" || (props.P1P === info.P2P)) && (props.P1M === "Any" || (props.P1M === info.P2M)) && (props.P1A === "Any" || (props.P1A === info.P2A))){
+                                if((props.P2P === "Any" || (props.P2P === info.P1P)) && (props.P2M === "Any" || props.P2M === info.P1M) && (props.P2A || (props.P2A === info.P1A))){
+                                    return(displaySearch(info))
                                 }
                             }
                         }
                     }
-                    //If team 2 has every character in the correct order for the team 1 search and team 1 is correct in any order
-                    if((props.P1P === "Any" || (props.P1P === info.P2P)) && (props.P1M === "Any" || (props.P1M === info.P2M)) && (props.P1A === "Any" || (props.P1A === info.P2A))){
-                        if((props.P2P === "Any" || (props.P2P === info.P1P || props.P2P === info.P1M || props.P2P === info.P1A))){
-                            if(props.P2M === "Any" || (props.P2M === info.P1P || props.P2M === info.P1M || props.P2M === info.P1A)){
-                                if(props.P2A === "Any" || (props.P2A === info.P1P || props.P2A === info.P1M || props.P2A === info.P1A)){
-                                    info = displaySearch(info)
-                                    console.log("I Found the team :)")
-                                }
-                            }
-                        }
-                    }
+
+                    //Most likely useless code but saving just in case
+                    // else{
+                    //     info = <tr>
+                    //         <td className="tbl-hdr">{info.Player1}</td>
+                    //         <td className="tbl-hdr" valign='center'>
+                    //             <div className ="centerpls">{info.P1P}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
+                    //         </td>
+                    //         <td className="tbl-hdr" valign='center'>
+                    //             <div className ="centerpls"><img className = "img" src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}</div>
+                    //         </td>
+                    //         <td className="tbl-hdr">{info.Player2}</td>
+                    //         <td className="tbl-event">
+                    //             <div>
+                    //                 {info.EventName}
+                    //             </div>
+                    //             <div>
+                    //                 <a href={info.Link} target="_blank"><img src="https://brandeps.com/logo-download/Y/YouTube-Play-logo-vector-01.svg" height = "30"></img></a>
+                    //             </div>
+                    //         </td>
+                    //     </tr>
+                    // }
                 }
-                //If only team 2 order matters
-                else if(!props.TO1 && props.TO2){
-                    //If team 2 is every character in the correct order for the second team search and the team 2 is correct in any order
-                    if((props.P2P === "Any" || (props.P2P === info.P2P)) && (props.P2M === "Any" || (props.P2M === info.P2M)) && (props.P2A === "Any" || (props.P2A === info.P2A))){
-                        if((props.P1P === "Any" || (props.P1P === info.P1P || props.P1P === info.P1M || props.P1P === info.P1A))){
-                            if(props.P1M === "Any" || (props.P1M === info.P1P || props.P1M === info.P1M || props.P1M === info.P1A)){
-                                if(props.P1A === "Any" || (props.P1A === info.P1P || props.P1A === info.P1M || props.P1A === info.P1A)){
-                                    info = displaySearch(info)
-                                    console.log("I Found the team :)")
-                                }
-                            }
-                        }
-                    }
-                    //If team 1 is every character in the correct order for the second team search and team 1 is correct in any order
-                    if((props.P2P === "Any" || (props.P2P === info.P1P)) && (props.P2M === "Any" || (props.P2M === info.P1M)) && (props.P2A === "Any" || (props.P2A === info.P1A))){
-                        if((props.P1P === "Any" || (props.P1P === info.P2P || props.P1P === info.P2M || props.P1P === info.P2A))){
-                            if(props.P1M === "Any" || (props.P1M === info.P2P || props.P1M === info.P2M || props.P1M === info.P2A)){
-                                if(props.P1A === "Any" || (props.P1A === info.P2P || props.P1A === info.P2M || props.P1A === info.P2A)){
-                                    info = displaySearch(info)
-                                    console.log("I Found the team :)")
-                                }
-                            }
-                        }
-                    }
+                })
+            //testingData()
+            setData(data.map(info => {
+                if(info != undefined){
+                    return(info)
                 }
-                //If both team orders matter
-                else if(props.TO1 && props.TO2){
-                    //If team 1 and team 2 are in the correct order from the search
-                    if((props.P1P === "Any" || (props.P1P === info.P1P)) && (props.P1M === "Any" || (props.P1M === info.P1M)) && (props.P1A === "Any" || (props.P1A === info.P1A))){
-                        if((props.P2P === "Any" || (props.P2P === info.P2P)) && (props.P2M === "Any" || props.P2M === info.P2M) && (props.P2A || (props.P2A === info.P2A))){
-                            info = displaySearch(info)
-                            console.log("I Found the team :)")
-                        }
-                    }
-                    //If team 1 and team 2 are in the correct order for the opposite teams as submitted
-                    if((props.P1P === "Any" || (props.P1P === info.P2P)) && (props.P1M === "Any" || (props.P1M === info.P2M)) && (props.P1A === "Any" || (props.P1A === info.P2A))){
-                        if((props.P2P === "Any" || (props.P2P === info.P1P)) && (props.P2M === "Any" || props.P2M === info.P1M) && (props.P2A || (props.P2A === info.P1A))){
-                            info = displaySearch(info)
-                            console.log("I Found the team :)")
-                        }
-                    }
-                }
-            }else{
-                info = <tr>
-                    <td className="tbl-hdr">{info.Player1}</td>
-                    <td className="tbl-hdr" valign='center'>
-                        <div className ="centerpls">{info.P1P}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
-                    </td>
-                    <td className="tbl-hdr" valign='center'>
-                        <div className ="centerpls"><img className = "img" src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}</div>
-                    </td>
-                    <td className="tbl-hdr">{info.Player2}</td>
-                    <td className="tbl-event">
-                        <div>
-                            {info.EventName}
-                        </div>
-                        <div>
-                            <a href={info.Link} target="_blank"><img src="https://brandeps.com/logo-download/Y/YouTube-Play-logo-vector-01.svg" height = "30"></img></a>
-                        </div>
-                    </td>
-                </tr>
-            }
-        })
-        //testingData()
-        setData(data)
-        console.log("dataTest = " + dataTest.map(info =>{
-            console.log(info)
-        }))
+            }))
+            setSearched(true)
+            // setData(data)
+            // console.log("dataTest = " + dataTest.map(info =>{
+            //     console.log("Item")
+            //     console.log(info)
+            //     console.log(JSON.stringify(info, ["key"]))
+            // }))
+        }
     }
 
     // setSearch(search + 1)} in onClick if I want to go back to server calls for updating on button click
@@ -736,9 +759,16 @@ function VODDisplay(props) {
                     </tr>
 
                     {/* Displays all data fetched */}
-                    {data} 
+
+                    {!searched && data.map(info =>{
+                        return(info)
+                    })}
+                    {searched && dataTest.map(info =>{
+                        return(info)
+                    })}
+                    {/* {data} 
                     <div>This is the data test value </div>
-                    {dataTest}
+                    {dataTest} */}
                 </table>
             </div>
         </div>
