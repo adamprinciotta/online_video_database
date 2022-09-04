@@ -722,6 +722,8 @@ function VODDisplay(props) {
                 }
                 })
             //testingData()
+
+            //Sets the data to be displayed for each team that was properly searched for
             setData(data.map(info => {
                 if(info != undefined){
                     return(info)
@@ -759,16 +761,13 @@ function VODDisplay(props) {
                     </tr>
 
                     {/* Displays all data fetched */}
-
                     {!searched && data.map(info =>{
                         return(info)
                     })}
+                    {/* Displays all data after a search */}
                     {searched && dataTest.map(info =>{
                         return(info)
                     })}
-                    {/* {data} 
-                    <div>This is the data test value </div>
-                    {dataTest} */}
                 </table>
             </div>
         </div>

@@ -5,6 +5,7 @@ import App from './App';
 import CharDropdown from './CharDropdown';
 import reportWebVitals from './reportWebVitals';
 import VODDisplay from './VODDisplay';
+import Submit from './Submit'
 //import testDropdown from './testDropdown';
 
 
@@ -12,7 +13,8 @@ import VODDisplay from './VODDisplay';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App/>
+    {/* <App/> */}
+    <Submit/>
   </React.StrictMode>
 );
 
