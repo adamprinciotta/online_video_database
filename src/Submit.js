@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import CharDropdown from './CharDropdown';
 import './Submit.css'
-
-
-import { DatePicker } from "react-rainbow-components";
+import emailjs from '@emailjs/browser';
+import { Application, DatePicker } from "react-rainbow-components";
+import axios from 'axios';
 
 // import DatePicker from 'react-date-picker';
 
@@ -74,8 +74,44 @@ function Submit() {
         setDate(date)
     }
 
+    const themes = {
+      dark: {
+          rainbow: {
+              palette: {
+                  mainBackground: '#212121',
+              },
+           },
+      },
+    };
+
+    function Email(){
+      console.log("CLICKED")
+
+      const emailData = {
+        method: 'GET',
+        url: 'http://localhost:8000/email',
+        //params: {Player1: "", P1P: "Any", P1M: "Any", P1A: "Any", P2P:"Any", P2M:"Any", P2A:"Any", Player2:"", TO1: false, TO2: false}
+        params: {emailMessage: "Testing Email Message"}
+        //params: {Player1, P1P, P1M, P1A, P2P, P2M, P2A, Player2, EventName, Link, VODDate}
+      }
+
+    axios.request("email").then((response) => {
+      console.log("Requested")
+      // console.log("JUST SET DATA ARRAY = " + dataArray)
+      // setData(response.data)
+      // console.log("JUST SET SET DATA = " + dataTest)
+      //testingData()
+      
+      }).catch((error)=>{
+          console.error(error)
+      })
+    }
+
+
+
+
     return(
-        <><body>
+        <>
         <header>
           <nav className="main-nav">
             <ul>
@@ -85,56 +121,76 @@ function Submit() {
           </nav>
           <div className="header1">One More Once</div>
         </header>
-      </body>
   
   
       <div className="mainBG">
-        <div className="date">
-            <DatePicker id="datePicker"  onChange={onChange} value ={date} label='Date of VOD' formatStyle='medium'/>
-        </div>
-        {/* <DatePicker onChange={onChange} value={date}/> */}
-        {/* <DayPickerInput onDayChange={onChange}/> */}
-        {/* <LocalizationProvider dateAdapter = {AdapterDateFns}><DatePicker/></LocalizationProvider> */}
-        <div className="teamsContainer">
-          <div className="p1Team">
-            <div className = "teamSelect">Select Team 1</div>
-            <br></br>
-            <form>
-              <div className ="playerName">
-                <label>Player 1 Name
-                <input type="text" value = {Player1} onChange = {Player1Change} className = "name"></input>
-                </label>
+          <div className="dateAndEvent">
+              <div className="date">
+                <div className="dateLabel">Date of VOD</div>
+                {/* <Application theme = {themes.dark}> */}
+                  <DatePicker id="datePicker" onChange={onChange} value ={date} formatStyle='medium'/>
+                {/* </Application> */}
               </div>
-            </form>
-            <br></br>
-            <div className='teamBtn'>{/* Team 1 dropdown menus have the state variables passed through as props */}
-              <CharDropdown selected={p1selectedchar1} setSelected={p1setSelected1} selectedPic = {p1selectedPic1} setSelectedPic={p1setSelectedPic1}/>
-              <CharDropdown selected={p1selectedchar2} setSelected={p1setSelected2} selectedPic = {p1selectedPic2} setSelectedPic={p1setSelectedPic2}/>
-              <CharDropdown selected={p1selectedchar3} setSelected={p1setSelected3} selectedPic = {p1selectedPic3} setSelectedPic={p1setSelectedPic3}/>
+              <div className="link">
+                <div className="linkLabel">Link to VOD</div>
+                <input className="linkInput" type="text" label="Event" placeholder="Youtube/Twitch Link"></input>
+              </div>
+              <div className="event">
+                <div className="eventLabel">Event</div>
+                <input className="eventInput" type="text" label="Event" placeholder="Casuals"></input>
+              </div>
+            </div>
+          {/* <div className="date">
+              <DatePicker id="datePicker"  onChange={onChange} value ={date} label='Date of VOD' formatStyle='medium'/>
+          </div> */}
+          {/* <DatePicker onChange={onChange} value={date}/> */}
+          {/* <DayPickerInput onDayChange={onChange}/> */}
+          {/* <LocalizationProvider dateAdapter = {AdapterDateFns}><DatePicker/></LocalizationProvider> */}
+          <div className="teamsContainer">
+            <div className="p1Team">
+              <div className = "teamSelect">Select Team 1</div>
+              <br></br>
+              <form>
+                <div className ="playerName">
+                  <label>Player 1 Name
+                  <input type="text" value = {Player1} onChange = {Player1Change} className = "name"></input>
+                  </label>
+                </div>
+              </form>
+              <br></br>
+              <div className='teamBtn'>{/* Team 1 dropdown menus have the state variables passed through as props */}
+                <CharDropdown selected={p1selectedchar1} setSelected={p1setSelected1} selectedPic = {p1selectedPic1} setSelectedPic={p1setSelectedPic1}/>
+                <CharDropdown selected={p1selectedchar2} setSelected={p1setSelected2} selectedPic = {p1selectedPic2} setSelectedPic={p1setSelectedPic2}/>
+                <CharDropdown selected={p1selectedchar3} setSelected={p1setSelected3} selectedPic = {p1selectedPic3} setSelectedPic={p1setSelectedPic3}/>
+              </div>
+            </div>
+    
+            <img src={Logo} height = "250px" width = "375px"></img>
+    
+            <div className="p2Team">
+              <div className = "teamSelect">Select Team 2</div>
+              <br></br>
+              <form>
+                <div className ="playerName">
+                  <label>Player 2 Name
+                  <input type="text" value = {Player2} onChange = {Player2Change} name = "name"></input>
+                  </label>
+                </div>
+              </form>
+              <br></br>
+              <div className='teamBtn'>{/* Team 2 dropdown menus have the state variables passed through as props */}
+              <CharDropdown selected={p2selectedchar1} setSelected={p2setSelected1} selectedPic = {p2selectedPic1} setSelectedPic={p2setSelectedPic1}/>
+              <CharDropdown selected={p2selectedchar2} setSelected={p2setSelected2} selectedPic = {p2selectedPic2} setSelectedPic={p2setSelectedPic2}/>
+              <CharDropdown selected={p2selectedchar3} setSelected={p2setSelected3} selectedPic = {p2selectedPic3} setSelectedPic={p2setSelectedPic3}/>
+              </div>
             </div>
           </div>
-  
-          <img src={Logo} height = "250px" width = "375px"></img>
-  
-          <div className="p2Team">
-            <div className = "teamSelect">Select Team 2</div>
-            <br></br>
-            <form>
-              <div className ="playerName">
-                <label>Player 2 Name
-                <input type="text" value = {Player2} onChange = {Player2Change} name = "name"></input>
-                </label>
-              </div>
-            </form>
-            <br></br>
-            <div className='teamBtn'>{/* Team 2 dropdown menus have the state variables passed through as props */}
-            <CharDropdown selected={p2selectedchar1} setSelected={p2setSelected1} selectedPic = {p2selectedPic1} setSelectedPic={p2setSelectedPic1}/>
-            <CharDropdown selected={p2selectedchar2} setSelected={p2setSelected2} selectedPic = {p2selectedPic2} setSelectedPic={p2setSelectedPic2}/>
-            <CharDropdown selected={p2selectedchar3} setSelected={p2setSelected3} selectedPic = {p2selectedPic3} setSelectedPic={p2setSelectedPic3}/>
-            </div>
-          </div>
+
         </div>
-      </div>
+        <div className = "submitCenter">
+              <button type="button" onClick={() => {Email()}} className = "submitButton" >Search</button>
+        </div>
+      
       </>
     )
 }

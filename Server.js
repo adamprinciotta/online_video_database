@@ -36,11 +36,6 @@ connection.connect((err) =>{
 
 })
 
-
-
-
-
-
 app.get('/data', (req, res) =>{
     console.log("get")
 
@@ -221,6 +216,88 @@ app.get('/data', (req, res) =>{
     // })
 
 }) 
+
+
+
+
+// async function sendEmail(message) {
+//     const data = JSON.stringify({
+//       "Messages": [{
+//         "From": {"Email": "onemoreoncevods@gmail.com", "Name": "One More Once"},
+//         "To": [{"Email": "onemoreoncevods@gmail.com", "Name": "One More Once"}],
+//         "Subject": "New VOD",
+//         "TextPart": message
+//       }]
+//     });
+  
+//     const config = {
+//       method: 'post',
+//       url: 'https://api.mailjet.com/v3.1/send',
+//       data: data,
+//       headers: {'Content-Type': 'application/json'},
+//       auth: {username: '<API Key>', password: '<Secret Key>'},
+//     };
+  
+//     return axios(config)
+//       .then(function (response) {
+//         console.log(JSON.stringify(response.data));
+//       })
+//       .catch(function (error) {
+//         console.log(error);
+//       });
+  
+//   }
+  
+//   // define your own email api which points to your server.
+//   app.post('/api/sendemail/', function (req, res) {
+//     const {name, email, subject, message} = req.body;
+//     //implement your spam protection or checks.
+//     sendEmail(name, email, subject, message);
+//   });
+
+
+
+
+
+
+  const nodemailer = require("nodemailer");
+
+  const transport = nodemailer.createTransport({
+    host: "smtp.mailtrap.io",
+    port: 2525,
+    auth: {
+      user: "a0a61819278b12",
+      pass: "299ce0981e4d46"
+    }
+  });
+
+  app.get('/email', (req, res) =>{
+    console.log("get")
+
+    var emailMessage = req.query.emailMessage;
+  
+//   function sendEmailFromServer(emailMessage){
+    const message = {
+        from: "onemoreoncevods@gmail.com",
+        to: "onemoreoncevods@gmail.com",
+        subject: "Hello!",
+        // text: emailMessage
+        text: "HELLO!!!!!!!!!"
+    }
+    
+    transport.sendMail(message, (err, info) => {
+    if (err) {
+       console.log(err)
+       res.json("error")
+    } else {
+       console.log(info);
+       res.json("success")
+    }
+    });
+})
+  
+
+
 
 
 app.listen(port, ()=> console.log(`Server running on port ${port}`))

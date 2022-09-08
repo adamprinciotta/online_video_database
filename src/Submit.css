@@ -1,4 +1,4 @@
-.rainbow-m-horizontal_xx-large {
+/* .rainbow-m-horizontal_xx-large {
     margin-right: 3rem;
     margin-left: 3rem;
 }
@@ -19,4 +19,107 @@ table {
 .date{
     width: 20%;
     justify-content: center;
+} */
+
+.rainbow-m-horizontal_xx-large {
+    margin-right: 3rem;
+    margin-left: 3rem;
+}
+.rainbow-p-horizontal_xx-large {
+    padding-right: 3rem;
+    padding-left: 3rem;
+}
+.rainbow-p-vertical_large {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+ 
+.date{
+    width: 300px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    color: white;
+}
+ 
+.dateLabel{
+    font-size: 20px;
+    color: white;
+}
+ 
+.dateAndEvent{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+ 
+.event{
+    width: 300px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    color: white;
+}
+ 
+.eventLabel{
+    font-size: 20px;
+}
+.eventInput{
+    color: black;
+    width: 300px;
+    height: 32px;
+    padding: 3px;
+    font-size: 20px;
+    border-radius: 20px;
+    text-align: center;
+}
+ 
+.link{
+    width: 300px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    color: white;
+}
+ 
+.linkLabel{
+    font-size: 20px;
+}
+.linkInput{
+    color: black;
+    width: 350px;
+    height: 32px;
+    padding: 3px;
+    font-size: 20px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+
+.mainBG{
+    height: 75vh;
+    width: 100%;
+    background-color: #585858;
+    margin: 0;
+}
+
+
+.submitCenter{
+    padding: 2.5vh;
+    display: grid;
+    place-items: center;
+    justify-content: center;
+    background-color: #585858;
+    margin: -30px -1px;
 }
