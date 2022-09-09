@@ -197,7 +197,7 @@ app.get('/data', (req, res) =>{
     //     ${P2M} = P2M AND
     //     ${P2A} = P2A`)
     // }
-    var sql = mysql.format(`SELECT * FROM sg_vod_database.vod_data`)
+    var sql = mysql.format(`SELECT * FROM sg_vod_database.vod_data order by VODDate DESC`)
     console.log("SQL = " + sql)
     
 
@@ -271,30 +271,70 @@ app.get('/data', (req, res) =>{
     }
   });
 
-  app.get('/email', (req, res) =>{
-    console.log("get")
+//   app.get('/email', (req, res) =>{
+//     console.log("get")
 
-    var emailMessage = req.query.emailMessage;
+//     var emailMessage = req.query.emailMessage;
   
 //   function sendEmailFromServer(emailMessage){
+//     const message = {
+//         from: "onemoreoncevods@gmail.com",
+//         to: "onemoreoncevods@gmail.com",
+//         subject: "Hello!",
+//         // text: emailMessage
+//         text: "HELLO!!!!!!!!!"
+//     }
+    
+//     transport.sendMail(message, (err, info) => {
+//     if (err) {
+//        console.log(err)
+//        res.json("error")
+//     } else {
+//        console.log(info);
+//        res.json("success")
+//     }
+//     });
+// })
+
+// app.post("/email", function(req, res){
+//     console.log("req" + req.body.message)
+//     const message = {
+//       from: "email@gmail.com",
+//       to: "email@gmail.com",
+//       subject: "Hello " + req.body.message,
+//       text: req.body.message
+//     }
+    
+//     transport.sendMail(message, (err, info) => {
+//     if (err) {
+//     console.log(err)
+//       res.send("Email not sent")
+//     } else {
+//       res.send("Email sent")
+//     }
+//     });
+//   })
+
+  app.post('/email', express.json(), function (req, res) {
+    console.log("req" + req.body[0].message)
     const message = {
-        from: "onemoreoncevods@gmail.com",
-        to: "onemoreoncevods@gmail.com",
-        subject: "Hello!",
-        // text: emailMessage
-        text: "HELLO!!!!!!!!!"
+      from: "onemoreoncevods@gmail.com",
+      to: "onemoreoncevods@gmail.com",
+      subject: "Hello " + req.body[0].message,
+      text: req.body[0].message
     }
     
     transport.sendMail(message, (err, info) => {
     if (err) {
-       console.log(err)
-       res.json("error")
+    console.log(err)
+      res.send("Email not sent")
     } else {
-       console.log(info);
-       res.json("success")
+      res.send("Email sent")
     }
     });
-})
+    console.log(req.body);
+    res.send('Hello POST');
+  });
   
 
 

@@ -70,8 +70,25 @@ function Submit() {
 
     const [date, setDate] = useState(new Date())
 
+    const [fullDate, setFullDate] = useState('')
+
     function onChange(date){
         setDate(date)
+        //sets the date in the format which will be useful for the database
+        setFullDate(date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate())
+    }
+
+    
+    const [EventName, SetEventName] = useState('')
+
+    const EventNameChange = event =>{
+      SetEventName(event.target.value)
+    }
+
+    const [Link, SetLink] = useState('')
+
+    const LinkChange = event =>{
+      SetLink(event.target.value)
     }
 
     const themes = {
@@ -84,27 +101,71 @@ function Submit() {
       },
     };
 
+    // function Email(){
+    //   console.log("CLICKED")
+
+    //   const emailData = {
+    //     method: 'GET',
+    //     url: 'http://localhost:8000/email',
+    //     //params: {Player1: "", P1P: "Any", P1M: "Any", P1A: "Any", P2P:"Any", P2M:"Any", P2A:"Any", Player2:"", TO1: false, TO2: false}
+    //     params: {emailMessage: "Testing Email Message"}
+    //     //params: {Player1, P1P, P1M, P1A, P2P, P2M, P2A, Player2, EventName, Link, VODDate}
+    //   }
+
+    // axios.request("email").then((response) => {
+    //   console.log("Requested")
+    //   // console.log("JUST SET DATA ARRAY = " + dataArray)
+    //   // setData(response.data)
+    //   // console.log("JUST SET SET DATA = " + dataTest)
+    //   //testingData()
+      
+    //   }).catch((error)=>{
+    //       console.error(error)
+    //   })
+    // }
+
     function Email(){
       console.log("CLICKED")
-
-      const emailData = {
-        method: 'GET',
-        url: 'http://localhost:8000/email',
-        //params: {Player1: "", P1P: "Any", P1M: "Any", P1A: "Any", P2P:"Any", P2M:"Any", P2A:"Any", Player2:"", TO1: false, TO2: false}
-        params: {emailMessage: "Testing Email Message"}
-        //params: {Player1, P1P, P1M, P1A, P2P, P2M, P2A, Player2, EventName, Link, VODDate}
-      }
-
-    axios.request("email").then((response) => {
-      console.log("Requested")
-      // console.log("JUST SET DATA ARRAY = " + dataArray)
-      // setData(response.data)
-      // console.log("JUST SET SET DATA = " + dataTest)
-      //testingData()
       
-      }).catch((error)=>{
-          console.error(error)
-      })
+      //Makes sure they enter player names
+      if(Player1 === ''|| Player2 === ''){
+        alert('Please enter player names')
+      }
+      //Makes sure they enter a link
+      else if(Link === ''){
+        alert('Please enter link to VOD')
+      }
+      //Makes sure they enter the event name
+      else if(EventName === ''){
+        alert('Please enter the event name. Causals is acceptable if it was not in a tournament')
+      }
+      //Makes sure they enter every character
+      else if(p1selectedchar1 === 'Any' || p1selectedchar2 === 'Any' || p1selectedchar3 === 'Any' || p2selectedchar1 === 'Any' || p2selectedchar2 === 'Any' || p2selectedchar3 === 'Any'){
+        alert('Any is not acceptable in character slots here')
+      }
+      //If they've filled every category then the email can send
+      else{
+        //Message for the email, tried to format it to the database format as much as possible for copy pasting after double checking,
+        //though the date will need to be adjusted if they are not double digit dates
+        var data = [
+          {
+            message: "INSERT INTO `sg_vod_database`.`vod_data` (`Player1`, `P1P`, `P1M`, `P1A`, `P2P`, `P2M`, `P2A`, `Player2`, `EventName`, `Link`, `VODDate`) VALUES ('" 
+            + Player1 + '", "' + p1selectedchar1 + '", "'+ p1selectedchar2 + '", "' + p1selectedchar3 + '", "'
+            + p2selectedchar1 + '", "' + p2selectedchar2 + '", "' + p2selectedchar3 + '", "' + Player2 + '", "' 
+            + EventName + '", "' + Link + '", ' + fullDate + "'" + ');'
+          }
+        ]
+  
+        fetch('http://localhost:8000/email',{
+          method: 'POST',
+          headers: { "Content-Type": "application/json"},
+          body: JSON.stringify(data)
+        }).then(()=>{
+          alert('Successful Submission')
+          console.log("Email sent")
+        })
+      }
+      
     }
 
 
@@ -133,11 +194,13 @@ function Submit() {
               </div>
               <div className="link">
                 <div className="linkLabel">Link to VOD</div>
-                <input className="linkInput" type="text" label="Event" placeholder="Youtube/Twitch Link"></input>
+                <input className="linkInput" type="text" label="Event" placeholder="Youtube/Twitch Link" value = {Link} onChange = {LinkChange}></input>
+                {/* <input className="linkInput" type="text" label="Event" placeholder="Youtube/Twitch Link"></input> */}
               </div>
               <div className="event">
                 <div className="eventLabel">Event</div>
-                <input className="eventInput" type="text" label="Event" placeholder="Casuals"></input>
+                <input type="text" value = {EventName} onChange = {EventNameChange} className="eventInput" label="Event" placeholder="Casuals"></input>
+                {/* <input className="eventInput" type="text" label="Event" placeholder="Casuals"></input> */}
               </div>
             </div>
           {/* <div className="date">
@@ -188,9 +251,8 @@ function Submit() {
 
         </div>
         <div className = "submitCenter">
-              <button type="button" onClick={() => {Email()}} className = "submitButton" >Search</button>
+              <button type="button" onClick={() => {Email()}} className = "submitButton" >Submit</button>
         </div>
-      
       </>
     )
 }
