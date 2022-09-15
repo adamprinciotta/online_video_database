@@ -6,15 +6,41 @@ import CharDropdown from './CharDropdown';
 import reportWebVitals from './reportWebVitals';
 import VODDisplay from './VODDisplay';
 import Submit from './Submit'
+import AboutContact from './AboutContact'
+import Routing from './Routing'
 //import testDropdown from './testDropdown';
 
+
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+} from "react-router-dom";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+
+      <BrowserRouter>
+        <Routing/>
+      </BrowserRouter>
+
+
+          {/* <BrowserRouter>
+            <main>
+                <Routes>
+                    <Route path="/" element={<App/>} />
+                    <Route path="/submit" element={<Submit />} />
+                    <Route path="/about" element={<AboutContact />} />
+                </Routes>
+            </main>
+        </BrowserRouter> */}
+      {/* <App/> */}
+    {/* <AboutContact/> */}
     {/* <App/> */}
-    <Submit/>
+    {/* <Submit/> */}
   </React.StrictMode>
 );
 

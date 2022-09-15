@@ -173,7 +173,7 @@ function Submit() {
 
     return(
         <>
-        <header>
+        {/* <header>
           <nav className="main-nav">
             <ul>
               <li><a href="submission.html">Submit VODs</a></li>
@@ -181,10 +181,10 @@ function Submit() {
             </ul>
           </nav>
           <div className="header1">One More Once</div>
-        </header>
+        </header> */}
   
   
-      <div className="mainBG">
+      <div className="mainBG-Submit">
           <div className="dateAndEvent">
               <div className="date">
                 <div className="dateLabel">Date of VOD</div>
@@ -210,6 +210,7 @@ function Submit() {
           {/* <DayPickerInput onDayChange={onChange}/> */}
           {/* <LocalizationProvider dateAdapter = {AdapterDateFns}><DatePicker/></LocalizationProvider> */}
           <div className="teamsContainer">
+          <div className='breaker'></div>
             <div className="p1Team">
               <div className = "teamSelect">Select Team 1</div>
               <br></br>
@@ -228,8 +229,8 @@ function Submit() {
               </div>
             </div>
     
-            <img src={Logo} height = "250px" width = "375px"></img>
-    
+            <img className='SGImg' src={Logo} height = "250px" width = "375px"></img>
+            <div className='breaker'><br></br></div>
             <div className="p2Team">
               <div className = "teamSelect">Select Team 2</div>
               <br></br>
@@ -248,11 +249,13 @@ function Submit() {
               </div>
             </div>
           </div>
-
-        </div>
-        <div className = "submitCenter">
+          
+          <div className = "submitCenter">
+          <br></br>
               <button type="button" onClick={() => {Email()}} className = "submitButton" >Submit</button>
         </div>
+        </div>
+        
       </>
     )
 }

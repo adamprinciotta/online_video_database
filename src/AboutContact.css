@@ -1,0 +1,92 @@
+.main-nav{
+    text-align: center;
+    height: 5vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border-bottom: 1px solid black;
+    padding-top: 8px;
+    padding-bottom: 1px;
+    color: white;
+    background-color: black;
+    
+  }
+  
+  .main-nav a{
+    color: white;
+    text-decoration: none;
+  }
+  
+  .main-nav a:hover{
+    background-color: darkgray;
+    color: black;
+  }
+  
+  .main-nav ul{
+    height: 5vh;
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 1.5em;
+  }
+
+  .main-nav{
+    align-items: center;
+  }
+  .mainBG-About{
+    height: 86vh;
+    justify-content: space-evenly;
+    background-color: #585858;
+    padding-top: 5vh;
+  }
+
+  .About{
+    background-color: black;
+    color: lightgray;
+    height: 70vh;
+    /* font-size: 20px;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-top: 5vh;
+    height: 50%;
+    width: 50%; */
+    width: 50vw;
+    box-shadow: 0px 0px 10px 10px darkgray;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    font-size: 18px;
+    padding-bottom: 3vh;
+  }
+
+  .About a{
+    color: red;
+  }
+  .About a:hover{
+    background-color: dimgray;
+    cursor: pointer;
+    color: white;
+  }
+
+  .h1-spacing{
+    margin-bottom: -0.5px;
+  }
+
+
+  @media (max-width: 1000px){
+    .About{
+     
+     padding-bottom: 2.5vh;
+     padding-left: 2.5vh;
+     padding-right: 2.5vh;
+     height: 100vh;
+     width: 80%;
+    }
+
+    .mainBG-About{
+      height: 110vh;
+    }
+
+  }

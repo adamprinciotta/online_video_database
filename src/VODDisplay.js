@@ -749,7 +749,7 @@ function VODDisplay(props) {
             <br></br>
         </div>
         
-        <div className='mainBG'>
+        <div className='mainBG-VODs'>
             <div className="backgroundColor">
                 <table className = 'table'>
                     <tr> 

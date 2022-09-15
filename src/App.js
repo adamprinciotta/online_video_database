@@ -48,6 +48,17 @@ import BlackDahlia from './SG pics/Black Dahlia.jpg';
 //   );
 // }
 
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+} from "react-router-dom";
+
+import Submit from './Submit';
+import AboutContact from './AboutContact';
+import Navbar from './Navbar';
+
 function App() {
 
   //These States will store the values of the character and picture to update
@@ -94,19 +105,37 @@ function App() {
   }
 
   return (
-    <><body>
+    <>
+
+
+
+
+
+  
+{/* <
+<body>
       <header>
+      <nav>
+        
+      </nav>
         <nav className="main-nav">
           <ul>
-            <li><a href="submission.html">Submit VODs</a></li>
-            <li><a href="about.html">About/Contact</a></li>
+            <Link to="submit">Submit VODs</Link>
+            <Link to="about">About/Contact</Link>
+             {/* <li><a>Submit VODs</a></li>
+            <li><a>About/Contact</a></li> *
           </ul>
-        </nav>
-        <div className="header1">One More Once</div>
-      </header>
-    </body>
 
-    <div className="mainBG">
+<Routes>
+  <Route exact path="submit" element={<Submit />} />
+  <Route exact path="about" element={<AboutContact />} />
+</Routes>
+</nav>
+<div className="header1">One More Once</div>
+</header>
+</body>> */}
+
+    <div className="mainBG-Teams">
       <div className="teamsContainer">
         <div className="p1Team">
           <div className = "teamSelect">Select Team 1</div>
