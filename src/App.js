@@ -161,7 +161,7 @@ function App() {
       TO2 = {TO2}
       Player1 = {Player1}
       Player2 = {Player2}></VODDisplay>
-</div>
+  </div>
     </>
   );
 }
