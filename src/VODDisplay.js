@@ -23,8 +23,6 @@ import Umbrella from './SG pics/Umbrella.jpg';
 import Valentine from './SG pics/Valentine.jpg';
 import BlackDahlia from './SG pics/Black Dahlia.jpg';
 import axios from 'axios';
-import { data } from 'jquery';
-import { Search } from '@syncfusion/ej2-react-dropdowns';
 
 function VODDisplay(props) {
 
@@ -33,6 +31,9 @@ function VODDisplay(props) {
     const [searched, setSearched] = useState(false)
 
     const [dataTest, setData] = useState([])
+
+    const [currentPage, setCurrentPage] = useState(1)
+    const [postsPerPage, setPostsPerPage] = useState(2)
     
     //Gets everything from database on load then store it in the dataArray state
     useEffect(() => {
@@ -47,6 +48,7 @@ function VODDisplay(props) {
 
         axios.request(databaseData).then((response) => {
             setDataArray(response.data)
+            setPages()
             // console.log("JUST SET DATA ARRAY = " + dataArray)
             // setData(response.data)
             // console.log("JUST SET SET DATA = " + dataTest)
@@ -76,7 +78,7 @@ function VODDisplay(props) {
     //         console.log(info)
     //     }))
     // }, [data])
-    
+
 
     //Maps the array and then displays the data from the database
     var data = dataArray.map(info => {
@@ -243,6 +245,16 @@ function VODDisplay(props) {
         }
         
     })
+
+    function setPages(){
+        const indexOfLastPost = currentPage * postsPerPage
+        const indexOfFirstPost = indexOfLastPost - postsPerPage
+        const currentPosts = dataTest.slice(indexOfFirstPost, indexOfLastPost)
+    
+        console.log("indexOfLastPost: " + indexOfLastPost + "\n" 
+                    +"indexOfFirstPost: " + indexOfFirstPost + "\n"
+                    +"currentPosts: " + currentPosts)
+    }
 
     //Checks if the character is None, returns false so it doesn't display that space
     function checkIfNone(character){
@@ -737,9 +749,13 @@ function VODDisplay(props) {
                     return(info)
                 }
             }))
-            if(dataTest.size===0){
-                alert("No VODs of this team combination exist in the database")
-            }
+            const indexOfLastPost = currentPage * postsPerPage
+            const indexOfFirstPost = indexOfLastPost - postsPerPage
+            const currentPosts = dataTest.slice(indexOfFirstPost, indexOfLastPost)
+        
+            console.log("indexOfLastPost: " + indexOfLastPost + "\n" 
+                        +"indexOfFirstPost: " + indexOfFirstPost + "\n"
+                        +"currentPosts: " + currentPosts)
             setSearched(true)
             // setData(data)
             // console.log("dataTest = " + dataTest.map(info =>{
@@ -749,6 +765,7 @@ function VODDisplay(props) {
             // }))
         }
     }
+
 
     // setSearch(search + 1)} in onClick if I want to go back to server calls for updating on button click
     return(
