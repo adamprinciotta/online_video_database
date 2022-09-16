@@ -76,6 +76,7 @@ function VODDisplay(props) {
     //         console.log(info)
     //     }))
     // }, [data])
+    
 
     //Maps the array and then displays the data from the database
     var data = dataArray.map(info => {
@@ -544,9 +545,16 @@ function VODDisplay(props) {
     }
 
     function Search(){
+        //If they try to search with just the second team
         if((props.P1P === "Any" && props.P1M === "Any" && props.P1A === "Any") && !(props.P2P === "Any" && props.P2M === "Any" && props.P2A === "Any")){
             alert("Please select at least 1 character for team 1")
         }
+        //Makes sure there are no duplicate characters in the search
+        else if(((props.P1P != "Any" && (props.P1P === props.P1M || props.P1P === props.P1A)) || (props.P1M != "Any" && props.P1M === props.P1A)) ||
+                ((props.P2P != "Any" && (props.P2P === props.P2M || props.P2P === props.P2A)) || (props.P2M != "Any" && props.P2M === props.P2A))){
+            alert("Please do not search with duplicate characters")
+        }
+        //Valid team search
         else{
             data = dataArray.map(info => {
                 //console.log("Checking team...")
@@ -729,6 +737,9 @@ function VODDisplay(props) {
                     return(info)
                 }
             }))
+            if(dataTest.size===0){
+                alert("No VODs of this team combination exist in the database")
+            }
             setSearched(true)
             // setData(data)
             // console.log("dataTest = " + dataTest.map(info =>{

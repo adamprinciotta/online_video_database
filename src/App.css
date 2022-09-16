@@ -174,3 +174,41 @@
   margin-top: -10px;
   margin-left: 100px;
 }
+
+
+@media(max-width: 900px){
+
+  .fullContainer{
+    width: 100vw;
+    height: 100%;
+  }
+
+  .mainBG-Teams{
+      flex-direction: column;
+      height: 100%;
+      width: 100vw;
+      padding-top: 0;
+  }
+  .teamsContainer{
+      margin-top: -75px;
+      flex-direction: column;
+  }
+
+  .SGImg{
+      display: none;
+  }
+
+  .breaker{
+      display: show;
+  }
+}
+
+@media(min-width: 901px){
+  .SGImg{
+      display: show;
+  }
+
+  .breaker{
+      display: none;
+  }
+}
