@@ -14,7 +14,8 @@ const mysql = require('mysql');
 var connection = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "password",
+    password: "MysqlLogin1!", //for laptop
+    //password: "password", //for home computer
     database: "sg_vod_database",
     port: "3306"
     });

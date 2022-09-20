@@ -1,4 +1,6 @@
-function VODMap({ VODs }){
+function VODMap({ IOFP, IOLP, VODs }){
+
+    
     return(
     VODs.map(vod => {
         return(vod)

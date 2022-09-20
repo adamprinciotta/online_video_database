@@ -3,6 +3,7 @@
 
 function Pagination({ postsPerPage, totalPosts}){
     const pageNumbers=[];
+    console.log("Pages" + Math.ceil(totalPosts/postsPerPage))
     for(let x=0; x <=Math.ceil(totalPosts/postsPerPage); x++){
         pageNumbers.push(x)
     }
@@ -11,8 +12,8 @@ function Pagination({ postsPerPage, totalPosts}){
         <nav>
             <ul className='pagination'>
                 {pageNumbers.map(num => (
-                    <li key={num} className="page-item">
-                        <a href='!#' className="page-link">
+                    <li key={num} >
+                        <a href='!#' >
                             {num}
                         </a>
                     </li>
@@ -21,5 +22,7 @@ function Pagination({ postsPerPage, totalPosts}){
         </nav>
     )
 }
+//className="page-item"
+//className="page-link"
 
 export default Pagination

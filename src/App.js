@@ -121,10 +121,12 @@ function App() {
           </form>
           <br></br>
           <div className='teamBtn'>{/* Team 1 dropdown menus have the state variables passed through as props */}
+          <a id="dropdownButton" href="#dropdownButton"> 
             <CharDropdown selected={p1selectedchar1} setSelected={p1setSelected1} selectedPic = {p1selectedPic1} setSelectedPic={p1setSelectedPic1}/>
             <CharDropdown selected={p1selectedchar2} setSelected={p1setSelected2} selectedPic = {p1selectedPic2} setSelectedPic={p1setSelectedPic2}/>
             <CharDropdown selected={p1selectedchar3} setSelected={p1setSelected3} selectedPic = {p1selectedPic3} setSelectedPic={p1setSelectedPic3}/>
             <div className="order">Order matters<input type="checkbox" onClick={TO1Clicked} checked={TO1} id="orderMatters1" name="order1"/><br/></div>
+            </a>
           </div>
         </div>
 
@@ -142,10 +144,12 @@ function App() {
           </form>
           <br></br>
           <div className='teamBtn'>{/* Team 2 dropdown menus have the state variables passed through as props */}
-          <CharDropdown selected={p2selectedchar1} setSelected={p2setSelected1} selectedPic = {p2selectedPic1} setSelectedPic={p2setSelectedPic1}/>
-          <CharDropdown selected={p2selectedchar2} setSelected={p2setSelected2} selectedPic = {p2selectedPic2} setSelectedPic={p2setSelectedPic2}/>
-          <CharDropdown selected={p2selectedchar3} setSelected={p2setSelected3} selectedPic = {p2selectedPic3} setSelectedPic={p2setSelectedPic3}/>
-          <div className="order">Order matters<input type="checkbox" onClick={TO2Clicked} checked={TO2} id="orderMatters1" name="order2"/><br/></div>
+            <a id="dropdownButton2" href="#dropdownButton2"> 
+            <CharDropdown selected={p2selectedchar1} setSelected={p2setSelected1} selectedPic = {p2selectedPic1} setSelectedPic={p2setSelectedPic1}/>
+            <CharDropdown selected={p2selectedchar2} setSelected={p2setSelected2} selectedPic = {p2selectedPic2} setSelectedPic={p2setSelectedPic2}/>
+            <CharDropdown selected={p2selectedchar3} setSelected={p2setSelected3} selectedPic = {p2selectedPic3} setSelectedPic={p2setSelectedPic3}/>
+            <div className="order">Order matters<input type="checkbox" onClick={TO2Clicked} checked={TO2} id="orderMatters1" name="order2"/><br/></div>
+            </a>
           </div>
         </div>
       </div>

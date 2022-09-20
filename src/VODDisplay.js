@@ -23,6 +23,8 @@ import Umbrella from './SG pics/Umbrella.jpg';
 import Valentine from './SG pics/Valentine.jpg';
 import BlackDahlia from './SG pics/Black Dahlia.jpg';
 import axios from 'axios';
+import VODMap from './VODMap';
+import { Pagination } from 'react-rainbow-components';
 
 function VODDisplay(props) {
 
@@ -32,9 +34,13 @@ function VODDisplay(props) {
 
     const [dataTest, setData] = useState([])
 
+    const [pagedData, setPagedData] = useState([])
+
     const [currentPage, setCurrentPage] = useState(1)
     const [postsPerPage, setPostsPerPage] = useState(2)
     
+    var indexOfFirstPost = 0;
+    var indexOfLastPost = 3;
     //Gets everything from database on load then store it in the dataArray state
     useEffect(() => {
         // console.log("requested")
@@ -48,7 +54,6 @@ function VODDisplay(props) {
 
         axios.request(databaseData).then((response) => {
             setDataArray(response.data)
-            setPages()
             // console.log("JUST SET DATA ARRAY = " + dataArray)
             // setData(response.data)
             // console.log("JUST SET SET DATA = " + dataTest)
@@ -246,15 +251,15 @@ function VODDisplay(props) {
         
     })
 
-    function setPages(){
-        const indexOfLastPost = currentPage * postsPerPage
-        const indexOfFirstPost = indexOfLastPost - postsPerPage
-        const currentPosts = dataTest.slice(indexOfFirstPost, indexOfLastPost)
+    // function setPages(){
+    //     const indexOfLastPost = currentPage * postsPerPage
+    //     const indexOfFirstPost = indexOfLastPost - postsPerPage
+    //     const currentPosts = dataTest.slice(indexOfFirstPost, indexOfLastPost)
     
-        console.log("indexOfLastPost: " + indexOfLastPost + "\n" 
-                    +"indexOfFirstPost: " + indexOfFirstPost + "\n"
-                    +"currentPosts: " + currentPosts)
-    }
+    //     console.log("indexOfLastPost: " + indexOfLastPost + "\n" 
+    //                 +"indexOfFirstPost: " + indexOfFirstPost + "\n"
+    //                 +"currentPosts: " + currentPosts)
+    // }
 
     //Checks if the character is None, returns false so it doesn't display that space
     function checkIfNone(character){
@@ -746,16 +751,37 @@ function VODDisplay(props) {
             //Sets the data to be displayed for each team that was properly searched for
             setData(data.map(info => {
                 if(info != undefined){
+                    console.log("hello" + info)
                     return(info)
                 }
             }))
-            const indexOfLastPost = currentPage * postsPerPage
-            const indexOfFirstPost = indexOfLastPost - postsPerPage
+
+            console.log("This is datatest: " + dataTest)
+
+            indexOfLastPost = currentPage * postsPerPage
+            indexOfFirstPost = indexOfLastPost - postsPerPage
             const currentPosts = dataTest.slice(indexOfFirstPost, indexOfLastPost)
+
+            for(var x = 0; x < dataTest.length; x++){
+                var sliced = dataTest.slice(indexOfFirstPost, indexOfLastPost)
+                console.log("Sliced: " + sliced)
+            }
         
             console.log("indexOfLastPost: " + indexOfLastPost + "\n" 
                         +"indexOfFirstPost: " + indexOfFirstPost + "\n"
-                        +"currentPosts: " + currentPosts)
+                        +"currentPosts: " + currentPosts + '\n'
+                        + 'datatest: ' + dataTest.map(info =>{
+                            return(info)
+                        }))
+            
+
+            setPagedData(currentPosts.map(info => {
+                if(info != undefined){
+                    console.log("currentPosts  "+ info)
+                    return(info)
+                }
+            }))
+            console.log(pagedData.length)
             setSearched(true)
             // setData(data)
             // console.log("dataTest = " + dataTest.map(info =>{
@@ -767,11 +793,12 @@ function VODDisplay(props) {
     }
 
 
-    // setSearch(search + 1)} in onClick if I want to go back to server calls for updating on button click
     return(
         <>
         <div className = "submitCenter">
-            <button type="button" onClick={() => {Search()}} className = "submitButton" >Search</button>
+            <a href='#search'>
+                <button type="button" onClick={() => {Search()}} className = "submitButton" >Search</button>
+            </a>
             <br></br>
             <br></br>
             <br></br>
@@ -779,7 +806,7 @@ function VODDisplay(props) {
         
         <div className='mainBG-VODs'>
             <div className="backgroundColor">
-                <table className = 'table'>
+                <table className = 'table' id='search'>
                     <tr> 
                         <td className="tbl-hdr">Player 1</td>
                         <td className="tbl-hdr">Player 1 Team</td>
@@ -796,6 +823,8 @@ function VODDisplay(props) {
                     {searched && dataTest.map(info =>{
                         return(info)
                     })}
+                    {/* {searched && <VODMap IOFP = {indexOfFirstPost} IOLP = {indexOfLastPost} VODs = {dataTest}></VODMap>} */}
+                    {/* <Pagination postsPerPage={2} totalPosts={10}/> */}
                 </table>
             </div>
         </div>
