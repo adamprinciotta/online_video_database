@@ -24,7 +24,7 @@ import Valentine from './SG pics/Valentine.jpg';
 import BlackDahlia from './SG pics/Black Dahlia.jpg';
 import axios from 'axios';
 import VODMap from './VODMap';
-import { Pagination } from 'react-rainbow-components';
+import Pagination from './Pagination';
 
 function VODDisplay(props) {
 
@@ -37,7 +37,23 @@ function VODDisplay(props) {
     const [pagedData, setPagedData] = useState([])
 
     const [currentPage, setCurrentPage] = useState(1)
-    const [postsPerPage, setPostsPerPage] = useState(2)
+    const [postsPerPage] = useState(3)
+
+    function paginate(pageNumber){
+        setCurrentPage(pageNumber)
+        indexOfLastPost = pageNumber * postsPerPage
+        indexOfFirstPost = indexOfLastPost - postsPerPage
+        console.log("PAGINATE PAGE NUMBER " + currentPage)
+        console.log("indexOfLastPost " + indexOfLastPost)
+        console.log("indexOfFirstPost " + indexOfFirstPost)
+        var currentPosts = dataTest.slice(indexOfFirstPost, indexOfLastPost)
+        setPagedData(currentPosts.map(info => {
+            if(info != undefined){
+                console.log("currentPosts  "+ info)
+                return(info)
+            }
+        }))
+    } 
     
     var indexOfFirstPost = 0;
     var indexOfLastPost = 3;
@@ -760,7 +776,22 @@ function VODDisplay(props) {
 
             indexOfLastPost = currentPage * postsPerPage
             indexOfFirstPost = indexOfLastPost - postsPerPage
-            const currentPosts = dataTest.slice(indexOfFirstPost, indexOfLastPost)
+
+            dataTest.filter(n => n)
+
+            var results = dataTest.filter(element => {
+                return element !== undefined;
+            });
+
+            results.map(info =>{
+                console.log("RESULTS " + info)
+            })
+
+            dataTest.map(info =>{
+                console.log("This is the filtered dataTest")
+                console.log(info)
+            })
+            const currentPosts = results.slice(indexOfFirstPost, indexOfLastPost)
 
             for(var x = 0; x < dataTest.length; x++){
                 var sliced = dataTest.slice(indexOfFirstPost, indexOfLastPost)
@@ -820,11 +851,11 @@ function VODDisplay(props) {
                         return(info)
                     })}
                     {/* Displays all data after a search */}
-                    {searched && dataTest.map(info =>{
+                    {searched && pagedData.map(info =>{
                         return(info)
                     })}
                     {/* {searched && <VODMap IOFP = {indexOfFirstPost} IOLP = {indexOfLastPost} VODs = {dataTest}></VODMap>} */}
-                    {/* <Pagination postsPerPage={2} totalPosts={10}/> */}
+                    <Pagination postsPerPage={3} totalPosts={pagedData.length-1} paginate={paginate}/>
                 </table>
             </div>
         </div>

@@ -55,8 +55,7 @@ function Submit() {
   
     const [p2selectedchar3, p2setSelected3] = useState("Any")
     const [p2selectedPic3, p2setSelectedPic3] = useState(Asterisk)
-  
-  
+
     const [Player1, Player1setName] = useState('')
     const [Player2, Player2setName] = useState('')
 
@@ -155,6 +154,7 @@ function Submit() {
             + EventName + '", "' + Link + '", ' + fullDate + "'" + ');'
           }
         ]
+
   
         fetch('http://localhost:8000/email',{
           method: 'POST',
@@ -164,7 +164,26 @@ function Submit() {
           alert('Successful Submission')
           console.log("Email sent")
         })
+
+        p1setSelected1("Any")
+        p1setSelectedPic1(Asterisk)
+        p1setSelected2("Any")
+        p1setSelectedPic2(Asterisk)
+        p1setSelected3("Any")
+        p1setSelectedPic3(Asterisk)
+        p2setSelected1("Any")
+        p2setSelectedPic1(Asterisk)
+        p2setSelected2("Any")
+        p2setSelectedPic2(Asterisk)
+        p2setSelected3("Any")
+        p2setSelectedPic3(Asterisk)
+        Player1setName("")
+        Player2setName("")
+        SetEventName("")
+        SetLink("")
       }
+
+     
       
     }
 

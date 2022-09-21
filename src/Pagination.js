@@ -1,11 +1,11 @@
+import './Pagination.css'
 
 
-
-function Pagination({ postsPerPage, totalPosts}){
+function Pagination({ postsPerPage, totalPosts, paginate}){
     const pageNumbers=[];
-    console.log("Pages" + Math.ceil(totalPosts/postsPerPage))
+    console.log("The number of pages is: " + Math.ceil(totalPosts/postsPerPage))
     for(let x=0; x <=Math.ceil(totalPosts/postsPerPage); x++){
-        pageNumbers.push(x)
+        pageNumbers.push(x+1)
     }
 
     return(
@@ -13,7 +13,7 @@ function Pagination({ postsPerPage, totalPosts}){
             <ul className='pagination'>
                 {pageNumbers.map(num => (
                     <li key={num} >
-                        <a href='!#' >
+                        <a onClick={() => paginate(num)} href='#search' >
                             {num}
                         </a>
                     </li>
