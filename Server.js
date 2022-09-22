@@ -273,7 +273,7 @@ app.get('/data', (req, res) =>{
   });
 
 
-  app.post('https://comfy-unicorn-7df5d9.netlify.app/email', express.json(), function (req, res) {
+  app.post('/email', express.json(), function (req, res) {
     console.log("req" + req.body[0].message)
     const message = {
       from: "onemoreoncevods@gmail.com",

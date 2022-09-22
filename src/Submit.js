@@ -157,7 +157,7 @@ function Submit() {
 
   
         //fetch('http://localhost:8000/email',{
-        fetch('https://comfy-unicorn-7df5d9.netlify.app/email',{
+        fetch('/email',{
           method: 'POST',
           headers: { "Content-Type": "application/json"},
           body: JSON.stringify(data)
