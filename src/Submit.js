@@ -166,6 +166,7 @@ function Submit() {
           console.log("Email sent")
         })
 
+        //resets the submission data when they successfully submit
         p1setSelected1("Any")
         p1setSelectedPic1(Asterisk)
         p1setSelected2("Any")
