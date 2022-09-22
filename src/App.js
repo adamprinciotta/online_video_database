@@ -48,6 +48,17 @@ import BlackDahlia from './SG pics/Black Dahlia.jpg';
 //   );
 // }
 
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+} from "react-router-dom";
+
+import Submit from './Submit';
+import AboutContact from './AboutContact';
+import Navbar from './Navbar';
+
 function App() {
 
   //These States will store the values of the character and picture to update
@@ -94,19 +105,9 @@ function App() {
   }
 
   return (
-    <><body>
-      <header>
-        <nav className="main-nav">
-          <ul>
-            <li><a href="submission.html">Submit VODs</a></li>
-            <li><a href="about.html">About/Contact</a></li>
-          </ul>
-        </nav>
-        <div className="header1">One More Once</div>
-      </header>
-    </body>
-
-    <div className="mainBG">
+    <>
+<div className='fullContainer'>
+    <div className="mainBG-Teams">
       <div className="teamsContainer">
         <div className="p1Team">
           <div className = "teamSelect">Select Team 1</div>
@@ -120,15 +121,17 @@ function App() {
           </form>
           <br></br>
           <div className='teamBtn'>{/* Team 1 dropdown menus have the state variables passed through as props */}
+          <a id="dropdownButton" href="#dropdownButton"> 
             <CharDropdown selected={p1selectedchar1} setSelected={p1setSelected1} selectedPic = {p1selectedPic1} setSelectedPic={p1setSelectedPic1}/>
             <CharDropdown selected={p1selectedchar2} setSelected={p1setSelected2} selectedPic = {p1selectedPic2} setSelectedPic={p1setSelectedPic2}/>
             <CharDropdown selected={p1selectedchar3} setSelected={p1setSelected3} selectedPic = {p1selectedPic3} setSelectedPic={p1setSelectedPic3}/>
             <div className="order">Order matters<input type="checkbox" onClick={TO1Clicked} checked={TO1} id="orderMatters1" name="order1"/><br/></div>
+            </a>
           </div>
         </div>
 
-        <img src={Logo} height = "250px" width = "375px"></img>
-
+        <img className='SGImg' src={Logo} height = "250px" width = "375px"></img>
+        <div className='breaker'><br></br></div>
         <div className="p2Team">
           <div className = "teamSelect">Select Team 2</div>
           <br></br>
@@ -141,10 +144,12 @@ function App() {
           </form>
           <br></br>
           <div className='teamBtn'>{/* Team 2 dropdown menus have the state variables passed through as props */}
-          <CharDropdown selected={p2selectedchar1} setSelected={p2setSelected1} selectedPic = {p2selectedPic1} setSelectedPic={p2setSelectedPic1}/>
-          <CharDropdown selected={p2selectedchar2} setSelected={p2setSelected2} selectedPic = {p2selectedPic2} setSelectedPic={p2setSelectedPic2}/>
-          <CharDropdown selected={p2selectedchar3} setSelected={p2setSelected3} selectedPic = {p2selectedPic3} setSelectedPic={p2setSelectedPic3}/>
-          <div className="order">Order matters<input type="checkbox" onClick={TO2Clicked} checked={TO2} id="orderMatters1" name="order2"/><br/></div>
+            <a id="dropdownButton2" href="#dropdownButton2"> 
+            <CharDropdown selected={p2selectedchar1} setSelected={p2setSelected1} selectedPic = {p2selectedPic1} setSelectedPic={p2setSelectedPic1}/>
+            <CharDropdown selected={p2selectedchar2} setSelected={p2setSelected2} selectedPic = {p2selectedPic2} setSelectedPic={p2setSelectedPic2}/>
+            <CharDropdown selected={p2selectedchar3} setSelected={p2setSelected3} selectedPic = {p2selectedPic3} setSelectedPic={p2setSelectedPic3}/>
+            <div className="order">Order matters<input type="checkbox" onClick={TO2Clicked} checked={TO2} id="orderMatters1" name="order2"/><br/></div>
+            </a>
           </div>
         </div>
       </div>
@@ -160,16 +165,7 @@ function App() {
       TO2 = {TO2}
       Player1 = {Player1}
       Player2 = {Player2}></VODDisplay>
-    {/* Placeholder for testing what the displayed VODs would look like */}
-    
-    {/* <VODDisplay selected={"Parasoul"} setSelected={p1setSelected1} selectedPic = {Parasoul} setSelectedPic={p2setSelectedPic1}
-                selected2={"Double"} setSelected2={p2setSelected2} selectedPic2 = {Double} setSelectedPic2={p2setSelectedPic2}
-                selected3={"Black Dahlia"} setSelected3={p2setSelected3} selectedPic3 = {BlackDahlia} setSelectedPic3={p2setSelectedPic3}
-                selected4={"Fukua"} setSelected4={p2setSelected1} selectedPic4 = {Fukua} setSelectedPic4={p2setSelectedPic1}
-                selected5={"Annie"} setSelected5={p2setSelected1} selectedPic5 = {Annie} setSelectedPic5={p2setSelectedPic1}
-                selected6={"Robo Fortune"} setSelected6={p2setSelected1} selectedPic6 = {RoboFortune} setSelectedPic6={p2setSelectedPic1}
-                /> */}
-    
+  </div>
     </>
   );
 }

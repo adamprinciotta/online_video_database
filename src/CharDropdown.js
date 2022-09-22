@@ -147,7 +147,8 @@ function CharDropdown(props) {
         <>
         <div className="div-dropdown">
             {/* When the dropdown is clicked it swaps it's state from closed to open or vice versa */}
-            <a id="dropdownButton" href="#dropdownButton" className="div-dropdown-btn" 
+            {/* id="dropdownButton" href="#dropdownButton" */}
+            <a className="div-dropdown-btn" 
              onClick={(e) => {
              setIsActive(!isActive) 
             }}>

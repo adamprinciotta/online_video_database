@@ -1,7 +1,9 @@
 .mainBG{
     height: 75vh;
+    display: flex;
     background-color: #585858;
     margin: 0;
+    justify-content: space-evenly;
 }
 
 .backgroundColor{
@@ -80,5 +82,30 @@
     place-items: center;
     justify-content: center;
     background-color: #585858;
-    margin: -30px -1px;
+
+    /* margin: -30px -1px; */
+}
+
+.fullContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+
+@media(max-width: 900px){
+    .submitCenter{
+        height: 50%;
+        padding-top: 10px;
+        display: grid;
+        place-items: center;
+        margin-bottom: -75px;
+    }
+
+    .tbl-hdr{
+        font-size: 12px;
+    }
+
+    .tbl-event{
+        font-size: 11px;
+    }
 }

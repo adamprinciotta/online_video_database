@@ -23,8 +23,8 @@ import Umbrella from './SG pics/Umbrella.jpg';
 import Valentine from './SG pics/Valentine.jpg';
 import BlackDahlia from './SG pics/Black Dahlia.jpg';
 import axios from 'axios';
-import { data } from 'jquery';
-import { Search } from '@syncfusion/ej2-react-dropdowns';
+import VODMap from './VODMap';
+import Pagination from './Pagination';
 
 function VODDisplay(props) {
 
@@ -33,13 +33,37 @@ function VODDisplay(props) {
     const [searched, setSearched] = useState(false)
 
     const [dataTest, setData] = useState([])
+
+    const [pagedData, setPagedData] = useState([])
+
+    const [currentPage, setCurrentPage] = useState(1)
+    const [postsPerPage] = useState(3)
+
+    function paginate(pageNumber){
+        setCurrentPage(pageNumber)
+        indexOfLastPost = pageNumber * postsPerPage
+        indexOfFirstPost = indexOfLastPost - postsPerPage
+        console.log("PAGINATE PAGE NUMBER " + currentPage)
+        console.log("indexOfLastPost " + indexOfLastPost)
+        console.log("indexOfFirstPost " + indexOfFirstPost)
+        var currentPosts = dataTest.slice(indexOfFirstPost, indexOfLastPost)
+        setPagedData(currentPosts.map(info => {
+            if(info != undefined){
+                console.log("currentPosts  "+ info)
+                return(info)
+            }
+        }))
+    } 
     
+    var indexOfFirstPost = 0;
+    var indexOfLastPost = 3;
     //Gets everything from database on load then store it in the dataArray state
     useEffect(() => {
         // console.log("requested")
         const databaseData = {
             method: 'GET',
-            url: 'http://localhost:8000/data',
+            //url: 'http://localhost:8000/data',
+            url: 'https://comfy-unicorn-7df5d9.netlify.app/data',
             //params: {Player1: "", P1P: "Any", P1M: "Any", P1A: "Any", P2P:"Any", P2M:"Any", P2A:"Any", Player2:"", TO1: false, TO2: false}
             params: {Player1: props.Player1, P1P: props.P1P, P1M: props.P1M, P1A: props.P1A, P2P: props.P2P, P2M: props.P2M, P2A: props.P2A, Player2: props.Player2, TO1: props.TO1, TO2: props.TO2}
             //params: {Player1, P1P, P1M, P1A, P2P, P2M, P2A, Player2, EventName, Link, VODDate}
@@ -76,6 +100,7 @@ function VODDisplay(props) {
     //         console.log(info)
     //     }))
     // }, [data])
+
 
     //Maps the array and then displays the data from the database
     var data = dataArray.map(info => {
@@ -242,6 +267,16 @@ function VODDisplay(props) {
         }
         
     })
+
+    // function setPages(){
+    //     const indexOfLastPost = currentPage * postsPerPage
+    //     const indexOfFirstPost = indexOfLastPost - postsPerPage
+    //     const currentPosts = dataTest.slice(indexOfFirstPost, indexOfLastPost)
+    
+    //     console.log("indexOfLastPost: " + indexOfLastPost + "\n" 
+    //                 +"indexOfFirstPost: " + indexOfFirstPost + "\n"
+    //                 +"currentPosts: " + currentPosts)
+    // }
 
     //Checks if the character is None, returns false so it doesn't display that space
     function checkIfNone(character){
@@ -544,9 +579,16 @@ function VODDisplay(props) {
     }
 
     function Search(){
+        //If they try to search with just the second team
         if((props.P1P === "Any" && props.P1M === "Any" && props.P1A === "Any") && !(props.P2P === "Any" && props.P2M === "Any" && props.P2A === "Any")){
             alert("Please select at least 1 character for team 1")
         }
+        //Makes sure there are no duplicate characters in the search
+        else if(((props.P1P != "Any" && (props.P1P === props.P1M || props.P1P === props.P1A)) || (props.P1M != "Any" && props.P1M === props.P1A)) ||
+                ((props.P2P != "Any" && (props.P2P === props.P2M || props.P2P === props.P2A)) || (props.P2M != "Any" && props.P2M === props.P2A))){
+            alert("Please do not search with duplicate characters")
+        }
+        //Valid team search
         else{
             data = dataArray.map(info => {
                 //console.log("Checking team...")
@@ -726,9 +768,52 @@ function VODDisplay(props) {
             //Sets the data to be displayed for each team that was properly searched for
             setData(data.map(info => {
                 if(info != undefined){
+                    console.log("hello" + info)
                     return(info)
                 }
             }))
+
+            console.log("This is datatest: " + dataTest)
+
+            indexOfLastPost = currentPage * postsPerPage
+            indexOfFirstPost = indexOfLastPost - postsPerPage
+
+            dataTest.filter(n => n)
+
+            var results = dataTest.filter(element => {
+                return element !== undefined;
+            });
+
+            results.map(info =>{
+                console.log("RESULTS " + info)
+            })
+
+            dataTest.map(info =>{
+                console.log("This is the filtered dataTest")
+                console.log(info)
+            })
+            const currentPosts = results.slice(indexOfFirstPost, indexOfLastPost)
+
+            for(var x = 0; x < dataTest.length; x++){
+                var sliced = dataTest.slice(indexOfFirstPost, indexOfLastPost)
+                console.log("Sliced: " + sliced)
+            }
+        
+            console.log("indexOfLastPost: " + indexOfLastPost + "\n" 
+                        +"indexOfFirstPost: " + indexOfFirstPost + "\n"
+                        +"currentPosts: " + currentPosts + '\n'
+                        + 'datatest: ' + dataTest.map(info =>{
+                            return(info)
+                        }))
+            
+
+            setPagedData(currentPosts.map(info => {
+                if(info != undefined){
+                    console.log("currentPosts  "+ info)
+                    return(info)
+                }
+            }))
+            console.log(pagedData.length)
             setSearched(true)
             // setData(data)
             // console.log("dataTest = " + dataTest.map(info =>{
@@ -739,19 +824,21 @@ function VODDisplay(props) {
         }
     }
 
-    // setSearch(search + 1)} in onClick if I want to go back to server calls for updating on button click
+
     return(
         <>
         <div className = "submitCenter">
-            <button type="button" onClick={() => {Search()}} className = "submitButton" >Search</button>
+            <a href='#search'>
+                <button type="button" onClick={() => {Search()}} className = "submitButton" >Search</button>
+            </a>
             <br></br>
             <br></br>
             <br></br>
         </div>
         
-        <div className='mainBG'>
+        <div className='mainBG-VODs'>
             <div className="backgroundColor">
-                <table className = 'table'>
+                <table className = 'table' id='search'>
                     <tr> 
                         <td className="tbl-hdr">Player 1</td>
                         <td className="tbl-hdr">Player 1 Team</td>
@@ -765,9 +852,11 @@ function VODDisplay(props) {
                         return(info)
                     })}
                     {/* Displays all data after a search */}
-                    {searched && dataTest.map(info =>{
+                    {searched && pagedData.map(info =>{
                         return(info)
                     })}
+                    {/* {searched && <VODMap IOFP = {indexOfFirstPost} IOLP = {indexOfLastPost} VODs = {dataTest}></VODMap>} */}
+                    <Pagination postsPerPage={postsPerPage} totalPosts={pagedData.length-1} paginate={paginate}/>
                 </table>
             </div>
         </div>
