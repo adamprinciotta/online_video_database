@@ -855,7 +855,7 @@ function VODDisplay(props) {
                         return(info)
                     })}
                     {/* {searched && <VODMap IOFP = {indexOfFirstPost} IOLP = {indexOfLastPost} VODs = {dataTest}></VODMap>} */}
-                    <Pagination postsPerPage={3} totalPosts={pagedData.length-1} paginate={paginate}/>
+                    <Pagination postsPerPage={postsPerPage} totalPosts={pagedData.length-1} paginate={paginate}/>
                 </table>
             </div>
         </div>
