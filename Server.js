@@ -272,6 +272,38 @@ app.get('/data', (req, res) =>{
     }
   });
 
+
+  app.post('https://comfy-unicorn-7df5d9.netlify.app/email', express.json(), function (req, res) {
+    console.log("req" + req.body[0].message)
+    const message = {
+      from: "onemoreoncevods@gmail.com",
+      to: "onemoreoncevods@gmail.com",
+      subject: "Hello " + req.body[0].message,
+      text: req.body[0].message
+    }
+    
+    transport.sendMail(message, (err, info) => {
+    if (err) {
+    console.log(err)
+      res.send("Email not sent")
+    } else {
+      res.send("Email sent")
+    }
+    });
+    console.log(req.body);
+    res.send('Hello POST');
+  });
+  
+
+
+
+
+app.listen(port, ()=> console.log(`Server running on port ${port}`))
+
+
+
+
+
 //   app.get('/email', (req, res) =>{
 //     console.log("get")
 
@@ -315,36 +347,6 @@ app.get('/data', (req, res) =>{
 //     }
 //     });
 //   })
-
-  app.post('/email', express.json(), function (req, res) {
-    console.log("req" + req.body[0].message)
-    const message = {
-      from: "onemoreoncevods@gmail.com",
-      to: "onemoreoncevods@gmail.com",
-      subject: "Hello " + req.body[0].message,
-      text: req.body[0].message
-    }
-    
-    transport.sendMail(message, (err, info) => {
-    if (err) {
-    console.log(err)
-      res.send("Email not sent")
-    } else {
-      res.send("Email sent")
-    }
-    });
-    console.log(req.body);
-    res.send('Hello POST');
-  });
-  
-
-
-
-
-app.listen(port, ()=> console.log(`Server running on port ${port}`))
-
-
-
 
 
 // const port = process.env.PORT || 5000;
