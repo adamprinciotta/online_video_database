@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const port = 8000
 
 const express = require('express')
@@ -12,9 +14,9 @@ app.use(cors())
 const mysql = require('mysql');
 
 var connection = mysql.createConnection({
-    host: "localhost",
+    host: "45.12.138.134",
     user: "root",
-    password: "MysqlLogin1!", //for laptop
+    password: process.env.SERVER_PASSWORD, //for laptop
     //password: "password", //for home computer
     database: "sg_vod_database",
     port: "3306"
