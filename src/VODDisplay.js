@@ -70,6 +70,8 @@ function VODDisplay(props) {
         }
 
         axios.request(databaseData).then((response) => {
+            console.log("REQUEST MADE")
+            console.log(response.data)
             setDataArray(response.data)
             // console.log("JUST SET DATA ARRAY = " + dataArray)
             // setData(response.data)
