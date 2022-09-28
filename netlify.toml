@@ -1,6 +1,5 @@
 [[redirects]]
     from = "/data"
-    to = "/"
+    to = "/#search"
     status = 200
 
-    
