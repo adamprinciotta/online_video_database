@@ -156,8 +156,8 @@ function Submit() {
         ]
 
   
-        fetch('http://localhost:8000/email',{
-        //fetch('https://onemoreonce.netlify.app/email',{
+        //fetch('http://localhost:8000/email',{
+        fetch('https://onemoreonce.netlify.app/email',{
           method: 'POST',
           headers: { "Content-Type": "application/json"},
           body: JSON.stringify(data)
