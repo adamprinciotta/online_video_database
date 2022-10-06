@@ -63,7 +63,7 @@ function VODDisplay(props) {
         const databaseData = {
             method: 'GET',
             //url: 'http://localhost:8000/data',
-            url: 'https://onemoreonce.netlify.app/about',
+            url: 'https://onemoreonce.netlify.app',
             //params: {Player1: "", P1P: "Any", P1M: "Any", P1A: "Any", P2P:"Any", P2M:"Any", P2A:"Any", Player2:"", TO1: false, TO2: false}
             params: {Player1: props.Player1, P1P: props.P1P, P1M: props.P1M, P1A: props.P1A, P2P: props.P2P, P2M: props.P2M, P2A: props.P2A, Player2: props.Player2, TO1: props.TO1, TO2: props.TO2}
             //params: {Player1, P1P, P1M, P1A, P2P, P2M, P2A, Player2, EventName, Link, VODDate}
