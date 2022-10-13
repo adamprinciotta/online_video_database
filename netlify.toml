@@ -1,4 +1,4 @@
 [[redirects]]
-  from = "/"
+  from = "/data"
   to = "45.12.138.134:Serverjs"
   status = 200

@@ -63,7 +63,7 @@ function VODDisplay(props) {
         const databaseData = {
             method: 'GET',
             // url: 'http://localhost:8000/',
-            url: '/',
+            url: '/data',
             params: {Player1: props.Player1, P1P: props.P1P, P1M: props.P1M, P1A: props.P1A, P2P: props.P2P, P2M: props.P2M, P2A: props.P2A, Player2: props.Player2, TO1: props.TO1, TO2: props.TO2}
         }
 
