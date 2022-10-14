@@ -1,4 +1,4 @@
 [[redirects]]
   from = "/data/*"
-  to = "http://45.12.138.134/Serverjs/:splat"
+  to = "http://45.12.138.134/Serverjs/"
   status = 200
