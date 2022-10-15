@@ -851,11 +851,11 @@ function VODDisplay(props) {
                         return(info)
                     })}
                     {/* Displays all data after a search */}
-                    {searched && pagedData.map(info =>{
+                    {searched && dataTest.map(info =>{
                         return(info)
                     })}
                     {/* {searched && <VODMap IOFP = {indexOfFirstPost} IOLP = {indexOfLastPost} VODs = {dataTest}></VODMap>} */}
-                    <Pagination postsPerPage={postsPerPage} totalPosts={pagedData.length-1} paginate={paginate}/>
+                    {/* <Pagination postsPerPage={postsPerPage} totalPosts={pagedData.length-1} paginate={paginate}/> */}
                 </table>
             </div>
         </div>
