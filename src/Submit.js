@@ -155,6 +155,18 @@ function Submit() {
           }
         ]
 
+
+        axios.post('/email', {
+          body: JSON.stringify(data),
+        })
+        .then(()=>{
+          alert('Successful Submission')
+          console.log("Email sent")
+        })
+        .catch(()=>{
+          alert('Failed Submission')
+          console.log("Email not sent")
+        })
   
         // fetch('http://localhost:8000/',{
         fetch('/email',{
