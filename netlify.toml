@@ -8,4 +8,12 @@
   to = "http://45.12.138.134:443/email"
   status = 200
 
-    
+[[redirects]]
+  from = "/submit/*"
+  to = "https://onemoreonce.netlify.app/"
+  status = 200
+
+[[redirects]]
+  from = "/about/*"
+  to = "https://onemoreonce.netlify.app/"
+  status = 200
