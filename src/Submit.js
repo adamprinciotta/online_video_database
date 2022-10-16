@@ -159,8 +159,8 @@ function Submit() {
         console.log("this is the data")
         console.log(JSON.stringify(data))
         var body = JSON.stringify(data)
-        console.log("This is body[0].message")
-        console.log(body[0].message)
+        console.log("This is body.message")
+        console.log(body.message)
         axios.post('/email', {
           body: JSON.stringify(data),
         })
