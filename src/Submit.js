@@ -156,6 +156,7 @@ function Submit() {
         ]
 
 
+        console.log(JSON.stringify(data))
         axios.post('/email', {
           body: JSON.stringify(data),
         })
