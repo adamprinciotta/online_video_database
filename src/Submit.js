@@ -155,7 +155,7 @@ function Submit() {
           }
         ]
 
-        var emailData = "INSERT INTO `sg_vod_database`.`vod_data` (`Player1`, `P1P`, `P1M`, `P1A`, `P2P`, `P2M`, `P2A`, `Player2`, `EventName`, `Link`, `VODDate`) VALUES ('\"" 
+        var emailData = "INSERT INTO `sg_vod_database`.`vod_data` (`Player1`, `P1P`, `P1M`, `P1A`, `P2P`, `P2M`, `P2A`, `Player2`, `EventName`, `Link`, `VODDate`) VALUES (\"" 
             + Player1 + '", "' + p1selectedchar1 + '", "'+ p1selectedchar2 + '", "' + p1selectedchar3 + '", "'
             + p2selectedchar1 + '", "' + p2selectedchar2 + '", "' + p2selectedchar3 + '", "' + Player2 + '", "' 
             + EventName + '", "' + Link + '", \'' + fullDate + "'" + ');'
