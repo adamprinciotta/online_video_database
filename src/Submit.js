@@ -169,14 +169,14 @@ function Submit() {
         })
   
         // fetch('http://localhost:8000/',{
-        fetch('/email',{
+        /*fetch('/email',{
           method: 'POST',
           headers: { "Content-Type": "application/json"},
           body: JSON.stringify(data)
         }).then(()=>{
           alert('Successful Submission')
           console.log("Email sent")
-        })
+        })*/
 
         //resets the submission data when they successfully submit
         p1setSelected1("Any")
