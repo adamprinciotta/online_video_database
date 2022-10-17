@@ -16,15 +16,14 @@ import None from './SG pics/None.png';
 import Parasoul from './SG pics/Parasoul.jpg';
 import Painwheel from './SG pics/Painwheel.jpg';
 import Peacock from './SG pics/Peacock.jpg';
-import QuestionMark from './SG pics/Question mark.png';
 import RoboFortune from './SG pics/Robo Fortune.jpg';
 import Squigly from './SG pics/Squigly.jpg';
 import Umbrella from './SG pics/Umbrella.jpg';
 import Valentine from './SG pics/Valentine.jpg';
 import BlackDahlia from './SG pics/Black Dahlia.jpg';
 import axios from 'axios';
-import VODMap from './VODMap';
-import Pagination from './Pagination';
+// import VODMap from './VODMap';
+// import Pagination from './Pagination';
 
 function VODDisplay(props) {
 
@@ -34,26 +33,26 @@ function VODDisplay(props) {
 
     const [dataTest, setData] = useState([])
 
-    const [pagedData, setPagedData] = useState([])
+    //const [pagedData, setPagedData] = useState([])
 
     const [currentPage, setCurrentPage] = useState(1)
     const [postsPerPage] = useState(3)
 
-    function paginate(pageNumber){
-        setCurrentPage(pageNumber)
-        indexOfLastPost = pageNumber * postsPerPage
-        indexOfFirstPost = indexOfLastPost - postsPerPage
-        console.log("PAGINATE PAGE NUMBER " + currentPage)
-        console.log("indexOfLastPost " + indexOfLastPost)
-        console.log("indexOfFirstPost " + indexOfFirstPost)
-        var currentPosts = dataTest.slice(indexOfFirstPost, indexOfLastPost)
-        setPagedData(currentPosts.map(info => {
-            if(info != undefined){
-                console.log("currentPosts  "+ info)
-                return(info)
-            }
-        }))
-    } 
+    // function paginate(pageNumber){
+    //     setCurrentPage(pageNumber)
+    //     indexOfLastPost = pageNumber * postsPerPage
+    //     indexOfFirstPost = indexOfLastPost - postsPerPage
+    //     console.log("PAGINATE PAGE NUMBER " + currentPage)
+    //     console.log("indexOfLastPost " + indexOfLastPost)
+    //     console.log("indexOfFirstPost " + indexOfFirstPost)
+    //     var currentPosts = dataTest.slice(indexOfFirstPost, indexOfLastPost)
+    //     setPagedData(currentPosts.map(info => {
+    //         if(info != undefined){
+    //             console.log("currentPosts  "+ info)
+    //             return(info)
+    //         }
+    //     }))
+    // } 
     
     var indexOfFirstPost = 0;
     var indexOfLastPost = 3;
@@ -74,30 +73,10 @@ function VODDisplay(props) {
         }).catch((error)=>{
             console.error(error)
         })
-            // console.log("JUST SET DATA ARRAY = " + dataArray)
-            // setData(response.data)
-            // console.log("JUST SET SET DATA = " + dataTest)
-            //testingData()
-        // console.log("P1P = " + props.p1selected1)
-        // console.log("P1M = " + props.p1selected2)
-        // console.log("P1A = " + props.p1selected3)
-        // console.log("P2P = " + props.p2selected1)
-        // console.log("P2M = " + props.p2selected2)
-        // console.log("P2A = " + props.p2selected3)
-    }, []) //[search]
+    }, []) 
 
 
-    // function testingData() {
-    //     setData(data)
-    //     console.log("DATA TEST VALUES = " + dataTest)
-    // }
 
-    // useEffect(() =>{
-    //     setData(data)
-    //     console.log("dataTest = " + dataTest.map(info =>{
-    //         console.log(info)
-    //     }))
-    // }, [data])
 
 
     //Maps the array and then displays the data from the database
@@ -350,70 +329,7 @@ function VODDisplay(props) {
     }
 
 
-    // function Search(){
-    //     console.log(dataArray)
-    //     console.log("P1P = " + props.P1P)
-    //     console.log("P1M = " + props.P1M)
-    //     console.log("P1A = " + props.P1A)
-    //     console.log("P2P = " + props.P2P)
-    //     console.log("P2M = " + props.P2M)
-    //     console.log("P2A = " + props.P2A)
-    //     console.log(props.Player1)
-    //     console.log(props.Player2)
-    //     console.log(props.TO1)
-    //     console.log(props.TO2)
-    //     var data = dataArray.map(info =>{
-    //         console.log("Checking team...")
-    //         if(props.P1P === "Any" && props.P1M === "Any" && props.P1A === "Any" && props.P2P === "Any" && props.P2M === "Any" && props.P2A === "Any"){
-    //             //display all teams
-    //         }
-    //         else if(!(props.P1P === "Any" && props.P1M === "Any" && props.P1A === "Any") && ((props.P2P === "Any" && props.P2M === "Any" && props.P2A === "Any"))){
-    //             if(!props.TO1){
-    //                 if(props.P1P === "Any" || (props.P1P === info.P1P || props.P1P === info.P1M || props.P1P === info.P1A)){
-    //                     if((props.P1M === "Any" || (props.P1M === info.P1P || props.P1M === info.P1M || props.P1M === info.P1A))){
-    //                         if((props.P1A === "Any" || (props.P1A === info.P1P || props.P1A === info.P1M || props.P1A === info.P1A))){
-    //                             console.log("I found the team :) = " + info.P1P + " " + info.P1M + " " + info.P1A)
-    //                         }
-    //                     }
-    //                 }
-    //                 if(props.P1P === "Any" || (props.P1P === info.P2P || props.P1P === info.P2M || props.P1P === info.P2A)){
-    //                     if((props.P1M === "Any" || (props.P1M === info.P2P || props.P1M === info.P2M || props.P1M === info.P2A))){
-    //                         if((props.P1A === "Any" || (props.P1A === info.P2P || props.P1A === info.P2M || props.P1A === info.P2A))){
-    //                             console.log("I found the team :) = " + info.P2P + " " + info.P2M + " " + info.P2A)
-    //                         }
-    //                     }
-    //                 }
-    //             }
-    //             else{
-    //                 if((props.P1P === "Any" || (props.P1P === info.P1P)) && (props.P1M === "Any" || (props.P1M === info.P1M)) && (props.P1A === "Any" || (props.P1A === info.P1A))){
-    //                     console.log("I found the team :) = " + info.P1P + " " + info.P1M + " " + info.P1A)
-    //                 }
-    //                 if((props.P1P === "Any" || (props.P1P === info.P2P)) && (props.P1M === "Any" || (props.P1M === info.P2M)) && (props.P1A === "Any" || (props.P1A === info.P2A))){
-    //                     console.log("I found the team :) = " + info.P2P + " " + info.P2M + " " + info.P2A)
-    //                 }
-    //             }
-    //         }
-    //         else if(!(props.P1P === "Any" && props.P1M === "Any" && props.P1A === "Any") && !((props.P2P === "Any" && props.P2M === "Any" && props.P2A === "Any"))){
-    //             if((props.P1P === "Any" || (props.P1P === info.P1P || props.P1P === info.P1M || props.P1P === info.P1A)) && (props.P2P === "Any" || (props.P2P === info.P2P || props.P2P === info.P2M || props.P2P === info.P2A))){
-    //                 if((props.P1M === "Any" || (props.P1M === info.P1P || props.P1M === info.P1M || props.P1M === info.P1A)) && (props.P2M === "Any" || (props.P2M === info.P2P || props.P2M === info.P2M || props.P2M === info.P2A))){
-    //                     if((props.P1A === "Any" || (props.P1A === info.P1P || props.P1A === info.P1M || props.P1A === info.P1A)) && (props.P2A === "Any" || (props.P2A === info.P2P || props.P2A === info.P2M || props.P2A === info.P2A))){
-    //                         console.log("I found the team :) = " + info.P1P + " " + info.P1M + " " + info.P1A)
-    //                     }
-    //                 }
-    //             }
-    //             if((props.P1P === "Any" || (props.P1P === info.P2P || props.P1P === info.P2M || props.P1P === info.P2A)) && (props.P2P === "Any" || (props.P2P === info.P1P || props.P2P === info.P1M || props.P2P === info.P1A))){
-    //                 if((props.P1M === "Any" || (props.P1M === info.P2P || props.P1M === info.P2M || props.P1M === info.P2A)) && (props.P2M === "Any" || (props.P2M === info.P1P || props.P2M === info.P1M || props.P2M === info.P1A))){
-    //                     if((props.P1A === "Any" || (props.P1A === info.P2P || props.P1A === info.P2M || props.P1A === info.P2A)) && (props.P2A === "Any" || (props.P2A === info.P1P || props.P2A === info.P1M || props.P2A === info.P1A))){
-    //                         console.log("I found the team :) = " + info.P2P + " " + info.P2M + " " + info.P2A)
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     })
-    // }
-
     function displaySearch(info){ //See if it can take in info as a parameter to get the current object
-        // console.log("DISPLAY SEARCH " + info.P1P)
         var dateParts = info.VODDate.split("-");
 
         //Changes format into MM/DD/YYYY
@@ -589,8 +505,6 @@ function VODDisplay(props) {
         //Valid team search
         else{
             data = dataArray.map(info => {
-                //console.log("Checking team...")
-
                 //Variable to make sure the names are correct before wasting time searching for characters
                 var correctNames = false
                 //If user is searching for a specific player vs player
@@ -737,73 +651,47 @@ function VODDisplay(props) {
                             }
                         }
                     }
-
-                    //Most likely useless code but saving just in case
-                    // else{
-                    //     info = <tr>
-                    //         <td className="tbl-hdr">{info.Player1}</td>
-                    //         <td className="tbl-hdr" valign='center'>
-                    //             <div className ="centerpls">{info.P1P}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
-                    //         </td>
-                    //         <td className="tbl-hdr" valign='center'>
-                    //             <div className ="centerpls"><img className = "img" src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}</div>
-                    //         </td>
-                    //         <td className="tbl-hdr">{info.Player2}</td>
-                    //         <td className="tbl-event">
-                    //             <div>
-                    //                 {info.EventName}
-                    //             </div>
-                    //             <div>
-                    //                 <a href={info.Link} target="_blank"><img src="https://brandeps.com/logo-download/Y/YouTube-Play-logo-vector-01.svg" height = "30"></img></a>
-                    //             </div>
-                    //         </td>
-                    //     </tr>
-                    // }
                 }
                 })
-            //testingData()
 
             //Sets the data to be displayed for each team that was properly searched for
             setData(data.map(info => {
                 if(info != undefined){
-                    console.log("hello" + info)
                     return(info)
                 }
             }))
-
-            console.log("This is datatest: " + dataTest)
 
             indexOfLastPost = currentPage * postsPerPage
             indexOfFirstPost = indexOfLastPost - postsPerPage
 
             dataTest.filter(n => n)
 
-            var results = dataTest.filter(element => {
-                return element !== undefined;
-            });
+            // var results = dataTest.filter(element => {
+            //     return element !== undefined;
+            // });
 
-            results.map(info =>{
-                console.log("RESULTS " + info)
-            })
+            // results.map(info =>{
+            //     console.log("RESULTS " + info)
+            // })
 
-            dataTest.map(info =>{
-                console.log("This is the filtered dataTest")
-                console.log(info)
-            })
+            // dataTest.map(info =>{
+            //     console.log("This is the filtered dataTest")
+            //     console.log(info)
+            // })
             
-            const currentPosts = results.slice(indexOfFirstPost, indexOfLastPost)
+            // const currentPosts = results.slice(indexOfFirstPost, indexOfLastPost)
 
-            for(var x = 0; x < dataTest.length; x++){
-                var sliced = dataTest.slice(indexOfFirstPost, indexOfLastPost)
-                console.log("Sliced: " + sliced)
-            }
+            // for(var x = 0; x < dataTest.length; x++){
+            //     var sliced = dataTest.slice(indexOfFirstPost, indexOfLastPost)
+            //     console.log("Sliced: " + sliced)
+            // }
         
-            console.log("indexOfLastPost: " + indexOfLastPost + "\n" 
-                        +"indexOfFirstPost: " + indexOfFirstPost + "\n"
-                        +"currentPosts: " + currentPosts + '\n'
-                        + 'datatest: ' + dataTest.map(info =>{
-                            return(info)
-                        }))
+            // console.log("indexOfLastPost: " + indexOfLastPost + "\n" 
+            //             +"indexOfFirstPost: " + indexOfFirstPost + "\n"
+            //             +"currentPosts: " + currentPosts + '\n'
+            //             + 'datatest: ' + dataTest.map(info =>{
+            //                 return(info)
+            //             }))
             
 
             setPagedData(currentPosts.map(info => {
@@ -812,14 +700,8 @@ function VODDisplay(props) {
                     return(info)
                 }
             }))
-            console.log(pagedData.length)
+            // console.log(pagedData.length)
             setSearched(true)
-            // setData(data)
-            // console.log("dataTest = " + dataTest.map(info =>{
-            //     console.log("Item")
-            //     console.log(info)
-            //     console.log(JSON.stringify(info, ["key"]))
-            // }))
         }
     }
 
