@@ -339,6 +339,7 @@ function VODDisplay(props) {
         //If/Else statements to display the teams in the right spacings
         //1v1
         if(!checkIfNone(info.P1A) && !checkIfNone(info.P1M) && !checkIfNone(info.P2M) && !checkIfNone(info.P2A)){
+            console.log("1v1" + info.Player1 + " " + info.Player2)
             return(<tr>
                 <td className="tbl-hdr">{info.Player1}</td>
                 <td className="tbl-hdr" valign='center'>
@@ -363,6 +364,7 @@ function VODDisplay(props) {
         }
         //1v2
         else if(!checkIfNone(info.P1A) && !checkIfNone(info.P1M) && checkIfNone(info.P2M) && !checkIfNone(info.P2A)){
+            console.log("1v2" + info.Player1 + " " + info.Player2)
             return(<tr>
                 <td className="tbl-hdr">{info.Player1}</td>
                 <td className="tbl-hdr" >
@@ -388,6 +390,7 @@ function VODDisplay(props) {
         }
         //1v3
         else if(!checkIfNone(info.P1A) && !checkIfNone(info.P1M) && checkIfNone(info.P2M) && checkIfNone(info.P2A)){
+            console.log("1v3" + info.Player1 + " " + info.Player2)
             return(<tr>
                 <td className="tbl-hdr">{info.Player1}</td>
                 <td className="tbl-hdr" >
@@ -414,6 +417,7 @@ function VODDisplay(props) {
         }
         //2v1
         else if(!checkIfNone(info.P1A) && checkIfNone(info.P1M) && !checkIfNone(info.P2M) && !checkIfNone(info.P2A)){
+            console.log("2v1" + info.Player1 + " " + info.Player2)
             return(<tr>
                 <td className="tbl-hdr">{info.Player1}</td>
                 <td className="tbl-hdr" >
@@ -439,6 +443,7 @@ function VODDisplay(props) {
         }
         //2v2
         else if(!checkIfNone(info.P1A) && checkIfNone(info.P1M) && checkIfNone(info.P2M) && !checkIfNone(info.P2A)){
+            console.log("2v2" + info.Player1 + " " + info.Player2)
             return(<tr>
                 <td className="tbl-hdr">{info.Player1}</td>
                 <td className="tbl-hdr" >
@@ -466,6 +471,7 @@ function VODDisplay(props) {
         }
         //2v3
         else if(checkIfNone(info.P1M) && !checkIfNone(info.P1A) && checkIfNone(info.P2M) && checkIfNone(info.P2A)){
+            console.log("2v3" + info.Player1 + " " + info.Player2)
             return(<tr>
                 <td className="tbl-hdr">{info.Player1}</td>
                 <td className="tbl-hdr" >
@@ -494,6 +500,7 @@ function VODDisplay(props) {
         }
         //3v1
         else if(checkIfNone(info.P1M) && checkIfNone(info.P1A) && !checkIfNone(info.P2M) && !checkIfNone(info.P2A)){
+            console.log("3v1" + info.Player1 + " " + info.Player2)
             return(<tr>
                 <td className="tbl-hdr">{info.Player1}</td>
                 <td className="tbl-hdr" >
@@ -520,6 +527,7 @@ function VODDisplay(props) {
         }
         //3v2
         else if(checkIfNone(info.P1M) && checkIfNone(info.P1A) && checkIfNone(info.P2M) && !checkIfNone(info.P2A)){
+            console.log("3v2" + info.Player1 + " " + info.Player2)
             return(<tr>
                 <td className="tbl-hdr">{info.Player1}</td>
                 <td className="tbl-hdr" >
@@ -547,6 +555,7 @@ function VODDisplay(props) {
         }
         //Only case left is a 3v3 team
         else{
+            console.log("3v3" + info.Player1 + " " + info.Player2)
             return(<tr>
                 <td className="tbl-hdr">{info.Player1}</td>
                 <td className="tbl-hdr" >
