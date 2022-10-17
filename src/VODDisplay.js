@@ -22,6 +22,7 @@ import Umbrella from './SG pics/Umbrella.jpg';
 import Valentine from './SG pics/Valentine.jpg';
 import BlackDahlia from './SG pics/Black Dahlia.jpg';
 import axios from 'axios';
+import e from 'cors';
 // import VODMap from './VODMap';
 // import Pagination from './Pagination';
 
@@ -336,6 +337,7 @@ function VODDisplay(props) {
         var dateYear =  dateParts[1] + "/" + dateParts[2].substring(0, 2) + "/" + dateParts[0];   
 
         //If/Else statements to display the teams in the right spacings
+        //1v1
         if(!checkIfNone(info.P1A) && !checkIfNone(info.P1M) && !checkIfNone(info.P2M) && !checkIfNone(info.P2A)){
             return(<tr>
                 <td className="tbl-hdr">{info.Player1}</td>
@@ -359,6 +361,7 @@ function VODDisplay(props) {
                 </td>
             </tr>)
         }
+        //1v2
         else if(!checkIfNone(info.P1A) && !checkIfNone(info.P1M) && checkIfNone(info.P2M) && !checkIfNone(info.P2A)){
             return(<tr>
                 <td className="tbl-hdr">{info.Player1}</td>
@@ -383,6 +386,58 @@ function VODDisplay(props) {
                 </td>
             </tr>)
         }
+        //1v3
+        else if(!checkIfNone(info.P1A) && !checkIfNone(info.P1M) && checkIfNone(info.P2M) && checkIfNone(info.P2A)){
+            return(<tr>
+                <td className="tbl-hdr">{info.Player1}</td>
+                <td className="tbl-hdr" >
+                    <div className ="centerpls">{info.P1P}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
+                </td>
+                <td className="tbl-hdr" >
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}</div>
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2M)} height = "35"/>&nbsp;&nbsp;{info.P2M}</div>
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2A)} height = "35"/>&nbsp;&nbsp;{info.P2A}</div>
+                </td>
+                <td className="tbl-hdr">{info.Player2}</td>
+                <td className="tbl-event">
+                    <div>
+                        {info.EventName}
+                    </div>
+                    <div>
+                        {dateYear}
+                    </div> 
+                    <div>
+                        <a href={info.Link} target="_blank"><img src="https://brandeps.com/logo-download/Y/YouTube-Play-logo-vector-01.svg" height = "30"></img></a>
+                    </div>
+                </td>
+            </tr>)
+        }
+        //2v1
+        else if(!checkIfNone(info.P1A) && checkIfNone(info.P1M) && !checkIfNone(info.P2M) && !checkIfNone(info.P2A)){
+            return(<tr>
+                <td className="tbl-hdr">{info.Player1}</td>
+                <td className="tbl-hdr" >
+                    <div className ="centerpls">{info.P1P}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
+                    <div className ="centerpls">{info.P1M}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1M)} height = "35"/></div>
+                </td>
+                <td className="tbl-hdr" >
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}</div>
+                </td>
+                <td className="tbl-hdr">{info.Player2}</td>
+                <td className="tbl-event">
+                    <div>
+                        {info.EventName}
+                    </div>
+                    <div>
+                        {dateYear}
+                    </div> 
+                    <div>
+                        <a href={info.Link} target="_blank"><img src="https://brandeps.com/logo-download/Y/YouTube-Play-logo-vector-01.svg" height = "30"></img></a>
+                    </div>
+                </td>
+            </tr>)
+        }
+        //2v2
         else if(!checkIfNone(info.P1A) && checkIfNone(info.P1M) && checkIfNone(info.P2M) && !checkIfNone(info.P2A)){
             return(<tr>
                 <td className="tbl-hdr">{info.Player1}</td>
@@ -409,6 +464,7 @@ function VODDisplay(props) {
                 </td>
             </tr>)
         }
+        //2v3
         else if(!checkIfNone(info.P1A)){
             return(<tr>
                 <td className="tbl-hdr">{info.Player1}</td>
@@ -436,6 +492,33 @@ function VODDisplay(props) {
                 </td>
             </tr>)
         }
+        //3v1
+        else if(checkIfNone(info.P1M) && checkIfNone(info.P1A) && !checkIfNone(info.P2M) && !checkIfNone(info.P2A)){
+            return(<tr>
+                <td className="tbl-hdr">{info.Player1}</td>
+                <td className="tbl-hdr" >
+                    <div className ="centerpls">{info.P1P}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
+                    <div className ="centerpls">{info.P1M}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1M)} height = "35"/></div>
+                    <div className ="centerpls">{info.P1A}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1A)} height = "35"/></div>
+                </td>
+                <td className="tbl-hdr" >
+                    <div className ="centerpls"><img className = "img" src={getImage(info.P2P)} height = "35"/>&nbsp;&nbsp;{info.P2P}</div>
+                </td>
+                <td className="tbl-hdr">{info.Player2}</td>
+                <td className="tbl-event">
+                    <div>
+                        {info.EventName}
+                    </div>
+                    <div>
+                        {dateYear}
+                    </div> 
+                    <div>
+                        <a href={info.Link} target="_blank"><img src="https://brandeps.com/logo-download/Y/YouTube-Play-logo-vector-01.svg" height = "30"></img></a>
+                    </div>
+                </td>
+            </tr>)
+        }
+        //3v2
         else if(!checkIfNone(info.P2A)){
             return(<tr>
                 <td className="tbl-hdr">{info.Player1}</td>
