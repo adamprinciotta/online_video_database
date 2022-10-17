@@ -67,8 +67,8 @@ function VODDisplay(props) {
         }
 
         axios.request(databaseData).then((response) => {
-            console.log("REQUEST MADE")
-            console.log(response.data)
+            // console.log("REQUEST MADE")
+            // console.log(response.data)
             setDataArray(response.data)
         }).catch((error)=>{
             console.error(error)
@@ -694,12 +694,12 @@ function VODDisplay(props) {
             //             }))
             
 
-            setPagedData(currentPosts.map(info => {
-                if(info != undefined){
-                    console.log("currentPosts  "+ info)
-                    return(info)
-                }
-            }))
+            // setPagedData(currentPosts.map(info => {
+            //     if(info != undefined){
+            //         console.log("currentPosts  "+ info)
+            //         return(info)
+            //     }
+            // }))
             // console.log(pagedData.length)
             setSearched(true)
         }
