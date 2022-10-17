@@ -664,8 +664,8 @@ function VODDisplay(props) {
             alert("Please select at least 1 character for team 1")
         }
         //Makes sure there are no duplicate characters in the search
-        else if(((props.P1P != "Any" && (props.P1P === props.P1M || props.P1P === props.P1A)) || (props.P1M != "Any" && props.P1M === props.P1A)) ||
-                ((props.P2P != "Any" && (props.P2P === props.P2M || props.P2P === props.P2A)) || (props.P2M != "Any" && props.P2M === props.P2A))){
+        else if(((props.P1P != "Any" && ((props.P1P === props.P1M || props.P1P === props.P1A) && props.P1M != "None")) || (props.P1M != "Any" && (props.P1M === props.P1A)&& props.P1M != "None")) ||
+                ((props.P2P != "Any" && ((props.P2P === props.P2M || props.P2P === props.P2A)&& props.P1M != "None")) || (props.P2M != "Any" && (props.P2M === props.P2A) && props.P1M != "None"))){
             alert("Please do not search with duplicate characters")
         }
         //Valid team search
