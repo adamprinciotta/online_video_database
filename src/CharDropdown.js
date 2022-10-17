@@ -2,10 +2,10 @@
 // import Multiselect from 'multiselect-react-dropdown';
 import './charDropdown.css';
 import './App';
-import VODDisplay from './VODDisplay';
-import React, { useState, useEffect, useRef } from 'react';
-import { render } from '@testing-library/react';
-import $ from 'jquery';
+//import VODDisplay from './VODDisplay';
+import React, { useState, } from 'react';
+//import { render } from '@testing-library/react';
+//import $ from 'jquery';
 //import { options } from '@mobiscroll/react';
 
 //Importing pictures used

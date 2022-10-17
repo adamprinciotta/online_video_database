@@ -1,31 +1,11 @@
 import React, { useState } from 'react';
 import CharDropdown from './CharDropdown';
 import './Submit.css'
-import emailjs from '@emailjs/browser';
-import { Application, DatePicker } from "react-rainbow-components";
+//import emailjs from '@emailjs/browser';
+import { DatePicker } from "react-rainbow-components";
 import axios from 'axios';
 
 import Asterisk from "./SG pics/Asterisk.png";
-// import Annie from './SG pics/Annie.jpg';
-// import Any from './SG pics/Asterisk.png';
-// import Beowulf from './SG pics/Beowulf.jpg';
-// import BigBand from './SG pics/Big Band.jpg';
-// import Cerebella from './SG pics/Cerebella.jpg';
-// import Double from './SG pics/Double.jpg';
-// import Eliza from './SG pics/Eliza.jpg';
-// import Filia from './SG pics/Filia.jpg';
-// import Fukua from './SG pics/Fukua.jpg';
-// import MsFortune from './SG pics/Ms Fortune.jpg';
-// import None from './SG pics/None.png';
-// import Parasoul from './SG pics/Parasoul.jpg';
-// import Painwheel from './SG pics/Painwheel.jpg';
-// import Peacock from './SG pics/Peacock.jpg';
-// import QuestionMark from './SG pics/Question mark.png';
-// import RoboFortune from './SG pics/Robo Fortune.jpg';
-// import Squigly from './SG pics/Squigly.jpg';
-// import Umbrella from './SG pics/Umbrella.jpg';
-// import Valentine from './SG pics/Valentine.jpg';
-// import BlackDahlia from './SG pics/Black Dahlia.jpg';
 import Logo from './SG pics/SGLogo.png'
 
 function Submit() {
