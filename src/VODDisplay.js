@@ -519,7 +519,7 @@ function VODDisplay(props) {
             </tr>)
         }
         //3v2
-        else if(!checkIfNone(info.P2A)){
+        else if(checkIfNone(info.P1M) && checkIfNone(info.P1A) && checkIfNone(info.P2M) && !checkIfNone(info.P2A)){
             return(<tr>
                 <td className="tbl-hdr">{info.Player1}</td>
                 <td className="tbl-hdr" >
