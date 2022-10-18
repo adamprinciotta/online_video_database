@@ -667,7 +667,7 @@ function VODDisplay(props) {
         console.log("P2P: " + props.P2P)
         console.log("P2M: " + props.P2M)
         console.log("P2A: " + props.P2A)
-        console.log(((props.P1M === props.P1A) && (props.P1M != "Any" || props.P1M != "None")))
+        console.log(((props.P1M === props.P1A) && (props.P1M !== "Any" || props.P1M !== "None")))
 
         if((props.P1P === "Any" && props.P1M === "Any" && props.P1A === "Any") && !(props.P2P === "Any" && props.P2M === "Any" && props.P2A === "Any")){
             alert("Please select at least 1 character for team 1")
