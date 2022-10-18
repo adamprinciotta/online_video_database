@@ -713,7 +713,10 @@ function VODDisplay(props) {
                         if(!props.TO1){ //If team order does not matter
                             //If team 1 search has all characters in any order on team 1
                             if(props.P1P === "Any" || (props.P1P === info.P1P || props.P1P === info.P1M || props.P1P === info.P1A)){
-                                if((props.P1M === "Any" || (props.P1M === info.P1P || props.P1M === info.P1M || props.P1M === info.P1A))){
+                                if(props.P1M === "None" && props.P1A === "None" && info.P1M === "None" && info.P1A === "None"){
+                                    return(displaySearch(info))
+                                }
+                                else if(!(props.P1M === "None" && props.P1A === "None") && (props.P1M === "Any" || (props.P1M === info.P1P || props.P1M === info.P1M || props.P1M === info.P1A))){
                                     if((props.P1A === "Any" || (props.P1A === info.P1P || props.P1A === info.P1M || props.P1A === info.P1A))){
                                         return(displaySearch(info))
                                     }
