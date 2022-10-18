@@ -724,7 +724,11 @@ function VODDisplay(props) {
                             }
                             //If team 1 search has all characters in any order on team 2
                             if(props.P1P === "Any" || (props.P1P === info.P2P || props.P1P === info.P2M || props.P1P === info.P2A)){
-                                if((props.P1M === "Any" || (props.P1M === info.P2P || props.P1M === info.P2M || props.P1M === info.P2A))){
+                                if(props.P1M === "None" && props.P1A === "None" && info.P2M === "None" && info.P2A === "None"){
+                                    return(displaySearch(info))
+                                }
+
+                                if(!(props.P1M === "None" && props.P1A === "None") && (props.P1M === "Any" || (props.P1M === info.P2P || props.P1M === info.P2M || props.P1M === info.P2A))){
                                     if((props.P1A === "Any" || (props.P1A === info.P2P || props.P1A === info.P2M || props.P1A === info.P2A))){
                                         return(displaySearch(info))
                                     }
