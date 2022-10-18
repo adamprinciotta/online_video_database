@@ -672,43 +672,53 @@ function VODDisplay(props) {
         //     alert("Please do not search with duplicate characters")
         // }
         else if(
-            (
-                (props.P1P != "Any" 
-                    && 
-                    (
-                        (props.P1P === props.P1M || props.P1P === props.P1A) 
-                        && 
-                        (props.P1M != "None" || props.P1M != "Any")
-                    )
-                ) 
-                || (props.P1M != "Any" 
-                    && 
-                    (props.P1M === props.P1A) 
-                    && 
-                    (props.P1M != "None" || props.P1M != "Any")
-                    )
-            ) 
-            ||
-            (
-                (
-                    props.P2P != "Any" 
-                    && 
-                    (
-                        (props.P2P === props.P2M || props.P2P === props.P2A)
-                        && 
-                        props.P1M != "None"
-                    )
-                ) 
-                || 
-                (
-                    props.P2M != "Any" 
-                    && 
-                    (props.P2M === props.P2A) && props.P1M != "None"
-                )
-            )
-            ){
+            ((props.P1P === props.P1M || props.P1P === props.P1A) && (props.P1P != "Any" || props.P1P != "None")) ||
+            ((props.P1M === props.P1A) && (props.P1M != "Any" || props.P1M != "None")) ||
+            ((props.P2P === props.P2M || props.P2P === props.P2A) && (props.P2P != "Any" || props.P2P != "None")) ||
+            ((props.P2M === props.P2A) && (props.P2M != "Any" || props.P2M != "None"))
+        ){
             alert("Please do not search with duplicate characters")
         }
+
+        //Works for all cases but 2 nones
+        // else if(
+        //     (
+        //         (props.P1P != "Any" 
+        //             && 
+        //             (
+        //                 (props.P1P === props.P1M || props.P1P === props.P1A) 
+        //                 && 
+        //                 (props.P1M != "None" || props.P1M != "Any")
+        //             )
+        //         ) 
+        //         || (props.P1M != "Any" 
+        //             && 
+        //             (props.P1M === props.P1A) 
+        //             && 
+        //             (props.P1M != "None" || props.P1M != "Any")
+        //             )
+        //     ) 
+        //     ||
+        //     (
+        //         (
+        //             props.P2P != "Any" 
+        //             && 
+        //             (
+        //                 (props.P2P === props.P2M || props.P2P === props.P2A)
+        //                 && 
+        //                 props.P1M != "None"
+        //             )
+        //         ) 
+        //         || 
+        //         (
+        //             props.P2M != "Any" 
+        //             && 
+        //             (props.P2M === props.P2A) && props.P1M != "None"
+        //         )
+        //     )
+        //     ){
+        //     alert("Please do not search with duplicate characters")
+        // }
         //Valid team search
         else{
             data = dataArray.map(info => {
