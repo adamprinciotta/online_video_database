@@ -86,7 +86,7 @@ function App() {
 
   return (
     <>
-<div className='fullContainer'>
+  <div className='fullContainer'>
     <div className="mainBG-Teams">
       <div className="teamsContainer">
         <div className="p1Team">

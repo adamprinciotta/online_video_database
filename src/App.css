@@ -180,7 +180,7 @@
 
   .fullContainer{
     width: 100vw;
-    height: 100%;
+    /* height: 100%; */
   }
 
   .mainBG-Teams{
@@ -189,9 +189,9 @@
       width: 100vw;
       padding-top: 0;
   }
-  
+
   .teamsContainer{
-      margin-top: -75px;
+      /* margin-top: -75px; */
       flex-direction: column;
   }
 
