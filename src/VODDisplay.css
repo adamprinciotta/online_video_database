@@ -97,7 +97,7 @@
 @media(max-width: 900px){
     .submitCenter{
         height: 50%;
-        padding-top: 10px;
+        /* padding-top: 10px; */
         display: grid;
         place-items: center;
         /* margin-bottom: -75px; */
