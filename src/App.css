@@ -98,7 +98,7 @@
   flex: 0 0 auto;
   background-color: #585858;
   /* padding: 25px; */
-  padding-top: -10vh;
+  /* padding-top: -10vh; SEE IF THIS IS REALLY NOT ALLOWED */
 }
 
 
@@ -146,7 +146,7 @@
   height: 30px;
   margin: auto;
   justify-content: center;
-  padding: 5px -10px;
+  padding: 5px;
   color: lightgray;
   text-align: center;
 }
@@ -199,15 +199,15 @@
       display: none;
   }
 
-  .breaker{
+  /* .breaker{
       display: show;
-  }
+  } */
 }
 
 @media(min-width: 901px){
-  .SGImg{
+  /* .SGImg{
       display: show;
-  }
+  } */
 
   .breaker{
       display: none;
