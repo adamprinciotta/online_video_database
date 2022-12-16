@@ -26,6 +26,8 @@ import axios from 'axios';
 // import VODMap from './VODMap';
 // import Pagination from './Pagination';
 
+import 'normalize.css';
+
 function VODDisplay(props) {
 
     const [dataArray, setDataArray] = useState([])
