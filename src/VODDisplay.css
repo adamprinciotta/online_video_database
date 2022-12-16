@@ -146,7 +146,7 @@ table {
         padding-top: 10px;
         display: grid;
         place-items: center;
-        margin-bottom: -75px; 
+        margin-bottom: 0; 
     }
 
     .tbl-hdr{
@@ -159,4 +159,5 @@ table {
     /* .mainBG-VODs{
         padding-top: 100px;
     } */
+
 }
