@@ -151,6 +151,10 @@ table {
 
     .centerpls{
         font-size: 9px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        margin: 5px auto;
     } 
 
     .tbl-hdr{
