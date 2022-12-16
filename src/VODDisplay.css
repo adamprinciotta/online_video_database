@@ -149,6 +149,10 @@ table {
         margin-bottom: 0; 
     }
 
+    .centerpls{
+        font-size: 8px;
+    }
+
     .tbl-hdr{
         font-size: 10px;
     }
