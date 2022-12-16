@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 import Asterisk from "./SG pics/Asterisk.png";
 import Logo from "./SG pics/SGLogo.png";
 import VODDisplay from './VODDisplay';
+import 'normalize.css';
 // import Annie from './SG pics/Annie.jpg';
 // import Any from './SG pics/Asterisk.png';
 // import Beowulf from './SG pics/Beowulf.jpg';
