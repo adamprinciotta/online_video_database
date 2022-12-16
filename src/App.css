@@ -213,3 +213,10 @@
       display: none;
   }
 }
+
+
+@media(max-width: 900px){
+  .teamBtn{
+    margin-top: 15px;
+  }
+}
