@@ -28,6 +28,7 @@ import Squigly from './SG pics/Squigly.jpg';
 import Umbrella from './SG pics/Umbrella.jpg';
 import Valentine from './SG pics/Valentine.jpg';
 import BlackDahlia from './SG pics/Black Dahlia.jpg';
+import 'normalize.css';
 
 
 function CharDropdown(props) {
