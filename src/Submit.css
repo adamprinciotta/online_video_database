@@ -119,7 +119,7 @@ table {
 
 
 .submitCenter{
-    padding-bottom: 2.5vh;
+    /* padding-bottom: 2.5vh; */
     display: grid;
     place-items: center;
     justify-content: center;
