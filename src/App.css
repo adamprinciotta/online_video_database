@@ -172,11 +172,14 @@
   /* display: grid;
   place-items: center; */
   margin-top: -10px;
-  margin-left: 100px;
+  /* margin-left: 100px; */
   position: relative;
   float: right;
 }
 
+.order1{
+  margin: 0 40%;
+}
  
 @media(max-width: 900px){
 
