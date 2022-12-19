@@ -502,7 +502,7 @@ function VODDisplay(props) {
             return(<tr>
                 <td className="tbl-hdr">{info.Player1}</td>
                 <td className="tbl-hdr" >
-                    <div className ="centerpls"><div className = "charName">{info.P1P}&nbsp;&nbsp;</div><img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
+                    <div className ="centerpls">{info.P1P}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
                     <div className ="centerpls">{info.P1M}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1M)} height = "35"/></div>
                 </td>
                 <td className="tbl-hdr" >
@@ -635,7 +635,7 @@ function VODDisplay(props) {
             return(<tr>
                 <td className="tbl-hdr">{info.Player1}</td>
                 <td className="tbl-hdr" >
-                    <div className ="centerpls"><div className = "charName">{info.P1P}&nbsp;&nbsp;</div><img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
+                    <div className ="centerpls">{info.P1P}&nbsp;&nbsp;<img className = "img" src ={getImage(info.P1P)} height = "35"/></div>
                     <div className ="centerpls">{info.P1M}&nbsp;&nbsp;<img className = "img" src={getImage(info.P1M)} height = "35"/></div>
                     <div className ="centerpls">{info.P1A}&nbsp;&nbsp;<img className = "img" src={getImage(info.P1A)} height = "35"/></div>
                 </td>
