@@ -129,7 +129,7 @@ function App() {
             <CharDropdown selected={p2selectedchar1} setSelected={p2setSelected1} selectedPic = {p2selectedPic1} setSelectedPic={p2setSelectedPic1}/>
             <CharDropdown selected={p2selectedchar2} setSelected={p2setSelected2} selectedPic = {p2selectedPic2} setSelectedPic={p2setSelectedPic2}/>
             <CharDropdown selected={p2selectedchar3} setSelected={p2setSelected3} selectedPic = {p2selectedPic3} setSelectedPic={p2setSelectedPic3}/>
-            <div className="order">Order matters<input type="checkbox" onClick={TO2Clicked} checked={TO2} id="orderMatters1" className="order1"/><br/></div>
+            <div className="order">Order matters<br/><input type="checkbox" onClick={TO2Clicked} checked={TO2} id="orderMatters1" className="order1"/><br/></div>
             </a>
           </div>
         </div>
