@@ -196,6 +196,7 @@ ul::-webkit-scrollbar-thumb:hover{
     display: flex;
     align-items: center;
     justify-content: space-between; /* CHANGE THIS IF YOU WANT TO MAKE THE PICTURE AND CHARACTER NAME CLOSER*/
+    z-index: 10;
 }
 
 .div-dropdown .dropdown-content{
