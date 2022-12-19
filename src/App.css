@@ -104,7 +104,7 @@
 
 .p1Team{
   /* margin: auto 15%; */
-  height: 425px;
+  height: 450px;
   width: 250px;
   display: flex;
   align-items: center;
@@ -116,7 +116,7 @@
 
 .p2Team{
   /* margin: auto 75%; */
-  height: 425px;
+  height: 450px;
   width: 250px;
   display: flex;
   align-items: center;
@@ -128,7 +128,7 @@
 
 .teamBtn{
     display: inline-block;
-    padding: 5px;
+    padding: 20px;
     margin-right: 95px;
     line-height: 100%;
 }
