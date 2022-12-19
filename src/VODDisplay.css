@@ -145,7 +145,7 @@ table {
         padding-top: 10px;
         display: grid;
         place-items: center;
-        margin-bottom: 0; 
+        /* margin-bottom: 0;  */
     }
 
     .centerpls{
