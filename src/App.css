@@ -169,10 +169,12 @@
 
 .order{
   color: lightgray;
-  display: grid;
-  place-items: center;
+  /* display: grid;
+  place-items: center; */
   margin-top: -10px;
   margin-left: 100px;
+  position: relative;
+  float: right;
 }
 
  
