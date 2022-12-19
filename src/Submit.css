@@ -111,10 +111,11 @@ table {
 .mainBG-Submit{
     display: flex;
     flex-direction: column;
-    height: 86vh;
+    height: 100vh;
     justify-content: space-evenly;
     background-color: #585858;
     width: 100%;
+    padding-bottom: 200px;
 }
 
 

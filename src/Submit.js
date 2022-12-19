@@ -181,7 +181,7 @@ function Submit() {
           <br></br>
               <button type="button" onClick={() => {Email()}} className = "submitButton" >Submit</button>
         </div>
-        </div>
+      </div>
         
       </>
     )
