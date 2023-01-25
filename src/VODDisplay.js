@@ -323,7 +323,7 @@ function VODDisplay(props) {
                         {dateYear}
                     </div> 
                     <div>
-                        <a href={info.Link} target="_blank"><img src="https://www.freepnglogos.com/uploads/youtube-logo-hd-8.png" height = "30"></img></a>
+                        <a href={info.Link} target="_blank"><img src="https://brandeps.com/logo-download/Y/YouTube-Play-logo-vector-01.svg" height = "30"></img></a>
                     </div>
                 </td>
             </tr>)
